@@ -1,0 +1,167 @@
+# 🌟 HAWKINS PRESENCE MODULE CONFIGURATION
+# Production-ready configuration for consciousness analysis system
+
+# Core Analysis Weights
+consciousness_calculation:
+  soul_weight: 0.6        # Weight for soul metrics (0.0-1.0)
+  physical_weight: 0.4    # Weight for physical metrics (0.0-1.0)
+
+# EMA Smoothing Parameters  
+smoothing:
+  alpha: 0.3              # EMA alpha factor (0.0-1.0, higher = more responsive)
+  previous_weight: 0.7    # Previous value weight (1.0 - alpha)
+
+# Hawkins Consciousness Bands (175-700 scale)
+hawkins_bands:
+  175:  # 🌱 Developing
+    state: "🌱 Developing"
+    center: 0.20
+    band: [0.0, 0.35]
+    hysteresis: 0.02      # Prevent oscillation
+    
+  200:  # 💪 Courage  
+    state: "💪 Courage"
+    center: 0.35
+    band: [0.20, 0.50]
+    hysteresis: 0.02
+    
+  310:  # 🎯 Willingness
+    state: "🎯 Willingness" 
+    center: 0.50
+    band: [0.35, 0.65]
+    hysteresis: 0.02
+    
+  350:  # 🤝 Acceptance
+    state: "🤝 Acceptance"
+    center: 0.65
+    band: [0.50, 0.75]
+    hysteresis: 0.02
+    
+  400:  # 🧠 Reason
+    state: "🧠 Reason"
+    center: 0.75
+    band: [0.65, 0.85]
+    hysteresis: 0.02
+    
+  500:  # 💖 Love
+    state: "💖 Love"
+    center: 0.85
+    band: [0.75, 0.95]
+    hysteresis: 0.02
+    
+  600:  # ✨ Joy
+    state: "✨ Joy"
+    center: 0.95
+    band: [0.85, 1.0]
+    hysteresis: 0.02
+    
+  700:  # 🌟 Transcendent
+    state: "🌟 Transcendent"
+    center: 1.0
+    band: [0.95, 1.0]
+    hysteresis: 0.01      # Less hysteresis at top level
+
+# Hysteresis Control
+hysteresis:
+  enabled: true
+  default_threshold: 0.02   # Default hysteresis for all levels
+  change_delay_seconds: 2.0 # Minimum time before level change
+  
+# Trigger Detection Thresholds
+triggers:
+  up_triggers:
+    coherence_focus_threshold: 75     # Soul coherence + focus >= 75%  
+    vitality_threshold: 80            # Vitality >= 80%
+    hrv_coherence_threshold: 80       # HRV coherence >= 80%
+    
+  down_triggers:
+    hrv_coherence_low: 30             # HRV coherence <= 30%
+    soul_coherence_low: 40            # Soul coherence <= 40%
+    
+  history_cleanup_seconds: 300        # Keep trigger history for 5 minutes
+
+# Alert System
+alerts:
+  level_transition:
+    slope_threshold: 0.01             # Minimum slope for transition alert
+    priority: "high"
+    
+  consciousness_surge:
+    min_triggers: 2                   # Minimum simultaneous up triggers
+    priority: "high"
+    
+  consciousness_dip:
+    min_triggers: 2                   # Minimum simultaneous down triggers  
+    priority: "medium"
+
+# Flow State Classification
+flow_states:
+  deep_flow_threshold: 85             # Flow score >= 85% 
+  active_flow_threshold: 70           # Flow score >= 70%
+  entering_flow_threshold: 55         # Flow score >= 55%
+  # Below 55% = Centered
+
+# Coherence Band Thresholds
+coherence_bands:
+  high_threshold: 80                  # >= 80% = High Coherence
+  moderate_threshold: 60              # >= 60% = Moderate Coherence  
+  low_threshold: 40                   # >= 40% = Low Coherence
+  # Below 40% = Very Low Coherence
+
+# Trend Classification
+trend_classification:
+  ascending_threshold: 0.005          # Slope > 0.005 = Ascending
+  descending_threshold: -0.005        # Slope < -0.005 = Descending
+  # Between = Stable
+
+# History & Memory Management  
+memory:
+  history_size: 120                   # Keep last 120 readings (2 minutes @ 1Hz)
+  min_readings_for_trend: 10          # Minimum readings to calculate trend
+
+# Performance & Optimization
+performance:
+  calculation_timeout_ms: 50          # Max time for consciousness calculation
+  batch_processing_size: 10           # Batch size for bulk processing
+  
+# Logging & Debugging
+logging:
+  level_changes_only: true            # Only log when consciousness level changes
+  rollup_interval_seconds: 60         # Rollup metrics every 60 seconds
+  include_debug_info: false           # Include internal calculation details
+
+# Default Values (fallbacks when data missing)
+defaults:
+  soul_metrics:
+    coherence: 0
+    vitality: 0  
+    ethics: 0
+    narrative: 0
+    
+  hrv_data:
+    hrv: 40.0
+    coherence: 65
+    heart_rate: 72
+    
+  focus_level: 0.5
+  
+  personality_traits:
+    empathy: 0.5
+    analytical: 0.5
+    curiosity: 0.5
+    creativity: 0.5
+    resilience: 0.5
+    focus: 0.5
+
+# Optimal Presence State (for distance calculation)
+optimal_presence:
+  empathy: 0.7
+  analytical: 0.5
+  curiosity: 0.8
+
+# System Metadata
+metadata:
+  version: "1.0.0"
+  created: "2025-08-08"
+  description: "Production Hawkins Presence Module Configuration"
+  schema_version: "1.0"

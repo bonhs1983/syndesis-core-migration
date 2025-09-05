@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRV-Driven AI Demo - Syndesis AI Memory</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .hrv-container {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        .hrv-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .hrv-metric {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .hrv-metric h3 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .hrv-metric p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+        }
+        .state-vector {
+            background: rgba(0, 123, 255, 0.1);
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .trait-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 20px;
+            border-radius: 10px;
+            margin: 5px 0;
+            overflow: hidden;
+        }
+        .trait-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        .consciousness-meter {
+            background: conic-gradient(from 0deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+        }
+        .consciousness-inner {
+            background: #1a1a2e;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .control-panel {
+            background: rgba(40, 167, 69, 0.1);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .chat-response {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-active { background: #28a745; }
+        .status-inactive { background: #dc3545; }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .btn-enhanced {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-enhanced:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="hrv-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h1 class="text-white">
+                        <i class="fas fa-heartbeat text-danger"></i>
+                        HRV-Driven AI Demo
+                    </h1>
+                    <p class="text-light">Real-time Heart Rate Variability integration with Syndesis AI Memory System</p>
+                    <div class="mt-3">
+                        <span class="status-indicator" id="systemStatus"></span>
+                        <span id="systemStatusText">Initializing...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- HRV Metrics Column -->
+                <div class="col-lg-4">
+                    <div class="hrv-card">
+                        <h4 class="text-white mb-3">
+                            <i class="fas fa-chart-line"></i> Live HRV Metrics
+                        </h4>
+                        
+                        <div class="hrv-metric pulse">
+                            <h3 id="currentHRV">--</h3>
+                            <p>Current HRV (ms)</p>
+                        </div>
+                        
+                        <div class="hrv-metric">
+                            <h3 id="hrvZScore">--</h3>
+                            <p>Z-Score</p>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <div class="consciousness-meter">
+                                <div class="consciousness-inner">
+                                    <span id="consciousnessLevel">--</span>
+                                </div>
+                            </div>
+                            <p class="text-white mt-2">Consciousness Level</p>
+                        </div>
+                        
+                        <div class="control-panel mt-4">
+                            <h6 class="text-white">Simulation Controls</h6>
+                            <button class="btn btn-enhanced btn-sm me-2 mb-2" onclick="simulateStress()">
+                                <i class="fas fa-bolt"></i> Stress Event
+                            </button>
+                            <button class="btn btn-enhanced btn-sm me-2 mb-2" onclick="simulateRelaxation()">
+                                <i class="fas fa-leaf"></i> Relaxation
+                            </button>
+                            <button class="btn btn-outline-light btn-sm mb-2" onclick="resetSystem()">
+                                <i class="fas fa-refresh"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personality Traits Column -->
+                <div class="col-lg-4">
+                    <div class="hrv-card">
+                        <h4 class="text-white mb-3">
+                            <i class="fas fa-brain"></i> Personality State Vector
+                        </h4>
+                        
+                        <div id="personalityTraits">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-white">Empathy</span>
+                                    <span class="text-light" id="empathyValue">0.5</span>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-fill" id="empathyBar" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-white">Creativity</span>
+                                    <span class="text-light" id="creativityValue">0.5</span>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-fill" id="creativityBar" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-white">Curiosity</span>
+                                    <span class="text-light" id="curiosityValue">0.5</span>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-fill" id="curiosityBar" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-white">Humor</span>
+                                    <span class="text-light" id="humorValue">0.5</span>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-fill" id="humorBar" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-white">Analytical</span>
+                                    <span class="text-light" id="analyticalValue">0.5</span>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-fill" id="analyticalBar" style="width: 50%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="state-vector">
+                            <h6 class="text-white">Soul Metrics</h6>
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <small class="text-light">Coherence</small>
+                                    <div class="text-info" id="coherenceValue">0.5</div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-light">Vitality</small>
+                                    <div class="text-success" id="vitalityValue">0.5</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autonomous Chat Column -->
+                <div class="col-lg-4">
+                    <div class="hrv-card">
+                        <h4 class="text-white mb-3">
+                            <i class="fas fa-robot"></i> Autonomous AI Response
+                        </h4>
+                        
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="chatTopic" 
+                                   placeholder="Topic for autonomous chat..." 
+                                   value="general conversation">
+                        </div>
+                        
+                        <button class="btn btn-enhanced w-100 mb-3" onclick="generateAutonomousResponse()">
+                            <i class="fas fa-magic"></i> Generate Response
+                        </button>
+                        
+                        <div id="chatResponse" class="chat-response" style="display: none;">
+                            <div class="text-light" id="responseText"></div>
+                            <hr>
+                            <small class="text-muted">
+                                Generation time: <span id="generationTime"></span>ms
+                            </small>
+                        </div>
+                        
+                        <div class="state-vector">
+                            <h6 class="text-white">Current Context</h6>
+                            <div id="contextPrompt" class="text-light small">
+                                Waiting for HRV data...
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <button class="btn btn-outline-info btn-sm" onclick="exportSession()">
+                                <i class="fas fa-download"></i> Export Session
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button class="btn btn-enhanced" onclick="startContinuousSimulation()">
+                        <i class="fas fa-play"></i> Start Continuous HRV Simulation
+                    </button>
+                    <button class="btn btn-outline-light ms-2" onclick="stopSimulation()">
+                        <i class="fas fa-stop"></i> Stop
+                    </button>
+                    <a href="/" class="btn btn-outline-light ms-3">
+                        <i class="fas fa-home"></i> Back to Main Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let simulationInterval = null;
+        let isSimulating = false;
+
+        // Initialize system
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSystemStatus();
+            console.log('HRV Demo initialized');
+        });
+
+        async function updateSystemStatus() {
+            try {
+                const response = await fetch('/api/hrv/status');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const status = data.status;
+                    const statusEl = document.getElementById('systemStatus');
+                    const statusTextEl = document.getElementById('systemStatusText');
+                    
+                    if (status.system_ready) {
+                        statusEl.className = 'status-indicator status-active';
+                        statusTextEl.textContent = 'System Ready';
+                    } else {
+                        statusEl.className = 'status-indicator status-inactive';
+                        statusTextEl.textContent = 'Collecting Data...';
+                    }
+                    
+                    // Update displays
+                    updateDisplays(status);
+                }
+            } catch (error) {
+                console.error('Status update error:', error);
+                document.getElementById('systemStatus').className = 'status-indicator status-inactive';
+                document.getElementById('systemStatusText').textContent = 'System Error';
+            }
+        }
+
+        async function simulateHRV() {
+            try {
+                const response = await fetch('/api/hrv/simulate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateDisplays(data.system_status);
+                    updateHRVMetrics(data.hrv_value, data.state_vector);
+                }
+            } catch (error) {
+                console.error('HRV simulation error:', error);
+            }
+        }
+
+        function updateDisplays(status) {
+            if (!status) return;
+            
+            const state = status.state_vector;
+            
+            // Update HRV metrics
+            document.getElementById('currentHRV').textContent = status.latest_hrv.toFixed(1);
+            document.getElementById('hrvZScore').textContent = state.hrv_z_score.toFixed(2);
+            document.getElementById('consciousnessLevel').textContent = Math.round(state.consciousness_level * 100) + '%';
+            
+            // Update personality traits
+            const traits = state.traits;
+            Object.keys(traits).forEach(trait => {
+                const valueEl = document.getElementById(trait + 'Value');
+                const barEl = document.getElementById(trait + 'Bar');
+                
+                if (valueEl && barEl) {
+                    valueEl.textContent = traits[trait].toFixed(2);
+                    barEl.style.width = (traits[trait] * 100) + '%';
+                }
+            });
+            
+            // Update soul metrics
+            const soul = state.soul_metrics;
+            document.getElementById('coherenceValue').textContent = soul.coherence.toFixed(2);
+            document.getElementById('vitalityValue').textContent = soul.vitality.toFixed(2);
+        }
+
+        function updateHRVMetrics(hrv, state) {
+            // Add visual feedback for new data
+            const hrvEl = document.getElementById('currentHRV');
+            hrvEl.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                hrvEl.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        async function simulateStress() {
+            try {
+                const response = await fetch('/api/hrv/stress-test', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ intensity: 0.7 })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    console.log('Stress event simulated');
+                    setTimeout(simulateHRV, 500); // Update after stress
+                }
+            } catch (error) {
+                console.error('Stress simulation error:', error);
+            }
+        }
+
+        async function simulateRelaxation() {
+            try {
+                const response = await fetch('/api/hrv/relaxation', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ intensity: 0.5 })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    console.log('Relaxation simulated');
+                    setTimeout(simulateHRV, 500); // Update after relaxation
+                }
+            } catch (error) {
+                console.error('Relaxation simulation error:', error);
+            }
+        }
+
+        async function generateAutonomousResponse() {
+            const topic = document.getElementById('chatTopic').value;
+            const responseEl = document.getElementById('chatResponse');
+            const responseTextEl = document.getElementById('responseText');
+            const generationTimeEl = document.getElementById('generationTime');
+            const contextEl = document.getElementById('contextPrompt');
+            
+            try {
+                responseTextEl.textContent = 'Generating response...';
+                responseEl.style.display = 'block';
+                
+                const response = await fetch('/api/hrv/autonomous-chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ topic: topic })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    responseTextEl.textContent = data.data.response;
+                    generationTimeEl.textContent = Math.round(data.data.generation_time * 1000);
+                    contextEl.textContent = data.data.context_used.substring(0, 200) + '...';
+                }
+            } catch (error) {
+                console.error('Autonomous chat error:', error);
+                responseTextEl.textContent = 'Error generating response';
+            }
+        }
+
+        function startContinuousSimulation() {
+            if (isSimulating) return;
+            
+            isSimulating = true;
+            simulationInterval = setInterval(() => {
+                simulateHRV();
+            }, 2000); // Every 2 seconds
+            
+            console.log('Continuous simulation started');
+        }
+
+        function stopSimulation() {
+            if (simulationInterval) {
+                clearInterval(simulationInterval);
+                simulationInterval = null;
+                isSimulating = false;
+                console.log('Simulation stopped');
+            }
+        }
+
+        async function resetSystem() {
+            try {
+                const response = await fetch('/api/hrv/reset', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    console.log('System reset');
+                    setTimeout(updateSystemStatus, 500);
+                }
+            } catch (error) {
+                console.error('Reset error:', error);
+            }
+        }
+
+        async function exportSession() {
+            try {
+                const response = await fetch('/api/hrv/export', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    alert('Session data exported successfully: ' + data.filepath);
+                }
+            } catch (error) {
+                console.error('Export error:', error);
+            }
+        }
+
+        // Auto-update status every 5 seconds
+        setInterval(updateSystemStatus, 5000);
+    </script>
+</body>
+</html>

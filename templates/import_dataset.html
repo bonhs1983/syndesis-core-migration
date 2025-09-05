@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Import Dataset - FractalAI Training Pipeline{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i data-feather="upload"></i>
+            Import Dataset
+        </h1>
+        <p class="text-muted">Import existing interaction data into the pipeline for training</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i data-feather="file-plus"></i>
+                    Upload Dataset File
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('import_dataset') }}" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="dataset_file" class="form-label">Dataset File</label>
+                        <input type="file" class="form-control" id="dataset_file" name="dataset_file" 
+                               accept=".jsonl,.json,.txt" required>
+                        <div class="form-text">
+                            Supported formats: JSONL (.jsonl), JSON array (.json)
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="import_type" class="form-label">File Format</label>
+                        <select class="form-select" id="import_type" name="import_type">
+                            <option value="jsonl">JSONL (one JSON object per line)</option>
+                            <option value="json">JSON Array</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i data-feather="upload"></i>
+                        Import File
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i data-feather="info"></i>
+                    Supported Formats
+                </h6>
+            </div>
+            <div class="card-body">
+                <h6>JSONL Format:</h6>
+                <pre class="bg-dark text-light p-2 rounded small">{"prompt": "Hello", "response": "Hi there!"}
+{"input": "How are you?", "output": "I'm good!"}</pre>
+                
+                <h6 class="mt-3">JSON Array Format:</h6>
+                <pre class="bg-dark text-light p-2 rounded small">[
+  {"prompt": "Hello", "response": "Hi there!"},
+  {"input": "How are you?", "output": "I'm good!"}
+]</pre>
+
+                <h6 class="mt-3">Supported Fields:</h6>
+                <ul class="small">
+                    <li><strong>Input:</strong> <code>prompt</code>, <code>input</code>, <code>agent_input</code>, <code>user</code>, <code>question</code></li>
+                    <li><strong>Output:</strong> <code>response</code>, <code>output</code>, <code>agent_output</code>, <code>assistant</code>, <code>answer</code></li>
+                    <li><code>context</code> (optional)</li>
+                    <li><code>session_id</code> (optional)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i data-feather="edit"></i>
+                    Paste Dataset Text
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('import_dataset') }}">
+                    <div class="mb-3">
+                        <label for="dataset_text" class="form-label">Dataset Content</label>
+                        <textarea class="form-control" id="dataset_text" name="dataset_text" 
+                                  rows="8" placeholder="Paste your JSONL or JSON data here..."></textarea>
+                        <div class="form-text">
+                            You can paste JSONL format (one JSON object per line) or JSON array format
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="import_type_text" class="form-label">Text Format</label>
+                        <select class="form-select" id="import_type_text" name="import_type">
+                            <option value="jsonl">JSONL (one JSON object per line)</option>
+                            <option value="json">JSON Array</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">
+                        <i data-feather="plus"></i>
+                        Import Text
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="alert alert-info">
+            <i data-feather="info"></i>
+            <strong>Note:</strong> Imported data will be marked as unprocessed and can be exported to create training datasets. 
+            The system automatically detects common field names for input/output pairs.
+        </div>
+    </div>
+</div>
+{% endblock %}

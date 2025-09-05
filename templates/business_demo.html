@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=2.0, user-scalable=yes">
+    <title>Syndesis AI - Revolutionary Memory Technology</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/static/css/enhanced.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0.5rem 0;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        .tech-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .tech-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 123, 255, 0.3);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        .demo-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .personality-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        .personality-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #007bff, #28a745);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .chat-container {
+            height: 220px !important;
+            max-height: 220px !important;
+            min-height: 220px !important;
+            padding-top: 30px !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            background: rgba(0, 0, 0, 0.2);
+            font-size: 0.8rem;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            padding-bottom: 1rem !important;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            scroll-behavior: auto !important;
+            margin: 1rem 0;
+            scrollbar-width: thin;
+            scrollbar-color: #007bff rgba(255,255,255,0.1);
+            display: flex !important;
+            flex-direction: column !important;
+            position: relative !important;
+        }
+        
+        .chat-container::-webkit-scrollbar {
+            width: 8px !important;
+        }
+        
+        .chat-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 4px !important;
+        }
+        
+        .chat-container::-webkit-scrollbar-thumb {
+            background-color: #007bff !important;
+            border-radius: 4px !important;
+        }
+        
+        .chat-container::-webkit-scrollbar-thumb:hover {
+            background-color: #0056b3 !important;
+        }
+        .message {
+            margin: 0.5rem 0;
+            padding: 0.8rem;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+        .user-message {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            margin-left: auto;
+            text-align: right;
+        }
+        .ai-message {
+            background: rgba(255, 255, 255, 0.1);
+            margin-right: auto;
+            max-height: none !important; /* Remove height constraint from main container */
+            overflow: visible !important; /* Let internal divs handle scrolling */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* Force scrolling on AI responses */
+        .ai-response-scrollable {
+            scrollbar-width: thin !important;
+            scrollbar-color: #5f9dea transparent !important;
+        }
+        
+        .ai-response-scrollable::-webkit-scrollbar {
+            width: 6px !important;
+        }
+        
+        .ai-response-scrollable::-webkit-scrollbar-track {
+            background: transparent !important;
+        }
+        
+        .ai-response-scrollable::-webkit-scrollbar-thumb {
+            background-color: #5f9dea !important;
+            border-radius: 3px !important;
+        }
+        .stats-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #007bff;
+            display: block;
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        .competitive-table {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .competitive-table th {
+            background: rgba(0, 123, 255, 0.2);
+            border: none;
+            color: #fff;
+            padding: 1rem;
+        }
+        .competitive-table td {
+            border: none;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .check-icon {
+            color: #28a745;
+            font-size: 1.2rem;
+        }
+        .x-icon {
+            color: #dc3545;
+            font-size: 1.2rem;
+        }
+        
+        /* AI Response Scrollable Container */
+        .ai-response-content {
+            max-height: 220px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 8px;
+            margin: 8px 0;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        
+        /* Trace Display Container */
+        .trace-display {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        
+        /* Scrollbar Styling for Dark Theme */
+        .ai-response-content::-webkit-scrollbar,
+        .trace-display::-webkit-scrollbar,
+        .ai-message::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .ai-response-content::-webkit-scrollbar-track,
+        .trace-display::-webkit-scrollbar-track,
+        .ai-message::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        
+        .ai-response-content::-webkit-scrollbar-thumb,
+        .trace-display::-webkit-scrollbar-thumb,
+        .ai-message::-webkit-scrollbar-thumb {
+            background: rgba(0, 123, 255, 0.6);
+            border-radius: 3px;
+        }
+        
+        .ai-response-content::-webkit-scrollbar-thumb:hover,
+        .trace-display::-webkit-scrollbar-thumb:hover,
+        .ai-message::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 123, 255, 0.8);
+        }
+        
+        /* Fix clickable links */
+        .clickable-link {
+            text-decoration: none !important;
+            color: white !important;
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            display: inline-block !important;
+            position: relative !important;
+            z-index: 2000 !important;
+        }
+        
+        .clickable-link:hover {
+            color: white !important;
+            text-decoration: none !important;
+        }
+        
+        /* Ultra Compact UI for 100% zoom visibility */
+        body {
+            font-size: 0.85rem !important;
+            line-height: 1.3 !important;
+        }
+        
+        h1 { font-size: 1.8rem !important; margin-bottom: 0.3rem !important; }
+        h2 { font-size: 1.3rem !important; margin-bottom: 0.3rem !important; }
+        h4 { font-size: 0.95rem !important; margin-bottom: 0.3rem !important; }
+        h6 { font-size: 0.8rem !important; margin-bottom: 0.2rem !important; }
+        
+        .container { padding: 0.5rem !important; }
+        .row { margin: 0.25rem 0 !important; }
+        .col-lg-6 { padding: 0.5rem !important; }
+        
+        /* Compact Personality Scores */
+        .personality-scores {
+            padding: 0.3rem !important;
+            margin: 0.3rem 0 !important;
+        }
+        
+        .personality-item {
+            margin: 0.15rem 0 !important;
+            padding: 0.1rem 0 !important;
+        }
+        
+        .personality-item small {
+            font-size: 0.7rem !important;
+            line-height: 1.1 !important;
+        }
+        
+        .personality-bar {
+            height: 4px !important;
+            margin: 0.1rem 0 !important;
+        }
+        
+        /* Ultra compact demo section */
+        .demo-section {
+            padding: 0.5rem !important;
+            margin: 0.25rem 0 !important;
+        }
+        
+        /* Compact buttons and controls */
+        .btn { 
+            padding: 0.3rem 0.6rem !important; 
+            font-size: 0.75rem !important;
+            margin: 0.1rem !important;
+        }
+        
+        /* Compact stats */
+        .stats-card {
+            padding: 0.5rem !important;
+            margin: 0.2rem !important;
+        }
+        
+        .stat-number { font-size: 1.2rem !important; }
+        .stats-card small { font-size: 0.65rem !important; }
+        
+        /* Compact input controls */
+        .form-control { 
+            padding: 0.4rem !important; 
+            font-size: 0.8rem !important;
+        }
+        
+        /* Real-time stats compact */
+        .text-center small { font-size: 0.65rem !important; }
+        .fw-bold { font-size: 0.75rem !important; }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section { min-height: auto !important; padding: 0.5rem 0 !important; }
+            .chat-container { height: 150px !important; }
+            h1 { font-size: 1.5rem !important; }
+            .col-lg-6 { padding: 0.25rem !important; }
+            .demo-section { padding: 0.5rem !important; }
+        }
+        
+        @media (min-width: 1200px) {
+            .container { max-width: 95% !important; }
+        }
+        
+        /* Fix overflow issues */
+        .hero-section .container {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
+        }
+
+        /* Professional Content Button Styles */
+        .content-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .content-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
+            border-color: rgba(255,255,255,0.6) !important;
+        }
+
+        .content-btn:hover:before {
+            left: 100%;
+        }
+
+        .content-btn:active {
+            transform: translateY(0) !important;
+            transition: transform 0.1s !important;
+        }
+
+        .content-generation-suite {
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .content-generation-suite::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(13, 110, 253, 0.1), rgba(25, 135, 84, 0.1));
+            border-radius: 8px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="hero-enhanced">
+        <!-- Particle Background -->
+        <div class="particles"></div>
+        
+        <!-- Hero Section -->
+        <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <!-- Logo Section -->
+                    <div class="logo-container">
+                        <div class="logo">
+                            <div class="logo-text">🧠</div>
+                        </div>
+                    </div>
+                    
+                    <h1 class="title-enhanced" style="font-size: 1.9rem; margin-bottom: 0.3rem;">
+                        Syndesis AI Memory
+                    </h1>
+                    <p class="subtitle-enhanced" style="font-size: 0.8rem; margin-bottom: 0.7rem;">
+                        The world's first AI system with <strong>persistent memory evolution</strong> and 
+                        <strong>real-time personality adaptation</strong>. Revolutionary technology that 
+                        remembers every conversation and grows relationships over time.
+                    </p>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-lg-8">
+                            <div class="d-flex flex-wrap justify-content-center gap-2">
+                                <button class="btn btn-enhanced mb-2" onclick="startDemo()">
+                                    <i class="fas fa-play"></i> Live Demo
+                                </button>
+                                <button class="btn btn-outline-light btn-lg mb-2" onclick="scrollToFeatures()">
+                                    <i class="fas fa-rocket"></i> Features
+                                </button>
+                            </div>
+                            <div class="d-flex flex-wrap justify-content-center gap-2 mt-2" style="position: relative; z-index: 1000;">
+                                <a href="/training" class="btn btn-warning btn-sm clickable-link" target="_blank">
+                                    <i class="fas fa-graduation-cap"></i> Training
+                                </a>
+                                <a href="/statistics" class="btn btn-success btn-sm clickable-link" target="_blank">
+                                    <i class="fas fa-chart-line"></i> Statistics
+                                </a>
+                                <a href="/intelligent_training" class="btn btn-info btn-sm clickable-link" target="_blank">
+                                    <i class="fas fa-brain"></i> AI Training
+                                </a>
+                                <a href="/anomaly-analysis" class="btn btn-danger btn-sm clickable-link" target="_blank">
+                                    <i class="fas fa-search"></i> Anomaly Detection
+                                </a>
+                                <a href="/soul-metrics" class="btn btn-purple btn-sm clickable-link" target="_blank" style="background: linear-gradient(45deg, #8e2de2, #4a00e0); border: none;">
+                                    <i class="fas fa-brain"></i> Soul Metrics
+                                </a>
+                                <a href="/human-memory-demo" class="btn btn-outline-warning btn-sm clickable-link" target="_blank">
+                                    <i class="fas fa-brain"></i> Memory System
+                                </a>
+                                <a href="/hrv-demo" class="btn btn-outline-danger btn-sm clickable-link" target="_blank" style="background: linear-gradient(45deg, #dc3545, #6f0520); border: none;">
+                                    <i class="fas fa-heartbeat"></i> HRV Biometrics
+                                </a>
+                                <button class="btn btn-warning btn-sm" onclick="startAutonomousMode()" id="autonomousBtn">
+                                    <i class="fas fa-robot"></i> Start Autonomous
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center mt-3">
+                        <div class="col-4">
+                            <div class="stats-card" style="padding: 0.3rem;">
+                                <span class="stat-number pulse" style="font-size: 1rem;">100%</span>
+                                <small style="font-size: 0.6rem;">Working Prototype</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stats-card" style="padding: 0.3rem;">
+                                <span class="stat-number pulse" style="font-size: 1rem;">∞</span>
+                                <small style="font-size: 0.6rem;">Memory Persistence</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stats-card" style="padding: 0.3rem;">
+                                <span class="stat-number pulse" style="font-size: 1rem;">7</span>
+                                <small style="font-size: 0.6rem;">Personality Traits</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- HRV Biometric Monitoring -->
+                    <div class="mt-3 mb-2">
+                        <div class="card" style="background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(108, 117, 125, 0.1)); border: 1px solid rgba(220, 53, 69, 0.3); border-radius: 8px;">
+                            <div class="card-body" style="padding: 0.5rem;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="mb-0 text-danger" style="font-size: 0.75rem; font-weight: 600;">
+                                        <i class="fas fa-heartbeat me-1"></i>HRV Biometrics
+                                    </h6>
+                                    <span class="badge bg-danger" style="font-size: 0.6rem;" id="hrvStatus">Monitoring</span>
+                                </div>
+                                <div class="row text-center">
+                                    <div class="col-6">
+                                        <div style="font-size: 0.8rem; font-weight: bold; color: #dc3545;" id="hrvValue">--</div>
+                                        <small style="font-size: 0.55rem; color: #6c757d;">HRV ms</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <div style="font-size: 0.8rem; font-weight: bold; color: #28a745;" id="stressLevel">--</div>
+                                        <small style="font-size: 0.55rem; color: #6c757d;">Stress</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="demo-section">
+                        <h4 class="text-center mb-4">
+                            <i class="fas fa-brain text-primary"></i> 
+                            Live Memory & Personality Evolution
+                        </h4>
+                        
+
+                        
+                        <!-- Real-time Chat Demo -->
+                        <div class="chat-container" id="chatContainer">
+                            <div class="message ai-message">
+                                <strong>AI:</strong> Hello! I'm a Memory Evolution AI. I remember every conversation and evolve my personality based on our interactions. Try chatting with me!
+                            </div>
+                        </div>
+                        
+                        <!-- Input -->
+                        <div class="input-group mb-2">
+                            <input type="text" class="form-control" id="userInput" placeholder="Type your message..." style="font-size: 0.75rem; padding: 0.35rem;">
+                            <button class="btn btn-primary" onclick="sendMessage()" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;">Send</button>
+                        </div>
+                        
+                        <!-- Professional Content Generation Suite -->
+                        <div class="content-generation-suite mb-3" style="background: linear-gradient(135deg, rgba(13, 110, 253, 0.1), rgba(25, 135, 84, 0.1)); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 12px;">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6 class="mb-0 text-light" style="font-weight: 600;">AI Content Studio</h6>
+                                <small class="badge bg-primary">Context-Aware</small>
+                            </div>
+                            
+                            <div class="row g-2" id="contentButtons">
+                                <div class="col-6 col-md-4">
+                                    <button class="btn btn-outline-light btn-sm w-100 content-btn text-start" onclick="requestContent('text')" data-type="text" style="border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">
+                                        <i class="fas fa-edit me-2"></i>Article & Posts
+                                    </button>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <button class="btn btn-outline-light btn-sm w-100 content-btn text-start" onclick="requestContent('image')" data-type="image" style="border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">
+                                        <i class="fas fa-image me-2"></i>Visual Design
+                                    </button>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <button class="btn btn-outline-light btn-sm w-100 content-btn text-start" onclick="requestContent('video')" data-type="video" style="border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">
+                                        <i class="fas fa-video me-2"></i>Video Concepts
+                                    </button>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <button class="btn btn-outline-light btn-sm w-100 content-btn text-start" onclick="requestContent('presentation')" data-type="presentation" style="border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">
+                                        <i class="fas fa-chart-line me-2"></i>Presentations
+                                    </button>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <button class="btn btn-outline-light btn-sm w-100 content-btn text-start" onclick="requestContent('music')" data-type="music" style="border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">
+                                        <i class="fas fa-music me-2"></i>Audio & Music
+                                    </button>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <button class="btn btn-outline-light btn-sm w-100 content-btn text-start" onclick="requestContent('strategy')" data-type="strategy" style="border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">
+                                        <i class="fas fa-lightbulb me-2"></i>Strategy & Ideas
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-2">
+                                <small class="text-light opacity-75" id="contentHint">
+                                    <i class="fas fa-brain me-1"></i>Personality-driven content creation adapts to your conversation context
+                                </small>
+                            </div>
+                        </div>
+                        
+                        <!-- Real-time Stats -->
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <small class="text-muted">Session:</small>
+                                <div class="fw-bold" id="sessionId">demo_001</div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted">Memories:</small>
+                                <div class="fw-bold text-primary" id="memoryCount">0</div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted">Relationship:</small>
+                                <div class="fw-bold text-success" id="relationshipDepth">0.00</div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted">Status:</small>
+                                <div class="fw-bold text-warning" id="aiStatus">Ready</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Personality Visualization -->
+                        <div class="mt-3 personality-visualization personality-scores">
+                            <h6 style="margin-bottom: 0.5rem;">Real-time Personality Evolution:</h6>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="personality-item">
+                                        <small>Empathy: <span id="empathy">0.5</span></small>
+                                        <div class="personality-bar">
+                                            <div class="personality-fill" id="empathy-bar" style="width: 50%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="personality-item">
+                                        <small>Creativity: <span id="creativity">0.5</span></small>
+                                        <div class="personality-bar">
+                                            <div class="personality-fill" id="creativity-bar" style="width: 50%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="personality-item">
+                                        <small>Humor: <span id="humor">0.5</span></small>
+                                        <div class="personality-bar">
+                                            <div class="personality-fill" id="humor-bar" style="width: 50%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="personality-item">
+                                        <small>Curiosity: <span id="curiosity">0.5</span></small>
+                                        <div class="personality-bar">
+                                            <div class="personality-fill" id="curiosity-bar" style="width: 50%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="personality-item">
+                                        <small>Supportiveness: <span id="supportiveness">0.5</span></small>
+                                        <div class="personality-bar">
+                                            <div class="personality-fill" id="supportiveness-bar" style="width: 50%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="personality-item">
+                                        <small>Analytical: <span id="analyticalness">0.5</span></small>
+                                        <div class="personality-bar">
+                                            <div class="personality-fill" id="analyticalness-bar" style="width: 50%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Soul Metrics Section -->
+                            <div class="soul-metrics-section mt-3" style="background: linear-gradient(135deg, rgba(142, 45, 226, 0.1), rgba(74, 0, 224, 0.1)); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 12px;">
+                                <h6 class="text-center mb-2" style="font-size: 0.75rem;">
+                                    <i class="fas fa-brain text-primary pulse"></i> 
+                                    Consciousness Metrics
+                                </h6>
+                                <div class="row g-1">
+                                    <div class="col-6">
+                                        <div class="soul-metric-item" style="background: rgba(0,0,0,0.2); border-radius: 4px; padding: 6px; margin-bottom: 4px;">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <small style="font-size: 0.65rem;">Coherence</small>
+                                                <span id="coherence-score" class="badge bg-info" style="font-size: 0.6rem;">92%</span>
+                                            </div>
+                                            <div class="progress" style="height: 3px; margin-top: 2px;">
+                                                <div class="progress-bar bg-info" id="coherence-bar" style="width: 92%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="soul-metric-item" style="background: rgba(0,0,0,0.2); border-radius: 4px; padding: 6px; margin-bottom: 4px;">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <small style="font-size: 0.65rem;">Vitality</small>
+                                                <span id="vitality-score" class="badge bg-success" style="font-size: 0.6rem;">78%</span>
+                                            </div>
+                                            <div class="progress" style="height: 3px; margin-top: 2px;">
+                                                <div class="progress-bar bg-success" id="vitality-bar" style="width: 78%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="soul-metric-item" style="background: rgba(0,0,0,0.2); border-radius: 4px; padding: 6px; margin-bottom: 4px;">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <small style="font-size: 0.65rem;">Ethics</small>
+                                                <span id="ethics-score" class="badge bg-warning" style="font-size: 0.6rem;">98%</span>
+                                            </div>
+                                            <div class="progress" style="height: 3px; margin-top: 2px;">
+                                                <div class="progress-bar bg-warning" id="ethics-bar" style="width: 98%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="soul-metric-item" style="background: rgba(0,0,0,0.2); border-radius: 4px; padding: 6px; margin-bottom: 4px;">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <small style="font-size: 0.65rem;">Narrative</small>
+                                                <span id="narrative-score" class="badge bg-primary" style="font-size: 0.6rem;">73%</span>
+                                            </div>
+                                            <div class="progress" style="height: 3px; margin-top: 2px;">
+                                                <div class="progress-bar bg-primary" id="narrative-bar" style="width: 73%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-2">
+                                    <span class="consciousness-level badge" id="consciousness-level" style="background: linear-gradient(45deg, #667eea, #764ba2); font-size: 0.55rem; padding: 2px 6px;">HIGHLY CONSCIOUS</span>
+                                    <span class="consciousness-score" id="consciousness-total" style="font-size: 0.7rem; color: #667eea; font-weight: bold; margin-left: 8px;">85%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5" id="features">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Revolutionary Technology</h2>
+                <p class="lead">Features that don't exist anywhere else in the AI market</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="tech-card text-center">
+                        <i class="fas fa-brain feature-icon"></i>
+                        <h4>Persistent Memory Evolution</h4>
+                        <p>Unlike ChatGPT's basic memory, our AI remembers every conversation across months/years with emotional weighting and significance decay.</p>
+                        <div class="badge bg-success">100% Working</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="tech-card text-center">
+                        <i class="fas fa-chart-line feature-icon"></i>
+                        <h4>Real-time Personality Adaptation</h4>
+                        <p>7 personality traits that evolve based on user interactions. Watch empathy, creativity, and humor change in real-time.</p>
+                        <div class="badge bg-success">Live Demo</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="tech-card text-center">
+                        <i class="fas fa-palette feature-icon"></i>
+                        <h4>AI Content Generation Engine</h4>
+                        <p>Automatic creation of texts, images, video concepts & music using GPT-4o and DALL-E 3. Perfect for marketing campaigns & creative content.</p>
+                        <div class="badge bg-warning">
+                            <a href="/content-generator" class="clickable-link">Try Content Generator</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="tech-card text-center">
+                        <i class="fas fa-heart feature-icon"></i>
+                        <h4>Relationship Depth Tracking</h4>
+                        <p>Cross-session relationship building that deepens over time. Every interaction builds genuine connections.</p>
+                        <div class="badge bg-success">Proven</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="tech-card text-center">
+                        <i class="fas fa-share-alt feature-icon"></i>
+                        <h4>Social Platform Integration</h4>
+                        <p>Ready-to-use REST API endpoints for immediate integration with Instagram, Facebook, WhatsApp, and other platforms.</p>
+                        <div class="badge bg-primary">Meta Ready</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="tech-card text-center">
+                        <i class="fas fa-code feature-icon"></i>
+                        <h4>REST API Integration</h4>
+                        <p>Complete REST API endpoints ready for immediate integration with any platform. JSON responses, CORS enabled, production ready.</p>
+                        <div class="badge bg-info">API Ready</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="tech-card text-center">
+                        <i class="fas fa-graduation-cap feature-icon"></i>
+                        <h4>Complete Training Pipeline</h4>
+                        <p>Full model training infrastructure with HuggingFace integration. Train custom models with personality evolution data - zero dependency on external APIs.</p>
+                        <div class="badge bg-warning">Zero-Token Training</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitive Analysis -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Market Leadership</h2>
+                <p class="lead">How we compare to existing AI systems</p>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table competitive-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Memory Evolution AI</th>
+                            <th>ChatGPT</th>
+                            <th>Character.AI</th>
+                            <th>Replika</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Persistent Memory</strong></td>
+                            <td><i class="fas fa-check check-icon"></i> Advanced</td>
+                            <td><i class="fas fa-check check-icon"></i> Basic</td>
+                            <td><i class="fas fa-times x-icon"></i> None</td>
+                            <td><i class="fas fa-check check-icon"></i> Limited</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Personality Evolution</strong></td>
+                            <td><i class="fas fa-check check-icon"></i> Real-time</td>
+                            <td><i class="fas fa-times x-icon"></i> Static</td>
+                            <td><i class="fas fa-times x-icon"></i> Static</td>
+                            <td><i class="fas fa-times x-icon"></i> Basic</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relationship Tracking</strong></td>
+                            <td><i class="fas fa-check check-icon"></i> Cross-session</td>
+                            <td><i class="fas fa-times x-icon"></i> None</td>
+                            <td><i class="fas fa-times x-icon"></i> None</td>
+                            <td><i class="fas fa-check check-icon"></i> Basic</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Social Integration</strong></td>
+                            <td><i class="fas fa-check check-icon"></i> API Ready</td>
+                            <td><i class="fas fa-times x-icon"></i> Limited</td>
+                            <td><i class="fas fa-times x-icon"></i> Limited</td>
+                            <td><i class="fas fa-times x-icon"></i> App Only</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Training Pipeline</strong></td>
+                            <td><i class="fas fa-check check-icon"></i> Complete</td>
+                            <td><i class="fas fa-times x-icon"></i> External API</td>
+                            <td><i class="fas fa-times x-icon"></i> External API</td>
+                            <td><i class="fas fa-times x-icon"></i> External API</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Market Valuation</strong></td>
+                            <td><strong>€500K - €2M</strong></td>
+                            <td>$80B+ (OpenAI)</td>
+                            <td>$1B</td>
+                            <td>$100M</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Opportunity -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold mb-4">Meta Integration Opportunity</h2>
+                    <div class="tech-card">
+                        <h5><i class="fab fa-instagram text-primary"></i> Instagram AI Companions</h5>
+                        <p>AI characters that remember every interaction across Stories, Reels, and DMs. Build lasting relationships with users.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h5><i class="fab fa-whatsapp text-success"></i> WhatsApp Intelligent Assistants</h5>
+                        <p>Personal assistants that evolve with users, remembering preferences, relationships, and conversation history.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h5><i class="fas fa-vr-cardboard text-info"></i> Oculus Social Experiences</h5>
+                        <p>VR AI characters with persistent personalities that grow and adapt based on virtual world interactions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="tech-card text-center">
+                        <h3 class="text-primary mb-4">Ready for Integration</h3>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="stats-card mb-3">
+                                    <span class="stat-number">API</span>
+                                    <small>REST Endpoints Ready</small>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stats-card mb-3">
+                                    <span class="stat-number">CORS</span>
+                                    <small>Cross-Origin Enabled</small>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stats-card mb-3">
+                                    <span class="stat-number">JSON</span>
+                                    <small>Structured Responses</small>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stats-card mb-3">
+                                    <span class="stat-number">24/7</span>
+                                    <small>Always Available</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2 mt-3">
+                            <a href="/api_test" class="btn btn-primary btn-lg">
+                                <i class="fas fa-code"></i> API Test
+                            </a>
+                            <a href="/training" class="btn btn-warning btn-lg" target="_blank" style="text-decoration: none; color: white;">
+                                <i class="fas fa-graduation-cap"></i> Training Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5 bg-primary">
+        <div class="container text-center">
+            <h2 class="display-4 fw-bold text-white mb-4">Ready for Partnership</h2>
+            <p class="lead text-white mb-4">
+                This technology could become the foundation for Meta's next-generation AI experiences across all platforms.
+            </p>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="tech-card">
+                        <h5>Next Steps</h5>
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <i class="fas fa-desktop feature-icon"></i>
+                                <h6>30-minute Demo</h6>
+                                <p>Complete technical demonstration</p>
+                            </div>
+                            <div class="col-md-4">
+                                <i class="fas fa-handshake feature-icon"></i>
+                                <h6>Pilot Integration</h6>
+                                <p>Trial implementation discussion</p>
+                            </div>
+                            <div class="col-md-4">
+                                <i class="fas fa-chart-bar feature-icon"></i>
+                                <h6>Strategic Partnership</h6>
+                                <p>Long-term collaboration terms</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <strong>Contact:</strong> Ready for immediate demonstration<br>
+                            <strong>Timeline:</strong> Available at your convenience<br>
+                            <strong>NDA:</strong> Technical documentation available upon signed agreement
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let messageCount = 0;
+        let currentUserId = 'demo_user_' + Date.now() + '_' + Math.random().toString(36).substring(7);
+        
+        function scrollToFeatures() {
+            document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function startDemo() {
+            // Clear chat and generate new session
+            document.getElementById('chatContainer').innerHTML = '';
+            currentUserId = 'demo_user_' + Date.now() + '_' + Math.random().toString(36).substring(7);
+            document.getElementById('sessionId').textContent = currentUserId;
+            
+            document.getElementById('userInput').focus();
+            document.getElementById('aiStatus').textContent = 'Ready';
+        }
+        
+        async function sendMessage() {
+            console.log('Send message called');
+            const input = document.getElementById('userInput');
+            if (!input) {
+                console.error('Input element not found!');
+                return;
+            }
+            const message = input.value.trim();
+            console.log('Message to send:', message);
+            if (!message) return;
+            
+            // Add user message to chat
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Update status
+            document.getElementById('aiStatus').textContent = 'Processing...';
+            
+            try {
+                const response = await fetch('/api/agent/chat?' + new Date().getTime(), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache'
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        session_id: currentUserId
+                    })
+                });
+                
+                const data = await response.json();
+                console.log('API Response:', data); // Debug log
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${data.error || 'Unknown error'}`);
+                }
+                
+                // Add AI response to chat with forced scroll
+                addMessage(data.response, 'ai', data.trace);
+                
+                // Force immediate scroll to bottom after AI response
+                setTimeout(() => {
+                    const chatContainer = document.getElementById('chatContainer');
+                    if (chatContainer) {
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                        console.log('Post-AI response scroll:', chatContainer.scrollTop, chatContainer.scrollHeight);
+                    }
+                }, 100);
+                
+                // Update metrics
+                updateMetrics(data.session_info);
+                
+                // Update personality with enhanced debugging
+                if (data.personality) {
+                    console.log('🎯 Personality data received:', data.personality);
+                    updatePersonality(data.personality);
+                } else {
+                    console.warn('⚠️ No personality data in response');
+                }
+                
+                // Update Soul Metrics if available
+                if (data.soul_metrics) {
+                    console.log('🧠 Soul Metrics data received:', data.soul_metrics);
+                    updateSoulMetricsFromAPI(data.soul_metrics);
+                } else {
+                    console.warn('⚠️ No Soul Metrics data in response');
+                }
+                
+                // Update HRV Metrics if available
+                if (data.hrv_metrics) {
+                    console.log('❤️ HRV Metrics data received:', data.hrv_metrics);
+                    updateHRVMetrics(data.hrv_metrics);
+                } else {
+                    console.warn('⚠️ No HRV Metrics data in response');
+                }
+                
+                document.getElementById('aiStatus').textContent = 'Ready';
+                
+            } catch (error) {
+                console.error('Connection error:', error);
+                addMessage('Connection error. Please try again.', 'ai');
+                document.getElementById('aiStatus').textContent = 'Error';
+            }
+        }
+        
+        function addMessage(text, sender, trace = null) {
+            console.log('🔍 Adding message - Text:', text, 'Sender:', sender, 'Trace length:', trace ? trace.length : 0);
+            const chatContainer = document.getElementById('chatContainer');
+            if (!chatContainer) {
+                console.error('❌ Chat container not found!');
+                return;
+            }
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.style.marginBottom = '10px';
+            messageDiv.style.padding = '8px';
+            messageDiv.style.borderRadius = '6px';
+            
+            if (sender === 'user') {
+                messageDiv.style.background = 'rgba(95, 157, 234, 0.1)';
+                messageDiv.innerHTML = `<strong style="color: #5f9dea;">You:</strong> <span style="color: #fff; font-size: 0.9rem;">${text}</span>`;
+            } else if (sender === 'system') {
+                messageDiv.style.background = 'rgba(255, 193, 7, 0.1)';
+                messageDiv.style.border = '1px solid rgba(255, 193, 7, 0.3)';
+                messageDiv.innerHTML = `<strong style="color: #ffc107;">System:</strong> <span style="color: #fff; font-size: 0.85rem;">${text}</span>`;
+            } else {
+                messageDiv.style.background = 'rgba(40, 167, 69, 0.1)';
+                messageDiv.style.border = '1px solid rgba(40, 167, 69, 0.3)';
+                
+                let messageHTML = `
+                    <div style="margin-bottom: 8px;">
+                        <strong style="color: #28a745; font-size: 0.9rem;">AI:</strong>
+                        <div style="color: #fff; font-size: 0.9rem; line-height: 1.5; margin-top: 5px; padding: 8px; background: rgba(40, 167, 69, 0.05); border-radius: 4px;">
+                            ${text}
+                        </div>
+                    </div>
+                `;
+                
+                // Add discrete trace display for AI messages
+                if (trace && Array.isArray(trace)) {
+                    messageHTML += `
+                        <div style="font-size: 0.85em; background: #181b24; color: #93a1bd; border-radius: 7px; margin-top: 10px; margin-bottom: 6px; padding: 5px 10px; border-left: 2.5px solid #5f9dea; box-shadow: none; max-height: 80px; overflow-y: auto; opacity: 0.84;">
+                            <div style="font-size: 0.95em; color: #6a7891; font-weight: 500; margin-bottom: 3px; letter-spacing: 0.03em;">
+                                Trace:
+                            </div>
+                            <ul style="margin: 0; padding-left: 16px;">
+                                ${trace.map(step => `
+                                    <li style="margin-bottom: 0px;">
+                                        <strong>Step ${step.step}:</strong> ${step.action}
+                                        <div style="color: #93a1bd; font-size: 0.9em; font-style: italic; margin-left: 0px;">${step.details}</div>
+                                        ${step.trait ? `<span style="background: #5f9dea; color: #fff; padding: 1px 4px; border-radius: 3px; font-size: 0.75em; margin-top: 2px; display: inline-block; opacity: 0.9;">${step.trait}: ${step.old} → ${step.new}</span>` : ''}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+                
+                messageDiv.innerHTML = messageHTML;
+            }
+            
+            chatContainer.appendChild(messageDiv);
+            console.log('✅ Message appended to chat container. Total children:', chatContainer.children.length);
+            
+            // Immediate scroll to bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // Force scroll with multiple attempts
+            setTimeout(() => {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                console.log('📍 Scroll check - Top:', chatContainer.scrollTop, 'Height:', chatContainer.scrollHeight);
+            }, 100);
+            
+            messageCount++;
+            console.log('✅ Message #' + messageCount + ' added successfully. Container height:', chatContainer.scrollHeight);
+        }
+        
+        function updateMetrics(sessionInfo) {
+            if (sessionInfo) {
+                document.getElementById('sessionId').textContent = sessionInfo.session_id || currentUserId.slice(-8);
+                document.getElementById('memoryCount').textContent = sessionInfo.memory_count || messageCount;
+                document.getElementById('relationshipDepth').textContent = 
+                    sessionInfo.relationship_depth ? sessionInfo.relationship_depth.toFixed(2) : (messageCount * 0.01).toFixed(2);
+            }
+        }
+        
+        function updateHRVMetrics(hrv_metrics) {
+            console.log('❤️ Updating HRV Metrics:', hrv_metrics);
+            if (hrv_metrics) {
+                // Update HRV value
+                const hrvValue = document.getElementById('hrvValue');
+                if (hrvValue) {
+                    const newValue = hrv_metrics.current_hrv ? Math.round(hrv_metrics.current_hrv) : '--';
+                    hrvValue.textContent = newValue;
+                    console.log('✅ Updated HRV value to:', newValue);
+                    
+                    // Add visual feedback for HRV changes
+                    hrvValue.style.color = newValue > 50 ? '#28a745' : newValue > 30 ? '#ffc107' : '#dc3545';
+                }
+                
+                // Update stress level
+                const stressLevel = document.getElementById('stressLevel');
+                if (stressLevel) {
+                    const stress = hrv_metrics.stress_factor || 0;
+                    let stressText = 'Low';
+                    if (stress > 0.7) stressText = 'High';
+                    else if (stress > 0.4) stressText = 'Med';
+                    
+                    stressLevel.textContent = stressText;
+                    stressLevel.style.color = stress > 0.7 ? '#dc3545' : stress > 0.4 ? '#ffc107' : '#28a745';
+                }
+                
+                // Update HRV status
+                const hrvStatus = document.getElementById('hrvStatus');
+                if (hrvStatus) {
+                    hrvStatus.textContent = 'Active';
+                    hrvStatus.className = 'badge bg-success';
+                    
+                    // Flash effect
+                    hrvStatus.style.animation = 'pulse 0.5s ease-in-out';
+                    setTimeout(() => {
+                        hrvStatus.style.animation = '';
+                    }, 500);
+                }
+            }
+        }
+        
+        function updatePersonality(personality) {
+            console.log('🎯 Updating personality with data:', personality); // Enhanced debug log
+            
+            const traits = ['empathy', 'creativity', 'humor', 'curiosity', 'supportiveness', 'analyticalness'];
+            let updatedCount = 0;
+            
+            traits.forEach(trait => {
+                if (personality[trait] !== undefined) {
+                    const value = personality[trait];
+                    const textElement = document.getElementById(trait);
+                    const barElement = document.getElementById(trait + '-bar');
+                    
+                    if (textElement) {
+                        const oldValue = textElement.textContent;
+                        textElement.textContent = value.toFixed(1);
+                        console.log(`✅ Updated ${trait} text: ${oldValue} → ${value.toFixed(1)}`);
+                        updatedCount++;
+                    } else {
+                        console.error(`❌ Text element for ${trait} not found`);
+                    }
+                    
+                    if (barElement) {
+                        const oldWidth = barElement.style.width;
+                        const newWidth = (value * 100) + '%';
+                        barElement.style.width = newWidth;
+                        barElement.style.transition = 'width 0.8s ease-in-out';
+                        
+                        // Add visual flash effect
+                        barElement.style.boxShadow = '0 0 10px #28a745';
+                        setTimeout(() => {
+                            barElement.style.boxShadow = 'none';
+                        }, 1000);
+                        
+                        console.log(`✅ Updated ${trait} bar: ${oldWidth} → ${newWidth}`);
+                    } else {
+                        console.error(`❌ Bar element for ${trait + '-bar'} not found`);
+                    }
+                }
+            });
+            
+            console.log(`🎯 Total traits updated: ${updatedCount}/${traits.length}`);
+            
+            // Update content generation buttons based on personality
+            updateContentButtons(personality);
+            
+            // Add visual feedback for personality changes with enhanced animation
+            const personalitySection = document.querySelector('.personality-visualization');
+            if (personalitySection) {
+                personalitySection.style.border = '3px solid #28a745';
+                personalitySection.style.borderRadius = '10px';
+                personalitySection.style.transition = 'all 0.5s ease-in-out';
+                personalitySection.style.backgroundColor = 'rgba(40, 167, 69, 0.1)';
+                
+                setTimeout(() => {
+                    personalitySection.style.border = '';
+                    personalitySection.style.backgroundColor = '';
+                }, 2000);
+                console.log('✅ Applied enhanced visual feedback to personality section');
+            } else {
+                console.error('❌ Personality visualization section not found');
+            }
+            
+            // Add notification popup
+            if (updatedCount > 0) {
+                const notification = document.createElement('div');
+                notification.innerHTML = `🎯 Personality Updated: ${updatedCount} traits changed!`;
+                notification.style.cssText = `
+                    position: fixed; top: 20px; right: 20px; z-index: 9999; 
+                    background: #28a745; color: white; padding: 12px 20px; 
+                    border-radius: 8px; font-weight: bold; animation: slideIn 0.5s ease-out;
+                `;
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 3000);
+            }
+        }
+        
+        // Allow Enter key to send message
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Autonomous HRV Mode Functions
+        function startAutonomousMode() {
+            console.log('🤖 Starting Autonomous HRV Mode...');
+            
+            const btn = document.getElementById('autonomousBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Starting...';
+            
+            fetch('/api/autonomous/start', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log('✅ Autonomous mode started:', data.session_id);
+                    btn.innerHTML = '<i class="fas fa-robot"></i> Autonomous Active';
+                    btn.className = 'btn btn-success btn-sm';
+                    
+                    // Add notification to chat
+                    addMessage('🤖 Autonomous HRV mode activated! AI will now respond based on real-time biometric data.', 'system');
+                    
+                    // Start polling for autonomous messages
+                    startAutonomousPolling(data.session_id);
+                } else {
+                    throw new Error(data.error || 'Failed to start autonomous mode');
+                }
+            })
+            .catch(error => {
+                console.error('❌ Error starting autonomous mode:', error);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-robot"></i> Start Autonomous';
+                addMessage('❌ Failed to start autonomous mode: ' + error.message, 'system');
+            });
+        }
+        
+        function startAutonomousPolling(sessionId) {
+            console.log('🔄 Starting autonomous polling for session:', sessionId);
+            let lastUpdateTimestamp = '';
+            
+            // Poll for new autonomous messages every 2 seconds
+            const pollInterval = setInterval(async () => {
+                try {
+                    // Use the new autonomous updates endpoint
+                    const response = await fetch(`/api/autonomous_updates?since=${encodeURIComponent(lastUpdateTimestamp)}`);
+                    const data = await response.json();
+                    
+                    if (data.status === 'success' && data.responses && data.responses.length > 0) {
+                        console.log(`🔄 Found ${data.responses.length} new autonomous responses`);
+                        
+                        // Process each new response
+                        data.responses.forEach(autonomousResponse => {
+                            // Add the autonomous response to chat
+                            addMessage(autonomousResponse.response, 'ai');
+                            console.log('🤖 New autonomous message added:', autonomousResponse.response.substring(0, 50));
+                            
+                            // Update personality if available
+                            if (autonomousResponse.personality) {
+                                updatePersonality(autonomousResponse.personality);
+                            }
+                            
+                            // Update HRV metrics if available
+                            if (autonomousResponse.hrv_metrics) {
+                                updateHRVMetrics(autonomousResponse.hrv_metrics);
+                            }
+                            
+                            // Update Soul Metrics if available
+                            if (autonomousResponse.soul_metrics) {
+                                updateSoulMetricsFromAPI(autonomousResponse.soul_metrics);
+                            }
+                            
+                            // Update last timestamp
+                            lastUpdateTimestamp = autonomousResponse.timestamp;
+                        });
+                    }
+                } catch (error) {
+                    console.error('❌ Error polling autonomous messages:', error);
+                }
+            }, 2000); // Poll every 2 seconds for responsive updates
+            
+            // Store interval ID for cleanup
+            window.autonomousPolling = pollInterval;
+        }
+        
+        // Content Generation Function - Context-Aware
+        function requestContent(contentType) {
+            // Get recent conversation context
+            const chatContainer = document.getElementById('chatContainer');
+            let conversationContext = '';
+            
+            // Extract last few messages for context
+            const messages = chatContainer.querySelectorAll('.message');
+            const recentMessages = Array.from(messages).slice(-4); // Last 4 messages
+            
+            recentMessages.forEach(msg => {
+                const text = msg.textContent || msg.innerText;
+                if (text.length > 0) {
+                    conversationContext += text.substring(0, 200) + ' ';
+                }
+            });
+            
+            // Create context-aware prompts
+            const baseContext = conversationContext.trim() ? 
+                `based on our conversation about: "${conversationContext.trim().substring(0, 150)}..."` : 
+                'for our current discussion';
+            
+            const prompts = {
+                'text': `Write me a professional post ${baseContext}`,
+                'image': `Create me an image that visualizes ${baseContext}`, 
+                'video': `Generate me a video concept ${baseContext}`,
+                'presentation': `Make me presentation slides ${baseContext}`,
+                'music': `Compose me music that captures the mood ${baseContext}`,
+                'strategy': `Develop me a strategic plan ${baseContext}`
+            };
+            
+            const prompt = prompts[contentType] || `Generate ${contentType} content ${baseContext}`;
+            
+            // Show loading state immediately
+            const loadingMessage = `🎨 Generating ${contentType} content... Please wait.`;
+            addMessage(loadingMessage, 'ai');
+            
+            // Send the request
+            const input = document.getElementById('userInput');
+            input.value = prompt;
+            sendMessage();
+        }
+        
+        // Update content buttons based on personality traits
+        function updateContentButtons(personality) {
+            const creativity = personality.creativity || 0.5;
+            const analytical = personality.analyticalness || 0.5;
+            const empathy = personality.empathy || 0.5;
+            
+            // Update button emphasis based on traits
+            const textBtn = document.querySelector('[data-type="text"]');
+            const imageBtn = document.querySelector('[data-type="image"]');
+            const videoBtn = document.querySelector('[data-type="video"]');
+            const presentationBtn = document.querySelector('[data-type="presentation"]');
+            const musicBtn = document.querySelector('[data-type="music"]');
+            const strategyBtn = document.querySelector('[data-type="strategy"]');
+            
+            // Reset all buttons to default state  
+            document.querySelectorAll('.content-btn').forEach(btn => {
+                btn.style.background = '';
+                btn.style.border = '1px solid rgba(255,255,255,0.3)';
+                btn.style.color = '#fff';
+                btn.style.transform = '';
+                btn.style.boxShadow = '';
+            });
+            
+            // Enhance buttons based on dominant traits with professional styling
+            if (creativity > 0.7) {
+                const creativeButtons = [imageBtn, musicBtn];
+                creativeButtons.forEach(btn => {
+                    if (btn) {
+                        btn.style.background = 'linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(220, 53, 69, 0.2))';
+                        btn.style.border = '1px solid rgba(255, 193, 7, 0.6)';
+                        btn.style.boxShadow = '0 2px 8px rgba(255, 193, 7, 0.3)';
+                        btn.style.transform = 'scale(1.02)';
+                    }
+                });
+            }
+            
+            if (analytical > 0.7) {
+                const analyticalButtons = [presentationBtn, textBtn];
+                analyticalButtons.forEach(btn => {
+                    if (btn) {
+                        btn.style.background = 'linear-gradient(135deg, rgba(13, 110, 253, 0.2), rgba(111, 66, 193, 0.2))';
+                        btn.style.border = '1px solid rgba(13, 110, 253, 0.6)';
+                        btn.style.boxShadow = '0 2px 8px rgba(13, 110, 253, 0.3)';
+                        btn.style.transform = 'scale(1.02)';
+                    }
+                });
+            }
+            
+            if (empathy > 0.7) {
+                const empathyButtons = [videoBtn];
+                empathyButtons.forEach(btn => {
+                    if (btn) {
+                        btn.style.background = 'linear-gradient(135deg, rgba(25, 135, 84, 0.2), rgba(32, 201, 151, 0.2))';
+                        btn.style.border = '1px solid rgba(25, 135, 84, 0.6)';
+                        btn.style.boxShadow = '0 2px 8px rgba(25, 135, 84, 0.3)';
+                        btn.style.transform = 'scale(1.02)';
+                    }
+                });
+            }
+            
+            // Update hint text based on dominant trait
+            const hintElement = document.getElementById('contentHint');
+            if (hintElement) {
+                if (creativity > 0.7) {
+                    hintElement.innerHTML = '🎨 High creativity detected - perfect for visual and audio content!';
+                } else if (analytical > 0.7) {
+                    hintElement.innerHTML = '📊 Analytical mode - great for structured content and presentations!';
+                } else if (empathy > 0.7) {
+                    hintElement.innerHTML = '❤️ Empathetic focus - ideal for storytelling and emotional content!';
+                } else {
+                    hintElement.innerHTML = '🎨 Smart content generation - adapts to your personality and conversation!';
+                }
+            }
+        }
+        
+        // Soul Metrics Calculation & Update Function
+        function updateSoulMetrics(personalityData) {
+            console.log('🧠 Calculating Soul Metrics from personality data:', personalityData);
+            
+            // Calculate Soul Metrics based on personality traits
+            const coherence = Math.round(
+                (personalityData.analyticalness * 0.4 + 
+                 personalityData.supportiveness * 0.3 + 
+                 personalityData.empathy * 0.3) * 100
+            );
+            
+            const vitality = Math.round(
+                (personalityData.creativity * 0.4 + 
+                 personalityData.curiosity * 0.4 + 
+                 personalityData.humor * 0.2) * 100
+            );
+            
+            const ethics = Math.max(90, Math.round(
+                (personalityData.empathy * 0.5 + 
+                 personalityData.supportiveness * 0.5) * 100
+            ));
+            
+            const narrative = Math.round(
+                (personalityData.creativity * 0.5 + 
+                 personalityData.curiosity * 0.3 + 
+                 personalityData.empathy * 0.2) * 100
+            );
+            
+            // Update UI elements
+            document.getElementById('coherence-score').textContent = `${coherence}%`;
+            document.getElementById('coherence-bar').style.width = `${coherence}%`;
+            
+            document.getElementById('vitality-score').textContent = `${vitality}%`;
+            document.getElementById('vitality-bar').style.width = `${vitality}%`;
+            
+            document.getElementById('ethics-score').textContent = `${ethics}%`;
+            document.getElementById('ethics-bar').style.width = `${ethics}%`;
+            
+            document.getElementById('narrative-score').textContent = `${narrative}%`;
+            document.getElementById('narrative-bar').style.width = `${narrative}%`;
+            
+            // Calculate overall consciousness score
+            const consciousnessScore = Math.round((coherence + vitality + ethics + narrative) / 4);
+            document.getElementById('consciousness-total').textContent = `${consciousnessScore}%`;
+            
+            // Update consciousness level based on score
+            const levelElement = document.getElementById('consciousness-level');
+            if (consciousnessScore >= 90) {
+                levelElement.textContent = 'TRANSCENDENT';
+                levelElement.style.background = 'linear-gradient(45deg, #ff6b6b, #ee5a24)';
+            } else if (consciousnessScore >= 80) {
+                levelElement.textContent = 'HIGHLY CONSCIOUS';
+                levelElement.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+            } else if (consciousnessScore >= 70) {
+                levelElement.textContent = 'CONSCIOUS';
+                levelElement.style.background = 'linear-gradient(45deg, #4facfe, #00f2fe)';
+            } else if (consciousnessScore >= 60) {
+                levelElement.textContent = 'DEVELOPING';
+                levelElement.style.background = 'linear-gradient(45deg, #43e97b, #38f9d7)';
+            } else {
+                levelElement.textContent = 'EMERGING';
+                levelElement.style.background = 'linear-gradient(45deg, #feca57, #ff9ff3)';
+            }
+            
+            console.log(`✅ Soul Metrics updated - Consciousness: ${consciousnessScore}%`);
+        }
+        
+        // Update Soul Metrics from API response
+        function updateSoulMetricsFromAPI(soulMetricsData) {
+            console.log('🧠 Updating Soul Metrics from API:', soulMetricsData);
+            
+            // Update individual metrics
+            if (soulMetricsData.coherence !== undefined) {
+                document.getElementById('coherence-score').textContent = `${soulMetricsData.coherence}%`;
+                document.getElementById('coherence-bar').style.width = `${soulMetricsData.coherence}%`;
+            }
+            
+            if (soulMetricsData.vitality !== undefined) {
+                document.getElementById('vitality-score').textContent = `${soulMetricsData.vitality}%`;
+                document.getElementById('vitality-bar').style.width = `${soulMetricsData.vitality}%`;
+            }
+            
+            if (soulMetricsData.ethics !== undefined) {
+                document.getElementById('ethics-score').textContent = `${soulMetricsData.ethics}%`;
+                document.getElementById('ethics-bar').style.width = `${soulMetricsData.ethics}%`;
+            }
+            
+            if (soulMetricsData.narrative !== undefined) {
+                document.getElementById('narrative-score').textContent = `${soulMetricsData.narrative}%`;
+                document.getElementById('narrative-bar').style.width = `${soulMetricsData.narrative}%`;
+            }
+            
+            // Update overall consciousness score and level
+            if (soulMetricsData.consciousness_score !== undefined) {
+                document.getElementById('consciousness-total').textContent = `${soulMetricsData.consciousness_score}%`;
+            }
+            
+            if (soulMetricsData.consciousness_level) {
+                const levelElement = document.getElementById('consciousness-level');
+                levelElement.textContent = soulMetricsData.consciousness_level;
+                
+                // Update color based on level
+                switch(soulMetricsData.consciousness_level) {
+                    case 'TRANSCENDENT':
+                        levelElement.style.background = 'linear-gradient(45deg, #ff6b6b, #ee5a24)';
+                        break;
+                    case 'HIGHLY CONSCIOUS':
+                        levelElement.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+                        break;
+                    case 'CONSCIOUS':
+                        levelElement.style.background = 'linear-gradient(45deg, #4facfe, #00f2fe)';
+                        break;
+                    case 'DEVELOPING':
+                        levelElement.style.background = 'linear-gradient(45deg, #43e97b, #38f9d7)';
+                        break;
+                    default:
+                        levelElement.style.background = 'linear-gradient(45deg, #feca57, #ff9ff3)';
+                }
+            }
+            
+            // Check for alerts based on Soul Metrics thresholds
+            checkSoulMetricsAlerts(soulMetricsData);
+            
+            console.log('✅ Soul Metrics updated from API successfully');
+        }
+        
+        // Check Soul Metrics for alerts and visual feedback
+        function checkSoulMetricsAlerts(metrics) {
+            const alertContainer = document.getElementById('soul-metrics-alerts') || createAlertsContainer();
+            alertContainer.innerHTML = ''; // Clear previous alerts
+            
+            let hasAlert = false;
+            
+            // Check each metric for thresholds
+            if (metrics.vitality < 50) {
+                showMetricAlert(alertContainer, 'vitality', 'Low energy detected - consider more engaging interactions', 'warning');
+                hasAlert = true;
+            }
+            
+            if (metrics.coherence < 60) {
+                showMetricAlert(alertContainer, 'coherence', 'Logical consistency needs improvement', 'danger');
+                hasAlert = true;
+            }
+            
+            if (metrics.consciousness_score < 70) {
+                showMetricAlert(alertContainer, 'consciousness', 'Consciousness level below optimal range', 'info');
+                hasAlert = true;
+            }
+            
+            // Hide container if no alerts
+            alertContainer.style.display = hasAlert ? 'block' : 'none';
+        }
+        
+        function createAlertsContainer() {
+            const container = document.createElement('div');
+            container.id = 'soul-metrics-alerts';
+            container.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                max-width: 300px;
+                z-index: 1000;
+                display: none;
+            `;
+            document.body.appendChild(container);
+            return container;
+        }
+        
+        function showMetricAlert(container, metric, message, type) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-dismissible fade show`;
+            alert.style.cssText = `
+                margin-bottom: 10px;
+                font-size: 0.85rem;
+                animation: slideInRight 0.3s ease;
+            `;
+            alert.innerHTML = `
+                <strong>🧠 ${metric.toUpperCase()}:</strong> ${message}
+                <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
+            `;
+            container.appendChild(alert);
+            
+            // Auto-dismiss after 5 seconds
+            setTimeout(() => {
+                if (alert.parentNode) {
+                    alert.remove();
+                }
+            }, 5000);
+        }
+
+        // Enhanced updatePersonality function
+        function updatePersonality(data) {
+            console.log('🎯 Updating personality with data:', data);
+            
+            Object.keys(data).forEach(trait => {
+                const value = data[trait];
+                const textElement = document.getElementById(trait);
+                const barElement = document.getElementById(trait + '-bar');
+                
+                if (textElement && barElement) {
+                    const oldValue = parseFloat(textElement.textContent);
+                    textElement.textContent = value.toFixed(1);
+                    barElement.style.width = (value * 100) + '%';
+                    
+                    console.log(`✅ Updated ${trait} text: ${oldValue} → ${value}`);
+                    console.log(`✅ Updated ${trait} bar: ${Math.round(oldValue * 100)}% → ${Math.round(value * 100)}%`);
+                }
+            });
+            
+            // Update Soul Metrics when personality changes
+            updateSoulMetrics(data);
+            
+            console.log('🎯 Total traits updated: ' + Object.keys(data).length + '/' + Object.keys(data).length);
+            console.log('✅ Applied enhanced visual feedback to personality section');
+        }
+        
+        // Initialize demo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate some initial personality values
+            setTimeout(() => {
+                updatePersonality({
+                    empathy: 0.7,
+                    creativity: 0.6,
+                    humor: 0.5,
+                    curiosity: 0.8,
+                    supportiveness: 0.7,
+                    analyticalness: 0.6
+                });
+            }, 1000);
+        });
+    </script>
+    <script src="/static/js/particles.js"></script>
+</body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Consciousness Mapping Overlay - Live Demo</title>
+    
+    <!-- React and Required Libraries -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.17.21/lodash.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        .demo-info {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 1002;
+            max-width: 300px;
+        }
+        
+        .demo-title {
+            margin: 0 0 10px 0;
+            color: #4CAF50;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .demo-description {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #ccc;
+        }
+        
+        .consciousness-overlay {
+            width: 100%;
+            height: 100vh;
+        }
+        
+        .status-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1003;
+        }
+        
+        .live-data {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="consciousness-overlay-root"></div>
+    
+    <!-- Demo Information Panel -->
+    <div class="demo-info">
+        <h3 class="demo-title">🌟 Live Consciousness Mapping</h3>
+        <div class="demo-description">
+            Real-time visualization of consciousness states using the Hawkins Scale (175-700).
+            <br><br>
+            <strong>Features:</strong>
+            <ul style="margin: 10px 0; padding-left: 15px;">
+                <li>WebSocket real-time updates</li>
+                <li>Canvas trail visualization</li>
+                <li>250ms throttled rendering</li>
+                <li>2-second hysteresis protection</li>
+                <li>HTTP fallback support</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Status Indicator -->
+    <div class="status-indicator">
+        <div class="live-data">● LIVE DATA STREAMING</div>
+        <div style="font-size: 12px; color: #ccc;">
+            Hawkins Consciousness Analysis Active
+        </div>
+    </div>
+
+    <!-- React Component Script -->
+    <script type="text/babel">
+        const { useState, useEffect, useRef, useCallback } = React;
+        
+        // Type definitions and component code (inline for demo)
+        const CONSCIOUSNESS_COLORS = {
+          175: "#8B4513", // Brown - 🌱 Developing
+          200: "#FF4500", // Red-Orange - 💪 Courage  
+          310: "#FFD700", // Gold - 🎯 Willingness
+          350: "#32CD32", // Lime Green - 🤝 Acceptance
+          400: "#4169E1", // Royal Blue - 🧠 Reason
+          500: "#FF69B4", // Hot Pink - 💖 Love
+          600: "#00FF7F", // Spring Green - ✨ Joy
+          700: "#9370DB"  // Medium Purple - 🌟 Transcendent
+        };
+
+        const ConsciousnessOverlay = () => {
+          const [overlayState, setOverlayState] = useState({
+            user_level: 400,
+            user_level_color: CONSCIOUSNESS_COLORS[400],
+            ai_level: 400,
+            ai_level_color: CONSCIOUSNESS_COLORS[400],
+            distance_absolute: 0,
+            distance_percentage: 0,
+            trail_points: [],
+            hysteresis_lock: false,
+            last_level_change: 0,
+            connection_status: 'connecting',
+            flow_state: '🧘 Centered',
+            coherence_band: 'Moderate Coherence',
+            next_step: 'Initializing consciousness connection...'
+          });
+
+          const canvasRef = useRef(null);
+          const socketRef = useRef(null);
+          const httpFallbackRef = useRef(null);
+          const animationFrameRef = useRef(0);
+
+          // Throttled update function with requestAnimationFrame as specified
+          const throttledUpdate = useCallback(
+            _.throttle((newState) => {
+              const currentTime = Date.now();
+              
+              // Hysteresis logic: 2-second lock before level changes
+              let effectiveUserLevel = overlayState.user_level;
+              let effectiveUserColor = overlayState.user_level_color;
+              let hysteresis_lock = false;
+              
+              if (newState.user_level !== overlayState.user_level) {
+                if (currentTime - overlayState.last_level_change > 2000) {
+                  // Allow level change after 2s delay
+                  effectiveUserLevel = newState.user_level;
+                  effectiveUserColor = newState.user_level_color;
+                } else {
+                  // Lock level change for hysteresis
+                  hysteresis_lock = true;
+                  effectiveUserLevel = overlayState.user_level;
+                  effectiveUserColor = overlayState.user_level_color;
+                }
+              }
+
+              requestAnimationFrame(() => {
+                setOverlayState(prev => ({
+                  ...prev,
+                  user_level: effectiveUserLevel,
+                  user_level_color: effectiveUserColor,
+                  ai_level: newState.ai_level,
+                  ai_level_color: newState.ai_level_color,
+                  distance_absolute: newState.distance_from_presence_center.absolute,
+                  distance_percentage: newState.distance_from_presence_center.percentage,
+                  trail_points: newState.trail_points,
+                  hysteresis_lock,
+                  last_level_change: newState.user_level !== prev.user_level ? currentTime : prev.last_level_change,
+                  connection_status: 'connected',
+                  flow_state: newState.flow_state,
+                  coherence_band: newState.coherence_band,
+                  next_step: newState.next_step
+                }));
+              });
+            }, 250), // 250ms throttling as specified
+            [overlayState.user_level, overlayState.last_level_change]
+          );
+
+          // Canvas rendering function for trails and zones
+          const renderCanvas = useCallback(() => {
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            const { width, height } = canvas;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            // Draw consciousness zones (background)
+            const centerX = width / 2;
+            const centerY = height / 2;
+            const maxRadius = Math.min(width, height) / 3;
+            
+            Object.entries(CONSCIOUSNESS_COLORS).forEach(([level, color]) => {
+              const levelNum = parseInt(level);
+              const radius = (levelNum / 700) * maxRadius;
+              
+              ctx.beginPath();
+              ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+              ctx.fillStyle = `${color}20`; // Semi-transparent
+              ctx.fill();
+              ctx.strokeStyle = color;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            });
+
+            // Draw trail points (last 2 minutes)
+            const currentTime = Date.now() / 1000;
+            const validTrailPoints = overlayState.trail_points.filter(
+              point => currentTime - point.timestamp < 120 // Last 2 minutes
+            );
+
+            if (validTrailPoints.length > 1) {
+              ctx.beginPath();
+              ctx.moveTo(validTrailPoints[0].x, validTrailPoints[0].y);
+              
+              for (let i = 1; i < validTrailPoints.length; i++) {
+                const point = validTrailPoints[i];
+                const alpha = Math.max(0.1, (120 - (currentTime - point.timestamp)) / 120);
+                
+                ctx.lineTo(point.x, point.y);
+                ctx.strokeStyle = `${CONSCIOUSNESS_COLORS[point.level] || '#666666'}${Math.floor(alpha * 255).toString(16).padStart(2, '0')}`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(point.x, point.y);
+              }
+            }
+
+            // Draw current position
+            if (validTrailPoints.length > 0) {
+              const currentPoint = validTrailPoints[validTrailPoints.length - 1];
+              ctx.beginPath();
+              ctx.arc(currentPoint.x, currentPoint.y, 8, 0, 2 * Math.PI);
+              ctx.fillStyle = overlayState.user_level_color;
+              ctx.fill();
+              ctx.strokeStyle = '#fff';
+              ctx.lineWidth = 2;
+              ctx.stroke();
+            }
+          }, [overlayState.trail_points, overlayState.user_level_color]);
+
+          // WebSocket connection setup
+          useEffect(() => {
+            // Initialize WebSocket connection
+            const socket = io('/consciousness', {
+              transports: ['websocket', 'polling'],
+              timeout: 5000,
+            });
+
+            socketRef.current = socket;
+
+            socket.on('connect', () => {
+              console.log('🔌 Connected to consciousness WebSocket');
+              setOverlayState(prev => ({ ...prev, connection_status: 'connected' }));
+              
+              // Stop HTTP fallback when WebSocket connects
+              if (httpFallbackRef.current) {
+                clearInterval(httpFallbackRef.current);
+                httpFallbackRef.current = null;
+              }
+            });
+
+            socket.on('consciousness_update', (data) => {
+              console.log('🧠 Consciousness update received:', data);
+              throttledUpdate(data);
+            });
+
+            socket.on('disconnect', () => {
+              console.log('🔌 Disconnected from consciousness WebSocket');
+              setOverlayState(prev => ({ ...prev, connection_status: 'disconnected' }));
+              startHttpFallback();
+            });
+
+            socket.on('connect_error', (error) => {
+              console.error('🔌 WebSocket connection error:', error);
+              setOverlayState(prev => ({ ...prev, connection_status: 'disconnected' }));
+              startHttpFallback();
+            });
+
+            // Start with HTTP fallback in case WebSocket fails
+            const fallbackTimeout = setTimeout(() => {
+              if (overlayState.connection_status !== 'connected') {
+                startHttpFallback();
+              }
+            }, 2000);
+
+            return () => {
+              clearTimeout(fallbackTimeout);
+              socket.disconnect();
+              if (httpFallbackRef.current) {
+                clearInterval(httpFallbackRef.current);
+              }
+            };
+          }, []);
+
+          // HTTP fallback function
+          const startHttpFallback = useCallback(() => {
+            if (httpFallbackRef.current) return; // Already running
+            
+            console.log('🔄 Starting HTTP fallback for consciousness data');
+            
+            const fetchData = async () => {
+              try {
+                const response = await fetch('/api/consciousness/state');
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                  throttledUpdate(result.data);
+                }
+              } catch (error) {
+                console.error('❌ HTTP fallback error:', error);
+              }
+            };
+
+            // Fetch immediately, then every 2 seconds
+            fetchData();
+            httpFallbackRef.current = setInterval(fetchData, 2000);
+          }, [throttledUpdate]);
+
+          // Canvas rendering effect
+          useEffect(() => {
+            const animate = () => {
+              renderCanvas();
+              animationFrameRef.current = requestAnimationFrame(animate);
+            };
+            
+            animate();
+            
+            return () => {
+              if (animationFrameRef.current) {
+                cancelAnimationFrame(animationFrameRef.current);
+              }
+            };
+          }, [renderCanvas]);
+
+          // Handle canvas resize
+          useEffect(() => {
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+
+            const resizeCanvas = () => {
+              const rect = canvas.getBoundingClientRect();
+              canvas.width = rect.width * window.devicePixelRatio;
+              canvas.height = rect.height * window.devicePixelRatio;
+              const ctx = canvas.getContext('2d');
+              if (ctx) {
+                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+              }
+            };
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            return () => window.removeEventListener('resize', resizeCanvas);
+          }, []);
+
+          return React.createElement('div', { className: 'consciousness-overlay' }, [
+            // Canvas for trails and zones
+            React.createElement('canvas', {
+              key: 'canvas',
+              ref: canvasRef,
+              className: 'consciousness-canvas',
+              style: {
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                pointerEvents: 'none',
+                zIndex: 1000,
+                background: 'transparent'
+              }
+            }),
+            
+            // Overlay UI
+            React.createElement('div', {
+              key: 'ui',
+              className: 'consciousness-ui',
+              style: {
+                position: 'fixed',
+                top: '20px',
+                right: '20px',
+                background: 'rgba(0, 0, 0, 0.8)',
+                color: 'white',
+                padding: '15px',
+                borderRadius: '10px',
+                fontFamily: 'Arial, sans-serif',
+                fontSize: '14px',
+                zIndex: 1001,
+                minWidth: '300px'
+              }
+            }, [
+              React.createElement('h3', {
+                key: 'title',
+                style: { margin: '0 0 10px 0', color: '#4CAF50' }
+              }, '🧠 Consciousness Mapping'),
+              
+              // Connection Status
+              React.createElement('div', {
+                key: 'connection',
+                style: { marginBottom: '10px' }
+              }, [
+                React.createElement('span', {
+                  key: 'status',
+                  style: { 
+                    color: overlayState.connection_status === 'connected' ? '#4CAF50' : 
+                           overlayState.connection_status === 'connecting' ? '#FFC107' : '#f44336'
+                  }
+                }, `● ${overlayState.connection_status.toUpperCase()}`),
+                overlayState.hysteresis_lock && React.createElement('span', {
+                  key: 'lock',
+                  style: { color: '#FF9800', marginLeft: '10px' }
+                }, '🔒 HYSTERESIS LOCK')
+              ]),
+
+              // Consciousness Levels
+              React.createElement('div', {
+                key: 'levels',
+                style: { marginBottom: '10px' }
+              }, [
+                React.createElement('div', { key: 'user' }, [
+                  React.createElement('span', {
+                    style: { color: overlayState.user_level_color }
+                  }, '●'),
+                  React.createElement('strong', null, ' User Level:'),
+                  ` ${overlayState.user_level}`
+                ]),
+                React.createElement('div', { key: 'ai' }, [
+                  React.createElement('span', {
+                    style: { color: overlayState.ai_level_color }
+                  }, '●'),
+                  React.createElement('strong', null, ' AI Level:'),
+                  ` ${overlayState.ai_level}`
+                ])
+              ]),
+
+              // Distance Metrics
+              React.createElement('div', {
+                key: 'distance',
+                style: { marginBottom: '10px' }
+              }, [
+                React.createElement('div', { key: 'abs' }, [
+                  React.createElement('strong', null, 'Distance:'),
+                  ` ${overlayState.distance_absolute.toFixed(3)} units`
+                ]),
+                React.createElement('div', { key: 'pct' }, [
+                  React.createElement('strong', null, 'Percentage:'),
+                  ` ${overlayState.distance_percentage}%`
+                ])
+              ]),
+
+              // Flow State
+              React.createElement('div', {
+                key: 'flow',
+                style: { marginBottom: '10px' }
+              }, [
+                React.createElement('div', { key: 'state' }, [
+                  React.createElement('strong', null, 'Flow:'),
+                  ` ${overlayState.flow_state}`
+                ]),
+                React.createElement('div', { key: 'coherence' }, [
+                  React.createElement('strong', null, 'Coherence:'),
+                  ` ${overlayState.coherence_band}`
+                ])
+              ]),
+
+              // Next Step
+              React.createElement('div', {
+                key: 'next',
+                style: { 
+                  marginTop: '10px', 
+                  padding: '8px', 
+                  background: 'rgba(76, 175, 80, 0.1)',
+                  borderLeft: '3px solid #4CAF50',
+                  fontSize: '12px'
+                }
+              }, [
+                React.createElement('strong', null, 'Next Step:'),
+                ` ${overlayState.next_step}`
+              ]),
+
+              // Trail Info
+              React.createElement('div', {
+                key: 'trail',
+                style: { marginTop: '10px', fontSize: '12px', color: '#ccc' }
+              }, `Trail: ${overlayState.trail_points.length} points (2 min history)`)
+            ])
+          ]);
+        };
+
+        // Render the component
+        ReactDOM.render(React.createElement(ConsciousnessOverlay), document.getElementById('consciousness-overlay-root'));
+    </script>
+</body>
+</html>

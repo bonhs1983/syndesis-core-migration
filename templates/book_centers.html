@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="el" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Centers - Biofeedback Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: radial-gradient(circle at center, #0a0a0f 0%, #000000 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+            position: relative;
+        }
+        
+        .cosmos-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+        }
+        
+        .center-space {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            transition: all 0.8s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 300;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        
+        .center-space.active {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            transform: scale(1.2);
+        }
+        
+        .center-space.target {
+            animation: targetPulse 2s ease-in-out infinite;
+        }
+        
+        .center-space.locked {
+            animation: lockedGlow 1s ease-in-out infinite;
+        }
+        
+        /* Book Centers - Κάθε ιδέα έχει το δικό της pattern */
+        .center-presence {
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.6) 0%, rgba(255, 165, 0, 0.3) 100%);
+            top: 20%;
+            left: 30%;
+            border: 2px solid rgba(255, 215, 0, 0.8);
+        }
+        
+        .center-quality {
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.6) 0%, rgba(75, 0, 130, 0.3) 100%);
+            top: 60%;
+            left: 70%;
+            border: 2px solid rgba(138, 43, 226, 0.8);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        }
+        
+        .center-forgiveness {
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.6) 0%, rgba(22, 163, 74, 0.3) 100%);
+            top: 40%;
+            left: 50%;
+            border: 2px solid rgba(34, 197, 94, 0.8);
+            transform: rotate(45deg);
+        }
+        
+        .center-awareness {
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, rgba(29, 78, 216, 0.3) 100%);
+            top: 75%;
+            left: 25%;
+            border: 2px solid rgba(59, 130, 246, 0.8);
+            border-radius: 20px;
+        }
+        
+        .center-compassion {
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.6) 0%, rgba(190, 24, 93, 0.3) 100%);
+            top: 15%;
+            left: 75%;
+            border: 2px solid rgba(236, 72, 153, 0.8);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        
+        /* User Current State */
+        .user-state {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 100%);
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            top: 45%;
+            left: 10%;
+            transition: all 0.5s ease;
+            animation: userPulse 3s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            z-index: 100;
+        }
+        
+        /* SINGLE CENTER MODE STYLES */
+        .single-mode {
+            position: relative !important;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .center-aura {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            border-radius: 50%;
+            pointer-events: none;
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .center-rings {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .center-ring {
+            position: absolute;
+            border: 2px solid;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: ringPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes ringPulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.02); }
+        }
+        
+        .persona-badges {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            pointer-events: none;
+        }
+        
+        .persona-badge {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid;
+            border-left: 3px solid;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: 500;
+            white-space: nowrap;
+            animation: badgeGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes badgeGlow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
+            50% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); }
+        }
+        
+        .center-core {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .center-subtitle {
+            font-size: 9px;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        /* Spatial Demo Mode Styles */
+        .spatial-demo-controls {
+            position: fixed;
+            top: 20px;
+            right: 280px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .spatial-demo-btn {
+            padding: 8px 12px;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+        }
+        
+        .spatial-demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+            background: linear-gradient(135deg, #ff5722, #ff7043);
+        }
+        
+        .spatial-demo-timer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #00ff88;
+            font-family: monospace;
+            font-size: 14px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+        
+        .presence-zone-demo {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.6) 0%, rgba(255, 165, 0, 0.3) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.8);
+            top: 30%;
+            left: 60%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 11px;
+            color: white;
+            transition: all 0.8s ease;
+            z-index: 50;
+        }
+        
+        .presence-zone-demo.active {
+            display: flex;
+            animation: presenceSeekingPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes presenceSeekingPulse {
+            0%, 100% { 
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 80px rgba(255, 100, 100, 1);
+                transform: scale(1.1);
+            }
+        }
+        
+        /* Connection Lines */
+        .connection-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.8) 100%);
+            transform-origin: left center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .connection-line.active {
+            opacity: 1;
+            animation: connectionFlow 2s ease-in-out infinite;
+        }
+        
+        /* Status Display */
+        .status-display {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .current-chapter {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .alignment-score {
+            font-size: 24px;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+        
+        /* Instructions */
+        .instructions {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0.7;
+            font-size: 14px;
+            max-width: 400px;
+        }
+        
+        /* Biometric Panel */
+        .biometric-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+        }
+        
+        .biometric-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        
+        .biometric-value {
+            color: #22c55e;
+            font-weight: 600;
+        }
+        
+        /* Animations */
+        @keyframes targetPulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+                transform: scale(1.1);
+            }
+        }
+        
+        @keyframes lockedGlow {
+            0%, 100% { 
+                box-shadow: 0 0 30px rgba(34, 197, 94, 0.6);
+            }
+            50% { 
+                box-shadow: 0 0 50px rgba(34, 197, 94, 0.9);
+            }
+        }
+        
+        @keyframes userPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes connectionFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        /* Fractal Unlock Animation */
+        .fractal-unlock {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+        }
+        
+        .fractal-unlock.active {
+            opacity: 1;
+            animation: fractalSpin 3s ease-in-out;
+        }
+        
+        @keyframes fractalSpin {
+            0% { transform: rotate(0deg) scale(0.5); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        /* SINGLE CENTER MODE STYLES */
+        .center-space.single-mode {
+            position: relative;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            border: 2px solid rgba(37, 99, 235, 0.6);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .center-core {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        
+        .center-subtitle {
+            font-size: 9px;
+            opacity: 0.7;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .center-aura {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 70%);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .center-rings {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            pointer-events: none;
+            z-index: -2;
+        }
+        
+        .center-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid;
+            opacity: 0.4;
+            animation: ringPulse 2s ease-out forwards;
+        }
+        
+        @keyframes ringPulse {
+            0% { transform: scale(0.8); opacity: 0.6; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        .persona-badges {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .persona-badge {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 500;
+            border-left: 3px solid;
+            animation: badgeSlideIn 0.5s ease-out;
+        }
+        
+        @keyframes badgeSlideIn {
+            0% { transform: translateX(20px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmos-container" id="cosmosContainer">
+        <!-- Status Display -->
+        <div class="status-display">
+            <div class="current-chapter" id="currentChapter">Chapter: Presence</div>
+            <div class="alignment-score" id="alignmentScore">0%</div>
+        </div>
+        
+        <!-- Spatial Demo Controls -->
+        <div class="spatial-demo-controls">
+            <button class="spatial-demo-btn" id="spatialDemoBtn" onclick="toggleSpatialDemo()">
+                🚀 5min Spatial Demo
+            </button>
+            <div class="spatial-demo-timer" id="spatialTimer" style="display: none;">5:00</div>
+        </div>
+        
+        <!-- Biometric Panel -->
+        <div class="biometric-panel">
+            <div class="biometric-item">
+                <span>HRV</span>
+                <span class="biometric-value" id="hrvValue">--</span>
+            </div>
+            <div class="biometric-item">
+                <span>Breath</span>
+                <span class="biometric-value" id="breathValue">--</span>
+            </div>
+            <div class="biometric-item">
+                <span>Focus</span>
+                <span class="biometric-value" id="focusValue">--</span>
+            </div>
+            <div class="biometric-item">
+                <span>Coherence</span>
+                <span class="biometric-value" id="coherenceValue">--</span>
+            </div>
+        </div>
+        
+        <!-- User Current State -->
+        <div class="user-state" id="userState">
+            YOU
+        </div>
+        
+        <!-- Presence Zone for Spatial Demo -->
+        <div class="presence-zone-demo" id="presenceZoneDemo">
+            PRESENCE<br>
+            <small style="font-size: 9px; opacity: 0.8;">Eckhart Tolle</small><br>
+            <small style="font-size: 7px; opacity: 0.6;">"Power of Now"</small>
+        </div>
+        
+        <!-- Book Centers - Κάθε σημαντική ιδέα -->
+        <div class="center-space center-presence target" id="centerPresence">
+            PRESENCE
+        </div>
+        
+        <div class="center-space center-quality" id="centerQuality">
+            QUALITY
+        </div>
+        
+        <div class="center-space center-forgiveness" id="centerForgiveness">
+            FORGIVE
+        </div>
+        
+        <div class="center-space center-awareness" id="centerAwareness">
+            AWARE
+        </div>
+        
+        <div class="center-space center-compassion" id="centerCompassion">
+            COMPASSION
+        </div>
+        
+        <!-- Connection Lines -->
+        <div class="connection-line" id="connectionLine"></div>
+        
+        <!-- Fractal Unlock -->
+        <div class="fractal-unlock" id="fractalUnlock">
+            <svg width="200" height="200" viewBox="0 0 200 200">
+                <defs>
+                    <radialGradient id="fractalGrad">
+                        <stop offset="0%" stop-color="rgba(255,215,0,0.8)"/>
+                        <stop offset="100%" stop-color="rgba(255,165,0,0.2)"/>
+                    </radialGradient>
+                </defs>
+                <circle cx="100" cy="100" r="10" fill="url(#fractalGrad)"/>
+                <circle cx="100" cy="100" r="30" fill="none" stroke="rgba(255,215,0,0.6)" stroke-width="1"/>
+                <circle cx="100" cy="100" r="50" fill="none" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
+                <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,215,0,0.2)" stroke-width="1"/>
+            </svg>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="instructions" id="instructions">
+            Συγκεντρώσου στο κέντρο "PRESENCE". Χρησιμοποίησε την αναπνοή και την προσοχή σου για να πλησιάσεις.
+        </div>
+    </div>
+
+    <!-- SINGLE CENTER ENFORCEMENT SCRIPTS -->
+    <script type="module" src="/static/js/singleCenterConfig.js"></script>
+    <script type="module" src="/static/js/centerManager.js"></script>
+    <script type="module" src="/static/js/singleCenterRenderer.js"></script>
+    <script type="module" src="/static/js/eventBusBlocks.js"></script>
+    <script type="module" src="/static/js/singleCenterTest.js"></script>
+    
+    <!-- IMMEDIATE HOTFIX CONSOLE COMMANDS -->
+    <script>
+        // One-liner hotfix για immediate cleanup
+        window.cleanupSecondaryNodesNow = function() {
+            const selectors = [
+                '.center-node[data-role="secondary"]',
+                '.center-node[data-label="AWARENESS"]',
+                '.center-space:not(.center-presence)',
+                '#centerAwareness',
+                '#centerCompassion', 
+                '#centerQuality',
+                '#centerForgiveness',
+                '.center-awareness',
+                '.center-compassion',
+                '.center-quality', 
+                '.center-forgiveness'
+            ];
+            
+            let removed = 0;
+            selectors.forEach(selector => {
+                document.querySelectorAll(selector).forEach(el => {
+                    console.log(`🗑️ [HOTFIX] Removing:`, el.id || el.className);
+                    el.remove();
+                    removed++;
+                });
+            });
+            
+            console.log(`✅ [HOTFIX] Removed ${removed} secondary center elements`);
+            return removed;
+        };
+        
+        // Force console access
+        window.SINGLE_CENTER_HOTFIX = {
+            cleanupNow: window.cleanupSecondaryNodesNow,
+            testMode: () => {
+                console.log('🧪 Test mode activated');
+                if (window.singleCenterTestSuite) {
+                    return window.singleCenterTestSuite.runTests();
+                }
+            },
+            showConfig: () => {
+                console.log('⚙️ Single Center Config:', window.SINGLE_CENTER_CONFIG);
+                return window.SINGLE_CENTER_CONFIG;
+            },
+            verifyDom: () => {
+                const primary = document.getElementById('presence-ai');
+                const secondary = document.querySelectorAll('.center-space:not(#presence-ai)');
+                
+                console.log('🔍 DOM Verification:');
+                console.log('   Primary center:', primary ? '✅ Found' : '❌ Missing');
+                console.log('   Secondary centers:', secondary.length, secondary.length === 0 ? '✅' : '❌');
+                
+                return { primary: !!primary, secondaryCount: secondary.length };
+            }
+        };
+        
+        console.log('🔧 HOTFIX READY - Use SINGLE_CENTER_HOTFIX.cleanupNow() to force cleanup');
+    </script>
+
+    <script type="module">
+        import { SINGLE_CENTER_CONFIG, PersonaLayer, LearningEvent } from '/static/js/singleCenterConfig.js';
+        import { reconcileCenters, mergeLearningEvent, cleanupSecondaryNodes } from '/static/js/centerManager.js';
+        import { renderSingleCenter } from '/static/js/singleCenterRenderer.js';
+
+        // IMMEDIATE CLEANUP - Remove any secondary centers
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔒 SINGLE CENTER MODE ACTIVATED');
+            
+            // Force cleanup of secondary centers
+            cleanupSecondaryNodes();
+            
+            // Initialize single center system
+            window.bookCentersManager = new BookCentersManager();
+        });
+
+        // GLOBAL SINGLE CENTER FUNCTIONS
+        window.SINGLE_CENTER_CONFIG = SINGLE_CENTER_CONFIG;
+        window.reconcileCenters = reconcileCenters;
+        window.mergeLearningEvent = mergeLearningEvent;
+        window.cleanupSecondaryNodes = cleanupSecondaryNodes;
+        window.renderSingleCenter = renderSingleCenter;
+        window.PersonaLayer = PersonaLayer;
+        window.LearningEvent = LearningEvent;
+    </script>
+
+    <script>
+        // SINGLE CENTER CONFIG (Fallback)
+        const SINGLE_CENTER_CONFIG = {
+            mode: 'single',
+            primary_id: 'presence-ai',
+            secondary_enabled: false,
+            max: 1
+        };
+        
+        // PERSONA LAYER TYPES
+        class PersonaLayer {
+            constructor(source, label, weight, color, timestamp = Date.now()) {
+                this.source = source; // "book" | "session" | "manual"
+                this.label = label;   // π.χ. "Tolle"
+                this.weight = weight; // 0..1
+                this.color = color;   // aura color
+                this.t = timestamp;
+            }
+        }
+        
+        class LearningEvent {
+            constructor(type, source, bookId, persona, metrics = null, timestamp = Date.now()) {
+                this.type = type;     // "persona.merge" | "metric.update"
+                this.source = source; // "book"
+                this.bookId = bookId;
+                this.persona = persona; // {name, toneColor, weight}
+                this.metrics = metrics; // {coherence, vitality, focus}
+                this.t = timestamp;
+            }
+        }
+        
+        class BookCentersExperience {
+            constructor() {
+                this.currentTarget = 'centerPresence';
+                this.alignmentThreshold = 80;
+                this.userState = document.getElementById('userState');
+                this.alignmentScore = document.getElementById('alignmentScore');
+                this.currentChapter = document.getElementById('currentChapter');
+                this.instructions = document.getElementById('instructions');
+                this.connectionLine = document.getElementById('connectionLine');
+                this.fractalUnlock = document.getElementById('fractalUnlock');
+                
+                this.biometrics = {
+                    hrv: 0,
+                    breath: 0,
+                    focus: 0,
+                    coherence: 0
+                };
+                
+                // SINGLE CENTER STATE
+                this.singleCenter = {
+                    id: 'presence-ai',
+                    label: 'Presence (AI)',
+                    radius: 80,
+                    aura: { color: '#2563eb', intensity: 0.8 },
+                    rings: [],
+                    personaLayers: []
+                };
+                
+                // Legacy centers (hidden in single mode)
+                this.centers = {
+                    centerPresence: { name: 'Presence', unlocked: false, chapter: 'Παρουσία στη Στιγμή' },
+                    centerQuality: { name: 'Quality', unlocked: false, chapter: 'Ποιότητα Προσοχής' },
+                    centerForgiveness: { name: 'Forgiveness', unlocked: false, chapter: 'Τέχνη Συγχώρεσης' },
+                    centerAwareness: { name: 'Awareness', unlocked: false, chapter: 'Βαθιά Επίγνωση' },
+                    centerCompassion: { name: 'Compassion', unlocked: false, chapter: 'Ανεξάντλητη Συμπόνια' }
+                };
+                
+                this.init();
+            }
+            
+            init() {
+                this.updateBiometrics();
+                this.setupInteractions();
+                this.startAlignmentDetection();
+                this.updateConnectionLine();
+                
+                // Apply single center mode
+                this.applySingleCenterMode();
+                
+                // Check for book upload parameters
+                this.checkBookUploadTrigger();
+                
+                // Update every 2 seconds
+                setInterval(() => {
+                    this.updateBiometrics();
+                    this.calculateAlignment();
+                }, 2000);
+                
+                // Test persona merge after 5 seconds
+                setTimeout(() => {
+                    this.testPersonaMerge();
+                }, 5000);
+            }
+            
+            // CHECK FOR BOOK UPLOAD TRIGGER
+            checkBookUploadTrigger() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const bookId = urlParams.get('book_id');
+                
+                if (bookId) {
+                    console.log('📚 Book upload detected, triggering automatic merge:', bookId);
+                    
+                    // Simulate book learning event with dynamic content from URL
+                    setTimeout(() => {
+                        this.triggerBookLearningEvent(bookId);
+                    }, 2000);
+                }
+            }
+            
+            // TRIGGER BOOK LEARNING EVENT
+            triggerBookLearningEvent(bookId) {
+                console.log('🔄 Triggering book learning event for:', bookId);
+                
+                // Extract book title from our data or generate generic
+                let bookTitle = 'New Book';
+                let authorName = 'Author';
+                
+                // Try to load from books.json (simplified for demo)
+                fetch('/data/books.json')
+                    .then(response => response.json())
+                    .then(books => {
+                        const book = books.find(b => b.id === bookId);
+                        if (book) {
+                            bookTitle = book.title;
+                            authorName = book.author || 'Unknown Author';
+                        }
+                        
+                        // Create persona from book data
+                        const bookPersona = {
+                            name: authorName.split(' ')[0], // First name only
+                            toneColor: '#10b981', // Green for growth
+                            weight: 0.8 // Strong learning impact
+                        };
+                        
+                        const learningEvent = new LearningEvent(
+                            'persona.merge',
+                            'book',
+                            bookId,
+                            bookPersona
+                        );
+                        
+                        // Apply merge to single center - NO NEW CIRCLES!
+                        this.singleCenter = this.mergeLearningEvent(this.singleCenter, learningEvent);
+                        this.renderSingleCenter();
+                        
+                        console.log('✅ Book merged into single center:', bookTitle);
+                        
+                        // Add metrics update after 2 seconds
+                        setTimeout(() => {
+                            const metricsEvent = new LearningEvent(
+                                'metric.update',
+                                'book',
+                                bookId,
+                                null,
+                                { coherence: 90, vitality: 85, focus: 80 }
+                            );
+                            
+                            this.singleCenter = this.mergeLearningEvent(this.singleCenter, metricsEvent);
+                            this.renderSingleCenter();
+                            
+                            console.log('📊 Book metrics integrated into single center');
+                        }, 2000);
+                    })
+                    .catch(error => {
+                        console.log('⚠️ Could not load book data, using defaults');
+                        
+                        // Fallback with generic data
+                        const bookPersona = {
+                            name: 'Book',
+                            toneColor: '#10b981',
+                            weight: 0.6
+                        };
+                        
+                        const learningEvent = new LearningEvent(
+                            'persona.merge',
+                            'book',
+                            bookId,
+                            bookPersona
+                        );
+                        
+                        this.singleCenter = this.mergeLearningEvent(this.singleCenter, learningEvent);
+                        this.renderSingleCenter();
+                    });
+            }
+            
+            applySingleCenterMode() {
+                if (SINGLE_CENTER_CONFIG.mode === 'single') {
+                    console.log('🎯 Activating SINGLE CENTER MODE');
+                    
+                    // Hide secondary centers
+                    const secondaryCenters = ['centerQuality', 'centerForgiveness', 'centerAwareness', 'centerCompassion'];
+                    secondaryCenters.forEach(id => {
+                        const element = document.getElementById(id);
+                        if (element) {
+                            element.style.display = 'none';
+                            console.log(`📍 Hidden secondary center: ${id}`);
+                        }
+                    });
+                    
+                    // Transform primary center for single mode
+                    const primaryCenter = document.getElementById('centerPresence');
+                    if (primaryCenter) {
+                        primaryCenter.id = 'presence-ai'; // Change ID to match config
+                        primaryCenter.style.width = '120px';
+                        primaryCenter.style.height = '120px';
+                        primaryCenter.innerHTML = `
+                            <div class="center-core">YOU</div>
+                            <div class="center-subtitle">Learning Hub</div>
+                        `;
+                        primaryCenter.classList.add('single-mode');
+                        
+                        // Add aura container
+                        const aura = document.createElement('div');
+                        aura.className = 'center-aura';
+                        aura.id = 'centerAura';
+                        primaryCenter.appendChild(aura);
+                        
+                        // Add rings container
+                        const rings = document.createElement('div');
+                        rings.className = 'center-rings';
+                        rings.id = 'centerRings';
+                        primaryCenter.appendChild(rings);
+                        
+                        // Add persona badges container
+                        const badges = document.createElement('div');
+                        badges.className = 'persona-badges';
+                        badges.id = 'personaBadges';
+                        primaryCenter.appendChild(badges);
+                        
+                        console.log('✅ Single center transformed successfully');
+                    }
+                }
+            }
+            
+            // MERGE LEARNING EVENT FUNCTION
+            mergeLearningEvent(center, event) {
+                const now = event.t || Date.now();
+                const next = { ...center };
+                
+                console.log('🔄 Merging learning event:', event.type, event.persona?.name);
+                
+                if (event.type === 'metric.update' && event.metrics) {
+                    // Simple EMA for metrics
+                    const ema = (prev, cur, alpha = 0.2) => cur == null ? prev : (alpha * cur + (1 - alpha) * prev);
+                    const intensity = ema(next.aura.intensity, event.metrics.coherence / 100, 0.25);
+                    next.aura = { color: next.aura.color, intensity };
+                    
+                    // Add progress ring
+                    next.rings = [...next.rings, { t: now, delta: intensity * 2, color: next.aura.color }];
+                    
+                    // Slight radius increase (clamped)
+                    next.radius = Math.min(next.radius + intensity * 0.5, 120);
+                    
+                    console.log('📊 Metrics updated:', { intensity, radius: next.radius });
+                }
+                
+                if (event.type === 'persona.merge' && event.source === 'book') {
+                    // Create/update persona layer
+                    const layer = new PersonaLayer(
+                        'book',
+                        event.persona.name,
+                        Math.max(0, Math.min(1, event.persona.weight)),
+                        event.persona.toneColor,
+                        now
+                    );
+                    
+                    // Merge if same label exists
+                    const idx = next.personaLayers.findIndex(l => l.label === layer.label && l.source === 'book');
+                    if (idx >= 0) {
+                        next.personaLayers[idx] = layer;
+                        console.log('♻️ Updated existing persona layer:', layer.label);
+                    } else {
+                        next.personaLayers.push(layer);
+                        console.log('✨ Added new persona layer:', layer.label);
+                    }
+                    
+                    // Visual integration to BLUE circle (NOT new circle)
+                    next.aura = { color: layer.color, intensity: Math.max(next.aura.intensity, layer.weight) };
+                    next.rings = [...next.rings, { t: now, delta: 3 * layer.weight, color: layer.color }];
+                    next.radius = Math.min(next.radius + 2 * layer.weight, 140);
+                    
+                    console.log('🎨 Visual integration complete:', { aura: next.aura, radius: next.radius });
+                }
+                
+                // Keep only recent rings
+                next.rings = next.rings.slice(-8);
+                
+                return next;
+            }
+            
+            // TEST PERSONA MERGE FUNCTION
+            testPersonaMerge() {
+                console.log('🧪 Testing persona merge...');
+                
+                // Simulate book persona from "The Power of Now" by Eckhart Tolle
+                const tollePersona = {
+                    name: 'Tolle',
+                    toneColor: '#10b981', // Emerald green
+                    weight: 0.7
+                };
+                
+                const learningEvent = new LearningEvent(
+                    'persona.merge',
+                    'book',
+                    'power-of-now-123',
+                    tollePersona
+                );
+                
+                // Apply merge to single center
+                this.singleCenter = this.mergeLearningEvent(this.singleCenter, learningEvent);
+                
+                // Render the changes
+                this.renderSingleCenter();
+                
+                // Test metrics update after 3 seconds
+                setTimeout(() => {
+                    const metricsEvent = new LearningEvent(
+                        'metric.update',
+                        'book',
+                        'power-of-now-123',
+                        null,
+                        { coherence: 85, vitality: 90, focus: 75 }
+                    );
+                    
+                    this.singleCenter = this.mergeLearningEvent(this.singleCenter, metricsEvent);
+                    this.renderSingleCenter();
+                    
+                    console.log('✅ Test sequence completed');
+                }, 3000);
+            }
+            
+            // RENDER SINGLE CENTER FUNCTION
+            renderSingleCenter() {
+                const center = this.singleCenter;
+                const centerElement = document.getElementById('presence-ai');
+                
+                if (!centerElement) {
+                    console.warn('❌ Center element not found');
+                    return;
+                }
+                
+                // Update aura
+                const auraElement = centerElement.querySelector('.center-aura');
+                if (auraElement) {
+                    auraElement.style.background = `radial-gradient(circle, ${center.aura.color}${Math.round(center.aura.intensity * 30).toString(16).padStart(2, '0')} 0%, transparent 70%)`;
+                    auraElement.style.transform = `scale(${1 + center.aura.intensity * 0.3})`;
+                }
+                
+                // Update center size
+                centerElement.style.width = `${center.radius}px`;
+                centerElement.style.height = `${center.radius}px`;
+                centerElement.style.boxShadow = `0 0 ${20 + center.aura.intensity * 15}px ${center.aura.color}`;
+                
+                // Render rings
+                const ringsContainer = centerElement.querySelector('.center-rings');
+                if (ringsContainer) {
+                    ringsContainer.innerHTML = '';
+                    center.rings.forEach((ring, i) => {
+                        const ringEl = document.createElement('div');
+                        ringEl.className = 'center-ring';
+                        ringEl.style.borderColor = ring.color;
+                        ringEl.style.width = `${center.radius + 20 + i * 8}px`;
+                        ringEl.style.height = `${center.radius + 20 + i * 8}px`;
+                        ringEl.style.top = `${-10 - i * 4}px`;
+                        ringEl.style.left = `${-10 - i * 4}px`;
+                        ringsContainer.appendChild(ringEl);
+                    });
+                }
+                
+                // Render persona badges
+                const badgesContainer = centerElement.querySelector('.persona-badges');
+                if (badgesContainer) {
+                    badgesContainer.innerHTML = '';
+                    center.personaLayers.slice(-3).forEach((layer, i) => {
+                        const badge = document.createElement('div');
+                        badge.className = 'persona-badge';
+                        badge.textContent = `${layer.label} ${(layer.weight * 100).toFixed(0)}%`;
+                        badge.style.borderLeftColor = layer.color;
+                        badge.style.color = layer.color;
+                        badgesContainer.appendChild(badge);
+                    });
+                }
+                
+                console.log('🎨 Single center rendered:', {
+                    radius: center.radius,
+                    aura: center.aura,
+                    rings: center.rings.length,
+                    personas: center.personaLayers.length
+                });
+            }
+            
+            // GUARD: PREVENT MULTIPLE CENTERS
+            upsertCenterNode(node) {
+                if (SINGLE_CENTER_CONFIG.mode === 'single' && node.id !== SINGLE_CENTER_CONFIG.primary_id) {
+                    console.log('🚫 GUARD: Blocked creation of secondary center:', node.id);
+                    return; // Skip rendering other centers
+                }
+                console.log('✅ GUARD: Allowing primary center:', node.id);
+                this.renderSingleCenter();
+            }
+            
+            updateBiometrics() {
+                // Simulated biometric data - σε πραγματική εφαρμογή θα έρχονται από sensors
+                this.biometrics.hrv = 45 + Math.random() * 30;
+                this.biometrics.breath = 12 + Math.random() * 8;
+                this.biometrics.focus = 60 + Math.random() * 35;
+                this.biometrics.coherence = 70 + Math.random() * 25;
+                
+                // Update UI
+                document.getElementById('hrvValue').textContent = this.biometrics.hrv.toFixed(1) + 'ms';
+                document.getElementById('breathValue').textContent = this.biometrics.breath.toFixed(1) + '/min';
+                document.getElementById('focusValue').textContent = this.biometrics.focus.toFixed(0) + '%';
+                document.getElementById('coherenceValue').textContent = this.biometrics.coherence.toFixed(0) + '%';
+            }
+            
+            calculateAlignment() {
+                // Υπολογισμός alignment με βάση biometrics
+                const baseAlignment = (this.biometrics.hrv / 100 * 30) + 
+                                    (this.biometrics.focus / 100 * 40) + 
+                                    (this.biometrics.coherence / 100 * 30);
+                
+                const alignment = Math.min(100, Math.max(0, baseAlignment));
+                this.alignmentScore.textContent = alignment.toFixed(0) + '%';
+                
+                // Move user state towards target based on alignment
+                this.moveUserTowardsTarget(alignment);
+                
+                // Check for unlock
+                if (alignment > this.alignmentThreshold) {
+                    this.unlockCurrentCenter();
+                }
+            }
+            
+            moveUserTowardsTarget(alignment) {
+                const targetElement = document.getElementById(this.currentTarget);
+                const targetRect = targetElement.getBoundingClientRect();
+                const userRect = this.userState.getBoundingClientRect();
+                
+                // Calculate movement based on alignment
+                const progress = alignment / 100;
+                const deltaX = (targetRect.left - userRect.left) * progress * 0.1;
+                const deltaY = (targetRect.top - userRect.top) * progress * 0.1;
+                
+                // Update user position
+                const currentLeft = parseInt(this.userState.style.left || '10%');
+                const currentTop = parseInt(this.userState.style.top || '45%');
+                
+                this.userState.style.left = (currentLeft + deltaX * 0.1) + '%';
+                this.userState.style.top = (currentTop + deltaY * 0.1) + '%';
+                
+                // Update connection line
+                this.updateConnectionLine();
+            }
+            
+            updateConnectionLine() {
+                const userRect = this.userState.getBoundingClientRect();
+                const targetElement = document.getElementById(this.currentTarget);
+                const targetRect = targetElement.getBoundingClientRect();
+                
+                const deltaX = targetRect.left - userRect.left;
+                const deltaY = targetRect.top - userRect.top;
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+                
+                this.connectionLine.style.left = userRect.left + 'px';
+                this.connectionLine.style.top = userRect.top + userRect.height/2 + 'px';
+                this.connectionLine.style.width = distance + 'px';
+                this.connectionLine.style.transform = `rotate(${angle}deg)`;
+                this.connectionLine.classList.add('active');
+            }
+            
+            unlockCurrentCenter() {
+                const centerElement = document.getElementById(this.currentTarget);
+                const centerData = this.centers[this.currentTarget];
+                
+                if (!centerData.unlocked) {
+                    centerData.unlocked = true;
+                    centerElement.classList.remove('target');
+                    centerElement.classList.add('locked');
+                    
+                    // Show fractal unlock animation
+                    this.showFractalUnlock(centerElement);
+                    
+                    // Move to next center after delay
+                    setTimeout(() => {
+                        this.moveToNextCenter();
+                    }, 3000);
+                }
+            }
+            
+            showFractalUnlock(centerElement) {
+                const rect = centerElement.getBoundingClientRect();
+                this.fractalUnlock.style.left = (rect.left - 50) + 'px';
+                this.fractalUnlock.style.top = (rect.top - 50) + 'px';
+                this.fractalUnlock.classList.add('active');
+                
+                setTimeout(() => {
+                    this.fractalUnlock.classList.remove('active');
+                }, 3000);
+            }
+            
+            moveToNextCenter() {
+                const centerKeys = Object.keys(this.centers);
+                const currentIndex = centerKeys.indexOf(this.currentTarget);
+                const nextIndex = (currentIndex + 1) % centerKeys.length;
+                const nextCenter = centerKeys[nextIndex];
+                
+                // Remove old target
+                document.getElementById(this.currentTarget).classList.remove('target');
+                
+                // Set new target
+                this.currentTarget = nextCenter;
+                const nextElement = document.getElementById(nextCenter);
+                nextElement.classList.add('target');
+                
+                // Update UI
+                const centerData = this.centers[nextCenter];
+                this.currentChapter.textContent = `Chapter: ${centerData.chapter}`;
+                this.instructions.textContent = `Συγκεντρώσου στο κέντρο "${centerData.name.toUpperCase()}". Άφησε την προσοχή σου να ρέει φυσικά.`;
+            }
+            
+            setupInteractions() {
+                // Center interactions
+                Object.keys(this.centers).forEach(centerId => {
+                    const element = document.getElementById(centerId);
+                    element.addEventListener('click', () => {
+                        if (centerId === this.currentTarget) {
+                            // Boost alignment temporarily on click
+                            this.biometrics.focus += 20;
+                            this.biometrics.coherence += 15;
+                        }
+                    });
+                });
+                
+                // Breathing exercise on spacebar
+                document.addEventListener('keydown', (e) => {
+                    if (e.code === 'Space') {
+                        e.preventDefault();
+                        this.breathingBoost();
+                    }
+                });
+            }
+            
+            breathingBoost() {
+                // Temporary boost for breathing exercise
+                this.biometrics.hrv += 10;
+                this.biometrics.coherence += 15;
+                
+                // Visual feedback
+                this.userState.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.8)';
+                setTimeout(() => {
+                    this.userState.style.boxShadow = '';
+                }, 500);
+            }
+            
+            startAlignmentDetection() {
+                // Mouse movement affects focus
+                document.addEventListener('mousemove', (e) => {
+                    const targetElement = document.getElementById(this.currentTarget);
+                    const rect = targetElement.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    
+                    const distance = Math.sqrt(
+                        Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2)
+                    );
+                    
+                    // Closer cursor = better focus
+                    const maxDistance = 300;
+                    const focusBonus = Math.max(0, (maxDistance - distance) / maxDistance * 20);
+                    this.biometrics.focus = Math.min(100, 60 + focusBonus);
+                });
+            }
+        }
+        
+        // Spatial Demo Mode functionality
+        let spatialDemoActive = false;
+        let spatialDemoTimer = 300; // 5 minutes
+        let spatialDemoInterval = null;
+        let userMovementInterval = null;
+        let presencePosition = { x: 60, y: 30 };
+        let userAutoPosition = { x: 10, y: 45 };
+        let aiIsSeekingUser = false;
+        
+        function toggleSpatialDemo() {
+            if (!spatialDemoActive) {
+                startSpatialDemo();
+            } else {
+                stopSpatialDemo();
+            }
+        }
+        
+        function startSpatialDemo() {
+            spatialDemoActive = true;
+            spatialDemoTimer = 300;
+            
+            // Update UI
+            document.getElementById('spatialDemoBtn').textContent = '⏹️ Stop Demo';
+            document.getElementById('spatialTimer').style.display = 'block';
+            document.getElementById('presenceZoneDemo').classList.add('active');
+            
+            // Hide book centers temporarily
+            const centers = ['center-presence', 'center-quality', 'center-forgiveness', 'center-awareness', 'center-compassion'];
+            centers.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.style.opacity = '0.3';
+            });
+            
+            // Start timer countdown
+            spatialDemoInterval = setInterval(() => {
+                spatialDemoTimer--;
+                const minutes = Math.floor(spatialDemoTimer / 60);
+                const seconds = spatialDemoTimer % 60;
+                document.getElementById('spatialTimer').textContent = 
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (spatialDemoTimer <= 0) {
+                    stopSpatialDemo();
+                }
+            }, 1000);
+            
+            // Start automatic user movement
+            userMovementInterval = setInterval(() => {
+                moveUserAutomatically();
+                checkBiometricTriggers();
+                updateAIPosition();
+            }, 100);
+            
+            // Update instructions
+            document.querySelector('.instructions').textContent = 
+                'Spatial Demo Active: Βλέπεις πώς το AI αντιδρά στην απόσταση και τα biometrics σου!';
+        }
+        
+        function stopSpatialDemo() {
+            spatialDemoActive = false;
+            
+            // Clear intervals
+            if (spatialDemoInterval) clearInterval(spatialDemoInterval);
+            if (userMovementInterval) clearInterval(userMovementInterval);
+            
+            // Update UI
+            document.getElementById('spatialDemoBtn').textContent = '🚀 5min Spatial Demo';
+            document.getElementById('spatialTimer').style.display = 'none';
+            document.getElementById('presenceZoneDemo').classList.remove('active');
+            
+            // Restore book centers
+            const centers = ['center-presence', 'center-quality', 'center-forgiveness', 'center-awareness', 'center-compassion'];
+            centers.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.style.opacity = '1';
+            });
+            
+            // Reset user position
+            document.getElementById('userState').style.left = '10%';
+            document.getElementById('userState').style.top = '45%';
+            
+            // Reset instructions
+            document.querySelector('.instructions').textContent = 
+                'Συγκεντρώσου στο κέντρο "PRESENCE". Άφησε την προσοχή σου να ρέει φυσικά.';
+        }
+        
+        function moveUserAutomatically() {
+            // Simple automatic movement pattern for demo
+            const time = Date.now() / 1000;
+            const newX = 10 + Math.sin(time * 0.3) * 20 + Math.cos(time * 0.2) * 15;
+            const newY = 45 + Math.cos(time * 0.25) * 15 + Math.sin(time * 0.35) * 10;
+            
+            userAutoPosition.x = Math.max(5, Math.min(85, newX));
+            userAutoPosition.y = Math.max(10, Math.min(80, newY));
+            
+            document.getElementById('userState').style.left = userAutoPosition.x + '%';
+            document.getElementById('userState').style.top = userAutoPosition.y + '%';
+        }
+        
+        function checkBiometricTriggers() {
+            // Get current biometrics from the existing system
+            const hrvValue = parseFloat(document.getElementById('hrvValue').textContent) || 60;
+            const focusValue = parseFloat(document.getElementById('focusValue').textContent) || 70;
+            const coherenceValue = parseFloat(document.getElementById('coherenceValue').textContent) || 60;
+            
+            // Calculate composite stress/energy levels
+            const energy = (hrvValue / 100 * 40) + (focusValue / 100 * 60);
+            const stress = Math.max(0, 100 - coherenceValue);
+            const consciousness = focusValue / 100;
+            
+            // Check triggers for AI seeking behavior
+            if (!aiIsSeekingUser) {
+                if (energy < 40 || stress > 60 || consciousness < 0.3) {
+                    aiIsSeekingUser = true;
+                    document.getElementById('presenceZoneDemo').style.animation = 'presenceSeekingPulse 1s ease-in-out infinite';
+                    
+                    // Update instructions with reason
+                    let reason = '';
+                    if (energy < 40) reason = `🔋 Χαμηλή ενέργεια (${energy.toFixed(0)}%) - Το AI πλησιάζει για support`;
+                    else if (stress > 60) reason = `😰 Υψηλό stress (${stress.toFixed(0)}%) - Το AI πλησιάζει για calming`;
+                    else if (consciousness < 0.3) reason = `🧠 Χαμηλή consciousness - Το AI πλησιάζει για awareness boost`;
+                    
+                    document.querySelector('.instructions').textContent = reason;
+                }
+            }
+        }
+        
+        function updateAIPosition() {
+            if (aiIsSeekingUser && spatialDemoActive) {
+                // Calculate distance to user
+                const dx = userAutoPosition.x - presencePosition.x;
+                const dy = userAutoPosition.y - presencePosition.y;
+                
+                // Move AI zone towards user
+                presencePosition.x += dx * 0.02;
+                presencePosition.y += dy * 0.02;
+                
+                // Update PRESENCE zone position
+                const presenceZone = document.getElementById('presenceZoneDemo');
+                presenceZone.style.left = presencePosition.x + '%';
+                presenceZone.style.top = presencePosition.y + '%';
+                
+                // Check if AI reached user
+                const distance = Math.sqrt(dx*dx + dy*dy);
+                if (distance < 8) {
+                    aiIsSeekingUser = false;
+                    presenceZone.style.animation = '';
+                    document.querySelector('.instructions').textContent = 
+                        '🤝 "Here we meet in the space of Now." - Το AI επανασυνδέθηκε μαζί σου!';
+                }
+            }
+        }
+        
+        // Initialize the experience
+        document.addEventListener('DOMContentLoaded', () => {
+            new BookCentersExperience();
+        });
+
+        // CONSOLE VALIDATION COMMAND
+        window.validateSingleCenter = async function() {
+            try {
+                const response = await fetch('/api/validate-single-center');
+                const result = await response.json();
+                
+                console.log('🔵 SINGLE CENTER VALIDATION RESULT:');
+                console.log('✅ Status:', result.status);
+                console.log('🎯 System:', result.system);
+                console.log('⚙️ Mode:', result.mode);
+                console.log('📋 Compliance:');
+                Object.entries(result.compliance).forEach(([key, value]) => {
+                    console.log(`  ${key}: ${value.status} (${value.tolerance || value.method})`);
+                });
+                console.log('🔧 Enforcement Modules:');
+                Object.entries(result.validation_checks.enforcement_modules).forEach(([module, info]) => {
+                    console.log(`  ${module}: ${info.status}`);
+                });
+                
+                if (result.status === 'SUCCESS') {
+                    console.log('✅ SINGLE CENTER SYSTEM FULLY OPERATIONAL');
+                } else {
+                    console.log('❌ VALIDATION FAILED');
+                }
+                
+                return result;
+            } catch (error) {
+                console.error('❌ Validation failed:', error);
+                return null;
+            }
+        };
+        
+        // Add to window for easy access
+        window.SINGLE_CENTER_VALIDATE = validateSingleCenter;
+    </script>
+
+    <script src="/static/js/singleCenterIntegrationTest.js"></script>
+</body>
+</html>

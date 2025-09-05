@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Adaptation Audit Dashboard - Syndesis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='audit_visual_effects.css') }}">
+    <style>
+        .audit-dashboard {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        
+        .trait-display {
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .trait-name {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        
+        .trait-value {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .audit-log {
+            max-height: 400px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .demo-controls {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .authenticity-score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #28a745;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .metric-card {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            margin: 10px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .metric-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .metric-label {
+            font-size: 14px;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="audit-dashboard">
+        <div class="container-fluid">
+            
+            <!-- Header -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="dashboard-card p-4">
+                        <h1 class="text-center mb-3">🔍 AI Adaptation Audit Dashboard</h1>
+                        <p class="text-center lead">
+                            <strong>Mathematical Proof of Authentic AI Adaptation</strong><br>
+                            Real-time transparency showing your AI is adapting genuinely, not placebo
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Transparency Metrics -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="metric-card">
+                        <div class="metric-number" id="total-adaptations">-</div>
+                        <div class="metric-label">Total Adaptations</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="metric-card">
+                        <div class="metric-number" id="dramatic-responses">-</div>
+                        <div class="metric-label">Dramatic Changes</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="metric-card">
+                        <div class="metric-number" id="threshold-breaches">-</div>
+                        <div class="metric-label">Threshold Breaches</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="metric-card">
+                        <div class="authenticity-score" id="authenticity-score">-</div>
+                        <div class="metric-label">Authenticity Score</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Live Trait Display -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="dashboard-card p-4">
+                        <h3 class="mb-3">🧠 Live AI Personality Traits</h3>
+                        <div class="row" id="traits-container">
+                            <!-- Traits will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Demo Controls -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="demo-controls">
+                        <h4>🎭 Demo Controls - Trigger Dramatic Adaptations</h4>
+                        <p>Use these controls to demonstrate threshold-based dramatic responses for presentations:</p>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button class="btn btn-danger btn-lg w-100" onclick="triggerCriticalCoherence()">
+                                    ⚠️ Critical Coherence<br>
+                                    <small>(Empathy Crash Demo)</small>
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-warning btn-lg w-100" onclick="triggerLowUnderstanding()">
+                                    🧠 Low Understanding<br>
+                                    <small>(Focus Emergency Demo)</small>
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-info btn-lg w-100" onclick="resetToNormal()">
+                                    ✅ Reset to Normal<br>
+                                    <small>(Clear Visual Effects)</small>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Changes Log -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="dashboard-card p-4">
+                        <h4>📋 Recent Adaptations (Live)</h4>
+                        <div class="audit-log" id="recent-changes">
+                            <div class="text-center text-muted">
+                                Loading recent adaptations...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Business Proof -->
+                <div class="col-md-6">
+                    <div class="dashboard-card p-4">
+                        <h4>💼 Business Validation</h4>
+                        <div class="authenticity-proof">
+                            <h5>✅ Anti-Placebo Evidence</h5>
+                            <ul>
+                                <li><strong>Mathematical Tracking:</strong> Every trait change logged with exact percentages</li>
+                                <li><strong>Threshold Triggers:</strong> Dramatic responses at specific HRV levels</li>
+                                <li><strong>Visual Proof:</strong> Immediate visual feedback on trait changes</li>
+                                <li><strong>Transparency Reports:</strong> Complete audit trail available</li>
+                                <li><strong>Real-time Updates:</strong> Live synchronization with neural analysis</li>
+                            </ul>
+                            
+                            <div class="mt-3 p-3 bg-success text-white rounded">
+                                <strong>🎯 Competitive Advantage:</strong><br>
+                                First AI system globally with transparent, measurable adaptation proof
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Global variables
+        let currentTraits = {};
+        let updateInterval;
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTransparencyReport();
+            loadRecentChanges();
+            startLiveUpdates();
+        });
+        
+        // Load transparency metrics
+        async function loadTransparencyReport() {
+            try {
+                const response = await fetch('/api/audit/transparency-report');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const report = data.transparency_report;
+                    document.getElementById('total-adaptations').textContent = report.total_adaptations || 0;
+                    document.getElementById('dramatic-responses').textContent = report.dramatic_responses || 0;
+                    document.getElementById('threshold-breaches').textContent = report.threshold_breaches || 0;
+                    document.getElementById('authenticity-score').textContent = report.authenticity_score || 0;
+                }
+            } catch (error) {
+                console.error('Failed to load transparency report:', error);
+            }
+        }
+        
+        // Load recent changes
+        async function loadRecentChanges() {
+            try {
+                const response = await fetch('/api/audit/recent-changes?minutes=30');
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayRecentChanges(data.recent_changes);
+                }
+            } catch (error) {
+                console.error('Failed to load recent changes:', error);
+            }
+        }
+        
+        // Display recent changes
+        function displayRecentChanges(changes) {
+            const container = document.getElementById('recent-changes');
+            
+            if (changes.length === 0) {
+                container.innerHTML = '<div class="text-center text-muted">No recent adaptations</div>';
+                return;
+            }
+            
+            const changesHtml = changes.map(change => `
+                <div class="audit-log-entry ${change.level.toLowerCase()}">
+                    <div class="d-flex justify-content-between">
+                        <strong>${change.message}</strong>
+                        <small>${new Date(change.timestamp).toLocaleTimeString()}</small>
+                    </div>
+                    ${change.threshold_breach ? `<div class="text-danger"><small>⚠️ ${change.threshold_breach}</small></div>` : ''}
+                </div>
+            `).join('');
+            
+            container.innerHTML = changesHtml;
+        }
+        
+        // Start live updates
+        function startLiveUpdates() {
+            updateInterval = setInterval(() => {
+                loadRecentChanges();
+                loadTransparencyReport();
+            }, 5000); // Update every 5 seconds
+        }
+        
+        // Demo functions
+        async function triggerCriticalCoherence() {
+            try {
+                const response = await fetch('/api/audit/trigger-demo', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        coherence: 0.45,  // Below 50% threshold
+                        understanding: 0.8
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    showDemoAlert('Critical Coherence Demo Triggered!', 'danger');
+                    setTimeout(loadRecentChanges, 1000);
+                }
+            } catch (error) {
+                console.error('Demo trigger failed:', error);
+            }
+        }
+        
+        async function triggerLowUnderstanding() {  
+            try {
+                const response = await fetch('/api/audit/trigger-demo', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        coherence: 0.8,
+                        understanding: 0.42  // Below 45% threshold
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    showDemoAlert('Low Understanding Demo Triggered!', 'warning');
+                    setTimeout(loadRecentChanges, 1000);
+                }
+            } catch (error) {
+                console.error('Demo trigger failed:', error);
+            }
+        }
+        
+        function resetToNormal() {
+            // Clear all visual effects
+            document.querySelectorAll('.trait-display').forEach(trait => {
+                trait.className = 'trait-display';
+            });
+            showDemoAlert('Visual effects reset to normal', 'success');
+        }
+        
+        function showDemoAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+            alertDiv.style.cssText = 'top: 20px; right: 20px; z-index: 9999; max-width: 400px;';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.parentNode.removeChild(alertDiv);
+                }
+            }, 3000);
+        }
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (updateInterval) {
+                clearInterval(updateInterval);
+            }
+        });
+    </script>
+</body>
+</html>

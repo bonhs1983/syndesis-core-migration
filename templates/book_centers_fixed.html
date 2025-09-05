@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Centers 2D - Fixed</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        
+        .main-container {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            grid-template-rows: 1fr auto;
+            gap: 15px;
+            padding: 20px;
+        }
+        
+        .panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .navigation-area {
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .navigation-canvas {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 123, 255, 0.1), transparent 70%);
+        }
+        
+        .user-orb {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ffffff, #f0f0f0);
+            border-radius: 50%;
+            position: absolute;
+            top: 45%;
+            left: 8%;
+            cursor: grab;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+            animation: breathe 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .center-node {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .center-node.target {
+            border-color: #00b894;
+            box-shadow: 0 0 20px rgba(0, 184, 148, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 184, 148, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(0, 184, 148, 0.8); }
+        }
+        
+        .presence { top: 20%; left: 75%; background: rgba(255, 193, 7, 0.2); }
+        .quality { top: 35%; left: 85%; background: rgba(156, 39, 176, 0.2); }
+        .forgiveness { top: 60%; left: 80%; background: rgba(76, 175, 80, 0.2); }
+        .awareness { top: 75%; left: 60%; background: rgba(33, 150, 243, 0.2); }
+        .compassion { top: 55%; left: 35%; background: rgba(233, 30, 99, 0.2); }
+        
+        .biofeedback-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00b894, #00cec9);
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        .metric-value {
+            color: #ffffff;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .coaching-panel {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .progress-panel {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .progress-item {
+            padding: 5px 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Biofeedback Panel -->
+        <div class="panel">
+            <h5 class="text-white mb-3">🫀 Biofeedback Engine</h5>
+            
+            <div class="mb-3">
+                <small class="text-white-50">HRV (Heart Rate Variability)</small>
+                <div class="biofeedback-bar">
+                    <div class="bar-fill" id="hrvBar" style="width: 65%;"></div>
+                </div>
+                <span class="metric-value" id="hrvValue">65%</span>
+            </div>
+            
+            <div class="mb-3">
+                <small class="text-white-50">Breath Rate</small>
+                <div class="biofeedback-bar">
+                    <div class="bar-fill" id="breathBar" style="width: 72%;"></div>
+                </div>
+                <span class="metric-value" id="breathValue">72%</span>
+            </div>
+            
+            <div class="mb-3">
+                <small class="text-white-50">Coherence (HRV + Breath)</small>
+                <div class="biofeedback-bar">
+                    <div class="bar-fill" id="coherenceBar" style="width: 58%;"></div>
+                </div>
+                <span class="metric-value" id="coherenceValue">58%</span>
+            </div>
+            
+            <div class="mb-3">
+                <small class="text-white-50">Focus (Attention)</small>
+                <div class="biofeedback-bar">
+                    <div class="bar-fill" id="focusBar" style="width: 80%;"></div>
+                </div>
+                <span class="metric-value" id="focusValue">80%</span>
+            </div>
+        </div>
+        
+        <!-- Navigation Area -->
+        <div class="navigation-area">
+            <div class="navigation-canvas">
+                <div class="user-orb" id="userOrb"></div>
+                
+                <!-- Book Centers -->
+                <div class="center-node presence target" data-center="presence">🎯</div>
+                <div class="center-node quality" data-center="quality">💎</div>
+                <div class="center-node forgiveness" data-center="forgiveness">🌿</div>
+                <div class="center-node awareness" data-center="awareness">👁️</div>
+                <div class="center-node compassion" data-center="compassion">❤️</div>
+            </div>
+        </div>
+        
+        <!-- Soul Metrics Panel -->
+        <div class="panel">
+            <h5 class="text-white mb-3">✨ Soul Metrics</h5>
+            
+            <div class="mb-2">
+                <small class="text-white-50">Coherence</small>
+                <div class="d-flex justify-content-between">
+                    <span class="text-white" id="soulCoherence">73%</span>
+                </div>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-white-50">Vitality</small>
+                <div class="d-flex justify-content-between">
+                    <span class="text-white" id="soulVitality">68%</span>
+                </div>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-white-50">Ethics</small>
+                <div class="d-flex justify-content-between">
+                    <span class="text-white" id="soulEthics">85%</span>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <small class="text-white-50">Narrative</small>
+                <div class="d-flex justify-content-between">
+                    <span class="text-white" id="soulNarrative">71%</span>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <small class="text-white-50">Consciousness Level</small>
+                <h6 class="text-success" id="consciousnessLevel">Developing</h6>
+            </div>
+        </div>
+        
+        <!-- Coaching Panel -->
+        <div class="panel coaching-panel">
+            <h6 class="text-white mb-2">🤖 Intelligent Coach</h6>
+            <p class="text-white-50" id="coachingMessage">
+                Welcome to your Book Centers journey. Your biofeedback will guide you through each state.
+            </p>
+        </div>
+        
+        <!-- Progress Panel -->
+        <div class="panel progress-panel">
+            <h6 class="text-white mb-2">📈 Progress Log</h6>
+            <div id="progressLog">
+                <div class="progress-item">🎯 Session started - PRESENCE target active</div>
+                <div class="progress-item">📊 Biofeedback engine initialized</div>
+                <div class="progress-item">✨ Soul metrics calibrated</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simplified Book Centers System (No Infinite Loops)
+        class SimpleBookCenters {
+            constructor() {
+                this.userOrb = document.getElementById('userOrb');
+                this.isDragging = false;
+                this.currentTarget = 'presence';
+                this.unlockedCenters = [];
+                
+                // Simple state without recursive calls
+                this.biofeedback = {
+                    hrv: 65,
+                    breath: 72,
+                    coherence: 58,
+                    focus: 80
+                };
+                
+                this.initializeOrb();
+                this.startBiofeedbackSimulation();
+                this.startCoaching();
+                
+                console.log('[INFO] Simple Book Centers initialized successfully');
+            }
+            
+            initializeOrb() {
+                // Simple drag functionality
+                this.userOrb.addEventListener('mousedown', (e) => {
+                    this.isDragging = true;
+                    this.userOrb.style.cursor = 'grabbing';
+                });
+                
+                document.addEventListener('mousemove', (e) => {
+                    if (this.isDragging) {
+                        const rect = document.querySelector('.navigation-canvas').getBoundingClientRect();
+                        const x = e.clientX - rect.left - 40;
+                        const y = e.clientY - rect.top - 40;
+                        
+                        const newX = Math.max(0, Math.min(x, rect.width - 80));
+                        const newY = Math.max(0, Math.min(y, rect.height - 80));
+                        
+                        this.userOrb.style.left = newX + 'px';
+                        this.userOrb.style.top = newY + 'px';
+                        
+                        this.checkCenterProximity();
+                    }
+                });
+                
+                document.addEventListener('mouseup', () => {
+                    this.isDragging = false;
+                    this.userOrb.style.cursor = 'grab';
+                });
+            }
+            
+            startBiofeedbackSimulation() {
+                setInterval(() => {
+                    // Simple biofeedback updates
+                    this.biofeedback.hrv = Math.max(30, Math.min(95, this.biofeedback.hrv + (Math.random() - 0.5) * 10));
+                    this.biofeedback.breath = Math.max(40, Math.min(90, this.biofeedback.breath + (Math.random() - 0.5) * 8));
+                    this.biofeedback.coherence = Math.max(20, Math.min(85, this.biofeedback.coherence + (Math.random() - 0.5) * 12));
+                    this.biofeedback.focus = Math.max(50, Math.min(95, this.biofeedback.focus + (Math.random() - 0.5) * 15));
+                    
+                    this.updateUI();
+                    this.autoNavigation();
+                }, 1500);
+            }
+            
+            updateUI() {
+                // Update biofeedback bars
+                document.getElementById('hrvBar').style.width = this.biofeedback.hrv + '%';
+                document.getElementById('hrvValue').textContent = Math.round(this.biofeedback.hrv) + '%';
+                
+                document.getElementById('breathBar').style.width = this.biofeedback.breath + '%';
+                document.getElementById('breathValue').textContent = Math.round(this.biofeedback.breath) + '%';
+                
+                document.getElementById('coherenceBar').style.width = this.biofeedback.coherence + '%';
+                document.getElementById('coherenceValue').textContent = Math.round(this.biofeedback.coherence) + '%';
+                
+                document.getElementById('focusBar').style.width = this.biofeedback.focus + '%';
+                document.getElementById('focusValue').textContent = Math.round(this.biofeedback.focus) + '%';
+                
+                // Update soul metrics
+                const soulCoherence = Math.round((this.biofeedback.coherence + this.biofeedback.hrv) / 2);
+                const soulVitality = Math.round((this.biofeedback.breath + this.biofeedback.focus) / 2);
+                const soulEthics = Math.round((this.biofeedback.coherence + 85) / 2);
+                const soulNarrative = Math.round((this.biofeedback.focus + this.biofeedback.coherence + this.biofeedback.hrv) / 3);
+                
+                document.getElementById('soulCoherence').textContent = soulCoherence + '%';
+                document.getElementById('soulVitality').textContent = soulVitality + '%';
+                document.getElementById('soulEthics').textContent = soulEthics + '%';
+                document.getElementById('soulNarrative').textContent = soulNarrative + '%';
+                
+                const avgConsciousness = Math.round((soulCoherence + soulVitality + soulEthics + soulNarrative) / 4);
+                const level = avgConsciousness > 85 ? 'Transcendent' :
+                             avgConsciousness > 70 ? 'Focused' :
+                             avgConsciousness > 55 ? 'Developing' : 'Calm';
+                             
+                document.getElementById('consciousnessLevel').textContent = level;
+            }
+            
+            autoNavigation() {
+                // Auto-move orb when biofeedback is high
+                if (this.biofeedback.coherence > 75 && this.biofeedback.focus > 80 && !this.isDragging) {
+                    const targetCenter = document.querySelector(`[data-center="${this.currentTarget}"]`);
+                    if (targetCenter) {
+                        const orbRect = this.userOrb.getBoundingClientRect();
+                        const targetRect = targetCenter.getBoundingClientRect();
+                        
+                        const deltaX = (targetRect.left - orbRect.left) * 0.02;
+                        const deltaY = (targetRect.top - orbRect.top) * 0.02;
+                        
+                        const currentLeft = parseInt(this.userOrb.style.left) || 0;
+                        const currentTop = parseInt(this.userOrb.style.top) || 0;
+                        
+                        this.userOrb.style.left = (currentLeft + deltaX) + 'px';
+                        this.userOrb.style.top = (currentTop + deltaY) + 'px';
+                    }
+                }
+                
+                this.checkCenterProximity();
+            }
+            
+            checkCenterProximity() {
+                const orbRect = this.userOrb.getBoundingClientRect();
+                const targetCenter = document.querySelector(`[data-center="${this.currentTarget}"]`);
+                
+                if (targetCenter) {
+                    const targetRect = targetCenter.getBoundingClientRect();
+                    const distance = Math.sqrt(
+                        Math.pow(orbRect.left - targetRect.left, 2) + 
+                        Math.pow(orbRect.top - targetRect.top, 2)
+                    );
+                    
+                    if (distance < 100 && !this.unlockedCenters.includes(this.currentTarget)) {
+                        this.unlockCenter(this.currentTarget);
+                    }
+                }
+            }
+            
+            unlockCenter(centerName) {
+                const center = document.querySelector(`[data-center="${centerName}"]`);
+                
+                if (center && !this.unlockedCenters.includes(centerName)) {
+                    center.classList.add('unlocked');
+                    center.classList.remove('target');
+                    center.style.boxShadow = '0 0 30px rgba(0, 255, 0, 0.8)';
+                    
+                    this.unlockedCenters.push(centerName);
+                    this.addProgressItem(`🎯 UNLOCKED: ${centerName.toUpperCase()} center!`);
+                    
+                    // Move to next center
+                    setTimeout(() => {
+                        this.setNextTarget();
+                    }, 2000);
+                }
+            }
+            
+            setNextTarget() {
+                const centers = ['presence', 'quality', 'forgiveness', 'awareness', 'compassion'];
+                const currentIndex = centers.indexOf(this.currentTarget);
+                const nextIndex = (currentIndex + 1) % centers.length;
+                
+                this.currentTarget = centers[nextIndex];
+                
+                // Update visual target
+                document.querySelectorAll('.center-node').forEach(node => {
+                    node.classList.remove('target');
+                });
+                
+                const nextCenter = document.querySelector(`[data-center="${this.currentTarget}"]`);
+                if (nextCenter && !this.unlockedCenters.includes(this.currentTarget)) {
+                    nextCenter.classList.add('target');
+                }
+            }
+            
+            startCoaching() {
+                const messages = [
+                    "Welcome to your consciousness journey. Let your biofeedback guide you.",
+                    "Focus on your breathing. Notice how your HRV responds to mindful attention.",
+                    "Excellent coherence! You're finding your natural rhythm.",
+                    "Your soul metrics are rising. Trust the process of inner alignment.",
+                    "Beautiful focus state! You're learning to navigate with pure awareness."
+                ];
+                
+                let messageIndex = 0;
+                setInterval(() => {
+                    document.getElementById('coachingMessage').textContent = messages[messageIndex];
+                    messageIndex = (messageIndex + 1) % messages.length;
+                }, 8000);
+            }
+            
+            addProgressItem(message) {
+                const log = document.getElementById('progressLog');
+                const item = document.createElement('div');
+                item.className = 'progress-item';
+                item.textContent = `${new Date().toLocaleTimeString()} - ${message}`;
+                log.appendChild(item);
+                
+                // Keep only last 10 items
+                while (log.children.length > 10) {
+                    log.removeChild(log.firstChild);
+                }
+                
+                log.scrollTop = log.scrollHeight;
+            }
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new SimpleBookCenters();
+        });
+    </script>
+</body>
+</html>

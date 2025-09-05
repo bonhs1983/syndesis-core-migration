@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syndesis AI Demo - 5 Λεπτά Αλληλεπίδραση</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .metrics-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .chat-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 600px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .message.user {
+            background: rgba(0, 123, 255, 0.2);
+            margin-left: 60px;
+            text-align: right;
+        }
+        
+        .message.ai {
+            background: rgba(40, 167, 69, 0.2);
+            margin-right: 60px;
+        }
+        
+        .message.system {
+            background: rgba(255, 193, 7, 0.2);
+            text-align: center;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .metric-bar {
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .metric-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease, background-color 0.5s ease;
+        }
+        
+        .timer {
+            font-size: 2rem;
+            text-align: center;
+            color: #00ff88;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .adaptation-info {
+            background: rgba(108, 117, 125, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="text-center mb-4">
+            <h1><i class="fas fa-brain"></i> Syndesis AI - Live Demo Αλληλεπίδραση</h1>
+            <div class="timer" id="timer">05:00</div>
+            <p class="lead">Παρακολουθήστε πώς ο AI προσαρμόζεται σε real-time βάσει HRV data</p>
+        </div>
+        
+        <div class="row">
+            <!-- Metrics Panel -->
+            <div class="col-md-4">
+                <div class="metrics-panel">
+                    <h4><i class="fas fa-heartbeat"></i> Live HRV Metrics</h4>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>HRV Score</span>
+                            <span id="hrv-value">0.75</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="hrv-bar" style="width: 75%; background: #28a745;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Stress Level</span>
+                            <span id="stress-value">0.30</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="stress-bar" style="width: 30%; background: #ffc107;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Coherence</span>
+                            <span id="coherence-value">0.80</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="coherence-bar" style="width: 80%; background: #17a2b8;"></div>
+                        </div>
+                    </div>
+                    
+                    <h5 class="mt-4"><i class="fas fa-user-cog"></i> AI Personality Traits</h5>
+                    
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between">
+                            <span>Empathy</span>
+                            <span id="empathy-value">0.65</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="empathy-bar" style="width: 65%; background: #e83e8c;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between">
+                            <span>Creativity</span>
+                            <span id="creativity-value">0.55</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="creativity-bar" style="width: 55%; background: #fd7e14;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between">
+                            <span>Focus</span>
+                            <span id="focus-value">0.70</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="focus-bar" style="width: 70%; background: #6f42c1;"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="adaptation-status" class="adaptation-info">
+                        <strong>Current Adaptation:</strong> <span id="adaptation-text">Balanced and Empathetic</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Panel -->
+            <div class="col-md-8">
+                <div class="chat-panel" id="chat-container">
+                    <div class="message system">
+                        <span class="status-indicator" style="background: #28a745;"></span>
+                        Ξεκινάει 5-λεπτο demo αλληλεπίδραση. Ο AI θα προσαρμόζεται real-time βάσει HRV...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class SyndesisDemo {
+            constructor() {
+                this.timeLeft = 300; // 5 minutes in seconds
+                this.messageIndex = 0;
+                this.chatContainer = document.getElementById('chat-container');
+                
+                // Demo conversation scenarios
+                this.scenarios = [
+                    {
+                        time: 10,
+                        user: "Γεια σου! Πώς δουλεύει το Syndesis AI;",
+                        hrv: { score: 0.75, stress: 0.30, coherence: 0.80 },
+                        traits: { empathy: 0.65, creativity: 0.55, focus: 0.70 }
+                    },
+                    {
+                        time: 25,
+                        user: "Μπορείς να μου εξηγήσεις τι είναι το HRV;",
+                        hrv: { score: 0.82, stress: 0.25, coherence: 0.85 },
+                        traits: { empathy: 0.70, creativity: 0.65, focus: 0.75 }
+                    },
+                    {
+                        time: 50,
+                        user: "Αισθάνομαι λίγο στρεσαρισμένος σήμερα...",
+                        hrv: { score: 0.45, stress: 0.75, coherence: 0.40 },
+                        traits: { empathy: 0.90, creativity: 0.40, focus: 0.50 }
+                    },
+                    {
+                        time: 80,
+                        user: "Καλύτερα τώρα! Πες μου κάτι για την τεχνητή νοημοσύνη",
+                        hrv: { score: 0.88, stress: 0.20, coherence: 0.90 },
+                        traits: { empathy: 0.75, creativity: 0.85, focus: 0.80 }
+                    },
+                    {
+                        time: 120,
+                        user: "Πώς το AI σου προσαρμόζεται στα συναισθήματά μου;",
+                        hrv: { score: 0.80, stress: 0.30, coherence: 0.85 },
+                        traits: { empathy: 0.80, creativity: 0.70, focus: 0.85 }
+                    },
+                    {
+                        time: 160,
+                        user: "Θέλω να μάθω περισσότερα για τη διαφάνεια του AI",
+                        hrv: { score: 0.85, stress: 0.25, coherence: 0.88 },
+                        traits: { empathy: 0.70, creativity: 0.75, focus: 0.90 }
+                    },
+                    {
+                        time: 200,
+                        user: "Μπορείς να με βοηθήσεις με ένα δημιουργικό πρόβλημα;",
+                        hrv: { score: 0.90, stress: 0.15, coherence: 0.95 },
+                        traits: { empathy: 0.65, creativity: 0.95, focus: 0.85 }
+                    },
+                    {
+                        time: 240,
+                        user: "Αυτό είναι εντυπωσιακό! Πώς μπορώ να το χρησιμοποιήσω;",
+                        hrv: { score: 0.92, stress: 0.10, coherence: 0.98 },
+                        traits: { empathy: 0.75, creativity: 0.80, focus: 0.95 }
+                    },
+                    {
+                        time: 280,
+                        user: "Ευχαριστώ για αυτή την εμπειρία!",
+                        hrv: { score: 0.95, stress: 0.05, coherence: 1.0 },
+                        traits: { empathy: 0.85, creativity: 0.85, focus: 0.90 }
+                    }
+                ];
+                
+                this.startDemo();
+            }
+            
+            startDemo() {
+                this.timer = setInterval(() => {
+                    this.updateTimer();
+                    this.checkScenarios();
+                    this.updateMetrics();
+                }, 1000);
+            }
+            
+            updateTimer() {
+                this.timeLeft--;
+                const minutes = Math.floor(this.timeLeft / 60);
+                const seconds = this.timeLeft % 60;
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (this.timeLeft <= 0) {
+                    clearInterval(this.timer);
+                    this.addMessage('system', 'Demo ολοκληρώθηκε! Είδατε πώς ο AI προσαρμόζεται real-time βάσει HRV data.');
+                }
+            }
+            
+            checkScenarios() {
+                const elapsed = 300 - this.timeLeft;
+                const scenario = this.scenarios.find(s => s.time === elapsed);
+                
+                if (scenario) {
+                    this.addMessage('user', scenario.user);
+                    this.updateHRVMetrics(scenario.hrv);
+                    this.updatePersonalityTraits(scenario.traits);
+                    
+                    // Generate AI response based on current state
+                    setTimeout(() => {
+                        this.generateAIResponse(scenario);
+                    }, 2000);
+                }
+            }
+            
+            generateAIResponse(scenario) {
+                const { hrv, traits } = scenario;
+                let response = "";
+                let adaptationStyle = "";
+                
+                // Determine adaptation style based on HRV
+                if (hrv.stress > 0.6) {
+                    adaptationStyle = "Calming and Supportive";
+                    response = "Καταλαβαίνω ότι αισθάνεσαι στρεσαρισμένος. Βάσει των HRV δεδομένων σου, προσαρμόζομαι για να είμαι πιο υποστηρικτικός και ήρεμος. Ας πάρουμε μερικές βαθιές ανάσες μαζί και ας εστιάσουμε σε κάτι θετικό.";
+                } else if (hrv.score > 0.85) {
+                    adaptationStyle = "Creative and Optimistic";
+                    response = "Φανταστικά! Το HRV σου δείχνει εξαιρετική συνοχή, οπότε είμαι σε πολύ δημιουργική διάθεση! Μπορώ να βοηθήσω με καινοτόμες ιδέες και creative προσεγγίσεις. Τι θα θέλες να εξερευνήσουμε;";
+                } else if (hrv.coherence > 0.8) {
+                    adaptationStyle = "Focused and Analytical";
+                    response = "Η καρδιακή σου συνοχή είναι εξαιρετική! Είμαι σε εστιασμένη, αναλυτική διάθεση. Μπορώ να σε βοηθήσω με λεπτομερή ανάλυση και structured thinking για οτιδήποτε χρειάζεσαι.";
+                } else {
+                    adaptationStyle = "Balanced and Empathetic";
+                    response = "Τα HRV δεδομένα σου δείχνουν ισορροπημένη κατάσταση, οπότε προσαρμόζομαι με ισορροπημένη εμπάθεια. Είμαι εδώ να σε ακούσω και να σε βοηθήσω με οτιδήποτε χρειάζεσαι.";
+                }
+                
+                // Add specific content based on user question
+                if (scenario.user.includes("HRV")) {
+                    response += "\n\nΤο HRV (Heart Rate Variability) μετράει τη διακύμανση μεταξύ χτύπων της καρδιάς και είναι δείκτης του αυτόνομου νευρικού συστήματος. Υψηλό HRV = καλή προσαρμοστικότητα!";
+                } else if (scenario.user.includes("τεχνητή νοημοσύνη")) {
+                    response += "\n\nΗ τεχνητή νοημοσύνη εξελίσσεται ραγδαία! Το Syndesis χρησιμοποιεί neural networks που προσαρμόζονται real-time στα βιομετρικά δεδομένα για πραγματικά personalized AI εμπειρίες.";
+                } else if (scenario.user.includes("προσαρμόζεται")) {
+                    response += "\n\nΠροσαρμόζομαι αναλύοντας το HRV, stress levels, και coherence σου σε real-time. Αυτά επηρεάζουν τα personality traits μου (empathy, creativity, focus) για optimal αλληλεπίδραση!";
+                }
+                
+                this.addMessage('ai', response);
+                this.updateAdaptationStatus(adaptationStyle);
+            }
+            
+            updateHRVMetrics(hrv) {
+                document.getElementById('hrv-value').textContent = hrv.score.toFixed(2);
+                document.getElementById('stress-value').textContent = hrv.stress.toFixed(2);
+                document.getElementById('coherence-value').textContent = hrv.coherence.toFixed(2);
+                
+                document.getElementById('hrv-bar').style.width = (hrv.score * 100) + '%';
+                document.getElementById('stress-bar').style.width = (hrv.stress * 100) + '%';
+                document.getElementById('coherence-bar').style.width = (hrv.coherence * 100) + '%';
+                
+                // Update colors based on values
+                document.getElementById('hrv-bar').style.background = 
+                    hrv.score > 0.8 ? '#28a745' : hrv.score > 0.6 ? '#ffc107' : '#dc3545';
+                document.getElementById('stress-bar').style.background = 
+                    hrv.stress < 0.3 ? '#28a745' : hrv.stress < 0.6 ? '#ffc107' : '#dc3545';
+            }
+            
+            updatePersonalityTraits(traits) {
+                document.getElementById('empathy-value').textContent = traits.empathy.toFixed(2);
+                document.getElementById('creativity-value').textContent = traits.creativity.toFixed(2);
+                document.getElementById('focus-value').textContent = traits.focus.toFixed(2);
+                
+                document.getElementById('empathy-bar').style.width = (traits.empathy * 100) + '%';
+                document.getElementById('creativity-bar').style.width = (traits.creativity * 100) + '%';
+                document.getElementById('focus-bar').style.width = (traits.focus * 100) + '%';
+            }
+            
+            updateAdaptationStatus(style) {
+                document.getElementById('adaptation-text').textContent = style;
+            }
+            
+            updateMetrics() {
+                // Add subtle random fluctuations
+                const currentTime = 300 - this.timeLeft;
+                const fluctuation = Math.sin(currentTime / 10) * 0.02;
+                
+                // Apply minor variations to simulate real-time changes
+                const hsvValue = document.getElementById('hrv-value');
+                const currentHrv = parseFloat(hsvValue.textContent);
+                const newHrv = Math.max(0.1, Math.min(1.0, currentHrv + fluctuation));
+                
+                if (Math.random() < 0.1) { // 10% chance to update
+                    hsvValue.textContent = newHrv.toFixed(2);
+                    document.getElementById('hrv-bar').style.width = (newHrv * 100) + '%';
+                }
+            }
+            
+            addMessage(type, text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${type}`;
+                
+                if (type === 'user') {
+                    messageDiv.innerHTML = `<strong>Χρήστης:</strong> ${text}`;
+                } else if (type === 'ai') {
+                    messageDiv.innerHTML = `<strong>Syndesis AI:</strong> ${text}`;
+                } else {
+                    messageDiv.innerHTML = text;
+                }
+                
+                this.chatContainer.appendChild(messageDiv);
+                this.chatContainer.scrollTop = this.chatContainer.scrollHeight;
+            }
+        }
+        
+        // Start demo when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new SyndesisDemo();
+        });
+    </script>
+</body>
+</html>

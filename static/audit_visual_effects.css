@@ -1,0 +1,278 @@
+/* 
+Audit Visual Effects CSS - Anti-Placebo Trait Visualization
+Shows dramatic, measurable trait changes with visual proof
+*/
+
+/* Critical threshold breach animations */
+.trait-shake-red-urgent {
+    color: #ff0000 !important;
+    background-color: rgba(255, 0, 0, 0.1) !important;
+    border: 2px solid #ff0000 !important;
+    animation: shake-urgent 0.5s infinite, flash-red 1s infinite;
+    font-weight: bold !important;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5) !important;
+}
+
+.trait-shake-red-critical {
+    color: #cc0000 !important;
+    background-color: rgba(204, 0, 0, 0.15) !important;
+    border: 3px solid #cc0000 !important;
+    animation: shake-critical 0.3s infinite, pulse-red 0.8s infinite;
+    font-weight: bold !important;
+    transform-origin: center;
+    box-shadow: 0 0 25px rgba(204, 0, 0, 0.7) !important;
+}
+
+.trait-flash-red-urgent {
+    color: #ff4444 !important;
+    background-color: rgba(255, 68, 68, 0.1) !important;
+    border: 2px solid #ff4444 !important;
+    animation: flash-urgent 0.8s infinite;
+    font-weight: bold !important;
+}
+
+/* Significant change animations */
+.trait-pulse-orange {
+    color: #ff8c00 !important;
+    background-color: rgba(255, 140, 0, 0.1) !important;
+    border: 2px solid #ff8c00 !important;
+    animation: pulse-orange 1s infinite;
+    font-weight: bold !important;
+}
+
+/* Moderate change animations */
+.trait-glow-yellow {
+    color: #ffd700 !important;
+    background-color: rgba(255, 215, 0, 0.1) !important;
+    border: 1px solid #ffd700 !important;
+    animation: glow-yellow 1.5s infinite;
+}
+
+/* Subtle change animations */
+.trait-fade-blue {
+    color: #4682b4 !important;
+    background-color: rgba(70, 130, 180, 0.05) !important;
+    border: 1px solid #4682b4 !important;
+    animation: fade-blue 2s ease-in-out;
+}
+
+/* Keyframe animations */
+@keyframes shake-urgent {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(-8px) translateY(-2px); }
+    50% { transform: translateX(8px) translateY(2px); }
+    75% { transform: translateX(-6px) translateY(-1px); }
+}
+
+@keyframes shake-critical {
+    0%, 100% { transform: translateX(0) translateY(0) scale(1); }
+    20% { transform: translateX(-10px) translateY(-3px) scale(1.05); }
+    40% { transform: translateX(10px) translateY(3px) scale(1.05); }
+    60% { transform: translateX(-8px) translateY(-2px) scale(1.03); }
+    80% { transform: translateX(8px) translateY(2px) scale(1.03); }
+}
+
+@keyframes flash-red {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes flash-urgent {
+    0%, 100% { opacity: 1; background-color: rgba(255, 68, 68, 0.1); }
+    50% { opacity: 0.4; background-color: rgba(255, 68, 68, 0.3); }
+}
+
+@keyframes pulse-red {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(204, 0, 0, 0.7); }
+    50% { transform: scale(1.1); box-shadow: 0 0 30px rgba(204, 0, 0, 0.9); }
+}
+
+@keyframes pulse-orange {
+    0%, 100% { 
+        transform: scale(1); 
+        box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+    }
+    50% { 
+        transform: scale(1.08); 
+        box-shadow: 0 0 20px rgba(255, 140, 0, 0.8);
+    }
+}
+
+@keyframes glow-yellow {
+    0%, 100% { 
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        border-color: #ffd700;
+    }
+    50% { 
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        border-color: #ffed4e;
+    }
+}
+
+@keyframes fade-blue {
+    0% { opacity: 0.5; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Threshold breach indicators */
+.threshold-breach-warning {
+    position: relative;
+}
+
+.threshold-breach-warning::after {
+    content: "⚠️ CRITICAL";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff0000;
+    color: white;
+    font-size: 10px;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+    animation: flash-warning 1s infinite;
+}
+
+@keyframes flash-warning {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Emergency mode full-screen overlay */
+.emergency-mode-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 0, 0, 0.1);
+    pointer-events: none;
+    z-index: 9999;
+    animation: emergency-pulse 2s infinite;
+}
+
+@keyframes emergency-pulse {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.1; }
+}
+
+/* Trait value dramatic changes */
+.trait-value-dramatic-drop {
+    color: #ff0000 !important;
+    font-weight: bold !important;
+    animation: value-drop 1s ease-out;
+}
+
+.trait-value-dramatic-rise {
+    color: #00ff00 !important;
+    font-weight: bold !important;
+    animation: value-rise 1s ease-out;
+}
+
+@keyframes value-drop {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(10px) scale(0.8); color: #ff6666; }
+    100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes value-rise {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-10px) scale(1.2); color: #66ff66; }
+    100% { transform: translateY(0) scale(1); }
+}
+
+/* Real-time audit log styling */
+.audit-log-entry {
+    padding: 8px 12px;
+    margin: 4px 0;
+    border-radius: 6px;
+    border-left: 4px solid transparent;
+    background: rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+}
+
+.audit-log-entry.dramatic {
+    border-left-color: #ff0000;
+    background: rgba(255, 0, 0, 0.05);
+    animation: audit-highlight 2s ease-out;
+}
+
+.audit-log-entry.significant {
+    border-left-color: #ff8c00;
+    background: rgba(255, 140, 0, 0.05);
+}
+
+.audit-log-entry.moderate {
+    border-left-color: #ffd700;
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.audit-log-entry.subtle {
+    border-left-color: #4682b4;
+    background: rgba(70, 130, 180, 0.05);
+}
+
+@keyframes audit-highlight {
+    0% { transform: scale(1); box-shadow: none; }
+    50% { transform: scale(1.02); box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3); }
+    100% { transform: scale(1); box-shadow: none; }
+}
+
+/* Transparency proof indicators */
+.authenticity-proof {
+    background: linear-gradient(45deg, #e8f5e8, #f0f8ff);
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 8px 0;
+}
+
+.authenticity-score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2e7d32;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Business presentation mode */
+.business-demo-mode .trait-container {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.business-demo-mode .trait-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.business-demo-mode .trait-value {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    background: #f8f9fa;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .trait-shake-red-urgent,
+    .trait-shake-red-critical {
+        animation-duration: 0.4s;
+    }
+    
+    .trait-value-dramatic-drop,
+    .trait-value-dramatic-rise {
+        font-size: 18px;
+    }
+    
+    .audit-log-entry {
+        padding: 6px 8px;
+        font-size: 14px;
+    }
+}

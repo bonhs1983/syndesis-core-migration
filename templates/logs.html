@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}Interaction Logs - FractalAI Training Pipeline{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i data-feather="file-text"></i>
+            Interaction Logs
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i data-feather="list"></i>
+                    Recent Interactions
+                </h5>
+                <div>
+                    <span class="badge bg-info">{{ interactions.total }} total</span>
+                    <span class="badge bg-secondary">Page {{ interactions.page }} of {{ interactions.pages }}</span>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if interactions.items %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Session</th>
+                                <th>Input</th>
+                                <th>Output</th>
+                                <th>Processed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for interaction in interactions.items %}
+                            <tr>
+                                <td class="text-nowrap">
+                                    <small>{{ interaction.timestamp.strftime('%m-%d %H:%M:%S') }}</small>
+                                </td>
+                                <td>
+                                    {% if interaction.session_id %}
+                                        <small class="text-muted">{{ interaction.session_id[:12] }}...</small>
+                                    {% else %}
+                                        <small class="text-muted">-</small>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="text-truncate" style="max-width: 200px;" title="{{ interaction.agent_input }}">
+                                        {{ interaction.agent_input }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-truncate" style="max-width: 200px;" title="{{ interaction.agent_output }}">
+                                        {{ interaction.agent_output }}
+                                    </div>
+                                </td>
+                                <td>
+                                    {% if interaction.processed %}
+                                        <span class="badge bg-success">
+                                            <i data-feather="check"></i>
+                                            Yes
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-warning">
+                                            <i data-feather="clock"></i>
+                                            No
+                                        </span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                {% if interactions.pages > 1 %}
+                <nav aria-label="Interaction logs pagination">
+                    <ul class="pagination justify-content-center">
+                        {% if interactions.has_prev %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ url_for('logs', page=interactions.prev_num) }}">
+                                <i data-feather="chevron-left"></i>
+                                Previous
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% for page_num in interactions.iter_pages() %}
+                            {% if page_num %}
+                                {% if page_num != interactions.page %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ url_for('logs', page=page_num) }}">{{ page_num }}</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ page_num }}</span>
+                                </li>
+                                {% endif %}
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if interactions.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ url_for('logs', page=interactions.next_num) }}">
+                                Next
+                                <i data-feather="chevron-right"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+
+                {% else %}
+                <div class="text-center py-5">
+                    <i data-feather="inbox" size="48" class="text-muted mb-3"></i>
+                    <h5 class="text-muted">No interactions logged yet</h5>
+                    <p class="text-muted">Start by simulating some agent interactions from the dashboard.</p>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-primary">
+                        <i data-feather="arrow-left"></i>
+                        Go to Dashboard
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Interaction Details Modal -->
+<div class="modal fade" id="interactionModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Interaction Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="interactionDetails"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Add click handlers for viewing full interaction details
+document.addEventListener('DOMContentLoaded', function() {
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+        row.style.cursor = 'pointer';
+        row.addEventListener('click', function() {
+            const cells = this.querySelectorAll('td');
+            const timestamp = cells[0].textContent.trim();
+            const session = cells[1].textContent.trim();
+            const input = cells[2].getAttribute('title') || cells[2].textContent.trim();
+            const output = cells[3].getAttribute('title') || cells[3].textContent.trim();
+            const processed = cells[4].textContent.includes('Yes');
+            
+            const modalBody = document.getElementById('interactionDetails');
+            modalBody.innerHTML = `
+                <div class="mb-3">
+                    <strong>Timestamp:</strong> ${timestamp}
+                </div>
+                <div class="mb-3">
+                    <strong>Session ID:</strong> ${session}
+                </div>
+                <div class="mb-3">
+                    <strong>User Input:</strong>
+                    <div class="border rounded p-2 bg-dark">${input}</div>
+                </div>
+                <div class="mb-3">
+                    <strong>Agent Output:</strong>
+                    <div class="border rounded p-2 bg-dark">${output}</div>
+                </div>
+                <div class="mb-3">
+                    <strong>Processed:</strong> 
+                    <span class="badge bg-${processed ? 'success' : 'warning'}">${processed ? 'Yes' : 'No'}</span>
+                </div>
+            `;
+            
+            new bootstrap.Modal(document.getElementById('interactionModal')).show();
+        });
+    });
+});
+</script>
+{% endblock %}

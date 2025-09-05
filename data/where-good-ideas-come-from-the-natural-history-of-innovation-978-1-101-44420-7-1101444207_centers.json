@@ -1,0 +1,164 @@
+{
+  "title": "where-good-ideas-come-from-the-natural-history-of-innovation-978-1-101-44420-7-1101444207",
+  "total_chapters": 1,
+  "centers": [
+    {
+      "id": "center1",
+      "name": "BEING",
+      "description": "Pure existence beyond doing",
+      "importance": 10,
+      "pattern": {
+        "shape": "octagon",
+        "color": "rgba(168, 85, 247, 0.6)",
+        "border_color": "rgba(168, 85, 247, 0.8)",
+        "description": "Pure existence beyond doing",
+        "keywords": [
+          "being",
+          "existence",
+          "is",
+          "am",
+          "essence",
+          "core"
+        ]
+      },
+      "position": {
+        "top": "20%",
+        "left": "30%"
+      },
+      "unlock_requirements": {
+        "alignment_threshold": 95,
+        "focus_weight": 0.4,
+        "coherence_weight": 0.3,
+        "hrv_weight": 0.3
+      },
+      "css_shape": "clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);"
+    },
+    {
+      "id": "center2",
+      "name": "MIND",
+      "description": "Understanding the nature of mind",
+      "importance": 10,
+      "pattern": {
+        "shape": "hexagon",
+        "color": "rgba(239, 68, 68, 0.6)",
+        "border_color": "rgba(239, 68, 68, 0.8)",
+        "description": "Understanding the nature of mind",
+        "keywords": [
+          "mind",
+          "thoughts",
+          "thinking",
+          "mental",
+          "ego",
+          "identity"
+        ]
+      },
+      "position": {
+        "top": "60%",
+        "left": "70%"
+      },
+      "unlock_requirements": {
+        "alignment_threshold": 95,
+        "focus_weight": 0.4,
+        "coherence_weight": 0.3,
+        "hrv_weight": 0.3
+      },
+      "css_shape": "clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);"
+    },
+    {
+      "id": "center3",
+      "name": "FREEDOM",
+      "description": "Liberation and independence",
+      "importance": 9,
+      "pattern": {
+        "shape": "circle",
+        "color": "rgba(168, 85, 247, 0.6)",
+        "border_color": "rgba(168, 85, 247, 0.8)",
+        "description": "Liberation and independence",
+        "keywords": [
+          "freedom",
+          "liberation",
+          "independence",
+          "choice",
+          "autonomy",
+          "release"
+        ]
+      },
+      "position": {
+        "top": "40%",
+        "left": "50%"
+      },
+      "unlock_requirements": {
+        "alignment_threshold": 93,
+        "focus_weight": 0.4,
+        "coherence_weight": 0.3,
+        "hrv_weight": 0.3
+      },
+      "css_shape": "border-radius: 50%;"
+    },
+    {
+      "id": "center4",
+      "name": "PRESENCE",
+      "description": "Being fully present in the moment",
+      "importance": 2,
+      "pattern": {
+        "shape": "circle",
+        "color": "rgba(255, 215, 0, 0.6)",
+        "border_color": "rgba(255, 215, 0, 0.8)",
+        "description": "Being fully present in the moment",
+        "keywords": [
+          "presence",
+          "mindfulness",
+          "awareness",
+          "now",
+          "moment",
+          "attention",
+          "here"
+        ]
+      },
+      "position": {
+        "top": "75%",
+        "left": "25%"
+      },
+      "unlock_requirements": {
+        "alignment_threshold": 79,
+        "focus_weight": 0.4,
+        "coherence_weight": 0.3,
+        "hrv_weight": 0.3
+      },
+      "css_shape": "border-radius: 50%;"
+    },
+    {
+      "id": "center5",
+      "name": "GROWTH",
+      "description": "Evolution and development",
+      "importance": 1,
+      "pattern": {
+        "shape": "triangle",
+        "color": "rgba(34, 197, 94, 0.6)",
+        "border_color": "rgba(34, 197, 94, 0.8)",
+        "description": "Evolution and development",
+        "keywords": [
+          "growth",
+          "development",
+          "evolution",
+          "progress",
+          "learning",
+          "expansion"
+        ]
+      },
+      "position": {
+        "top": "15%",
+        "left": "75%"
+      },
+      "unlock_requirements": {
+        "alignment_threshold": 77,
+        "focus_weight": 0.4,
+        "coherence_weight": 0.3,
+        "hrv_weight": 0.3
+      },
+      "css_shape": "clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"
+    }
+  ],
+  "reading_time_estimate": 392,
+  "complexity_level": "Advanced"
+}

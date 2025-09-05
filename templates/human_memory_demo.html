@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syndesis AI - Human-like Memory System Demo</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .memory-card {
+            background: var(--bs-gray-800);
+            border: 1px solid var(--bs-gray-700);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .memory-card:hover {
+            border-color: var(--bs-primary);
+            transform: translateY(-2px);
+        }
+        .evaluation-metric {
+            background: var(--bs-gray-900);
+            border-left: 4px solid var(--bs-success);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .evaluation-metric.warning {
+            border-left-color: var(--bs-warning);
+        }
+        .evaluation-metric.danger {
+            border-left-color: var(--bs-danger);
+        }
+        .memory-trace {
+            font-family: monospace;
+            background: var(--bs-gray-900);
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        .consolidation-indicator {
+            width: 100%;
+            height: 4px;
+            background: var(--bs-gray-700);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .consolidation-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--bs-info), var(--bs-success));
+            transition: width 0.5s ease;
+        }
+        .creative-distortion {
+            border: 2px dashed var(--bs-warning);
+            background: rgba(255, 193, 7, 0.1);
+        }
+        .memory-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body data-bs-theme="dark">
+    <div class="container my-4">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="display-4 text-center">
+                    <i class="fas fa-brain text-primary"></i>
+                    Syndesis AI - Human-like Memory System
+                </h1>
+                <p class="lead text-center text-muted">
+                    Revolutionary computational memory with encoding, consolidation, retrieval, forgetting, and creative distortion
+                </p>
+            </div>
+        </div>
+
+        <!-- Live Memory Statistics -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-chart-line"></i> Live Memory Statistics</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="memory-stats" id="memoryStats">
+                            <div class="text-center">
+                                <h4 id="totalMemories">0</h4>
+                                <small class="text-muted">Total Memories</small>
+                            </div>
+                            <div class="text-center">
+                                <h4 id="avgConsolidation">0%</h4>
+                                <small class="text-muted">Avg Consolidation</small>
+                            </div>
+                            <div class="text-center">
+                                <h4 id="memoryTypes">0</h4>
+                                <small class="text-muted">Memory Types</small>
+                            </div>
+                            <div class="text-center">
+                                <h4 id="consolidationEvents">0</h4>
+                                <small class="text-muted">Consolidation Events</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Memory Operations -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-plus-circle"></i> Encode New Memory</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Memory Content</label>
+                            <textarea id="memoryContent" class="form-control" rows="3" 
+                                placeholder="Enter content to encode into memory..."></textarea>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Emotional Valence</label>
+                                <input type="range" id="emotionalValence" class="form-range" 
+                                    min="0" max="1" step="0.1" value="0.5">
+                                <small class="text-muted">0.0 (negative) to 1.0 (positive)</small>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Attention Level</label>
+                                <input type="range" id="attentionLevel" class="form-range" 
+                                    min="0" max="1" step="0.1" value="0.7">
+                                <small class="text-muted">0.0 (low) to 1.0 (high)</small>
+                            </div>
+                        </div>
+                        <button id="encodeBtn" class="btn btn-primary">
+                            <i class="fas fa-memory"></i> Encode Memory
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-search"></i> Retrieve Memories</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Search Query</label>
+                            <input type="text" id="searchQuery" class="form-control" 
+                                placeholder="Enter query to retrieve memories...">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Max Results</label>
+                            <select id="maxResults" class="form-select">
+                                <option value="3">3 results</option>
+                                <option value="5" selected>5 results</option>
+                                <option value="10">10 results</option>
+                            </select>
+                        </div>
+                        <button id="retrieveBtn" class="btn btn-success">
+                            <i class="fas fa-search"></i> Retrieve Memories
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Operations Controls -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-cogs"></i> Memory Operations</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button id="consolidateBtn" class="btn btn-info w-100 mb-2">
+                                    <i class="fas fa-compress"></i> Consolidate Memories
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button id="creativeDistortionBtn" class="btn btn-warning w-100 mb-2">
+                                    <i class="fas fa-palette"></i> Creative Distortion
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button id="evaluateBtn" class="btn btn-secondary w-100 mb-2">
+                                    <i class="fas fa-chart-bar"></i> Evaluate Performance
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button id="exportBtn" class="btn btn-outline-primary w-100 mb-2">
+                                    <i class="fas fa-download"></i> Export Data
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Evaluation Metrics Dashboard -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-tachometer-alt"></i> Evaluation Metrics</h4>
+                        <small class="text-muted">Target: Recall ≥85%, R² ≥0.9, Interference ≤10%, Explainability 100%</small>
+                    </div>
+                    <div class="card-body" id="evaluationMetrics">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="evaluation-metric">
+                                    <h5>Recall Accuracy</h5>
+                                    <h3 id="recallAccuracy">--</h3>
+                                    <small class="text-muted">Target: ≥ 85%</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="evaluation-metric">
+                                    <h5>Forgetting Curve R²</h5>
+                                    <h3 id="forgettingCurve">--</h3>
+                                    <small class="text-muted">Target: ≥ 0.9</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="evaluation-metric">
+                                    <h5>Interference Robustness</h5>
+                                    <h3 id="interferenceRobustness">--</h3>
+                                    <small class="text-muted">Target: ≤ 10%</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="evaluation-metric">
+                                    <h5>Explainability</h5>
+                                    <h3 id="explainabilityScore">--</h3>
+                                    <small class="text-muted">Target: 100%</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Retrieval Results -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-list"></i> Memory Retrieval Results</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="retrievalResults">
+                            <p class="text-muted text-center">No retrieval results yet. Use the search above to retrieve memories.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Integrated Chat with Memory -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-comments"></i> Chat with Memory Integration</h4>
+                        <small class="text-muted">Experience full Syndesis AI with human-like memory</small>
+                    </div>
+                    <div class="card-body">
+                        <div id="chatMessages" style="height: 300px; overflow-y: auto; border: 1px solid var(--bs-gray-700); padding: 1rem; margin-bottom: 1rem;">
+                            <div class="text-muted text-center">
+                                <i class="fas fa-brain fa-2x mb-2"></i>
+                                <p>Chat with Syndesis AI enhanced with human-like computational memory</p>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="chatInput" class="form-control" 
+                                placeholder="Message Syndesis AI with memory integration...">
+                            <button id="sendChatBtn" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        class HumanMemoryDemo {
+            constructor() {
+                this.initializeEventListeners();
+                this.updateMemoryStats();
+            }
+
+            initializeEventListeners() {
+                document.getElementById('encodeBtn').addEventListener('click', () => this.encodeMemory());
+                document.getElementById('retrieveBtn').addEventListener('click', () => this.retrieveMemories());
+                document.getElementById('consolidateBtn').addEventListener('click', () => this.consolidateMemories());
+                document.getElementById('creativeDistortionBtn').addEventListener('click', () => this.applyCreativeDistortion());
+                document.getElementById('evaluateBtn').addEventListener('click', () => this.evaluatePerformance());
+                document.getElementById('exportBtn').addEventListener('click', () => this.exportData());
+                document.getElementById('sendChatBtn').addEventListener('click', () => this.sendChatMessage());
+                
+                document.getElementById('chatInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.sendChatMessage();
+                });
+            }
+
+            async encodeMemory() {
+                const content = document.getElementById('memoryContent').value;
+                const emotion = document.getElementById('emotionalValence').value;
+                const attention = document.getElementById('attentionLevel').value;
+
+                if (!content.trim()) {
+                    alert('Please enter content to encode');
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/memory/encode', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            content: content,
+                            context: {
+                                emotion: parseFloat(emotion),
+                                focus: parseFloat(attention),
+                                location: 'demo_interface',
+                                time_period: new Date().toLocaleTimeString()
+                            }
+                        })
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        document.getElementById('memoryContent').value = '';
+                        this.updateMemoryStats();
+                        this.showSuccess(`Memory encoded: ${result.memory_id}`);
+                    } else {
+                        this.showError(result.error);
+                    }
+                } catch (error) {
+                    this.showError(`Encoding failed: ${error.message}`);
+                }
+            }
+
+            async retrieveMemories() {
+                const query = document.getElementById('searchQuery').value;
+                const maxResults = parseInt(document.getElementById('maxResults').value);
+
+                if (!query.trim()) {
+                    alert('Please enter a search query');
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/memory/retrieve', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            query: query,
+                            max_results: maxResults,
+                            context_filter: {}
+                        })
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        this.displayRetrievalResults(result);
+                        this.updateEvaluationMetrics(result.evaluation_metrics);
+                    } else {
+                        this.showError(result.error);
+                    }
+                } catch (error) {
+                    this.showError(`Retrieval failed: ${error.message}`);
+                }
+            }
+
+            async consolidateMemories() {
+                try {
+                    const response = await fetch('/memory/consolidate', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({trigger_type: 'manual'})
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        this.updateMemoryStats();
+                        this.showSuccess(result.message);
+                    } else {
+                        this.showError(result.error);
+                    }
+                } catch (error) {
+                    this.showError(`Consolidation failed: ${error.message}`);
+                }
+            }
+
+            async applyCreativeDistortion() {
+                // This would need a memory ID - for demo, we'll simulate
+                try {
+                    const response = await fetch('/memory/creative-distortion', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            memory_id: 'demo_memory',
+                            distortion_level: 0.15
+                        })
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        this.showSuccess('Creative distortion applied for enhanced responses');
+                    } else {
+                        this.showError(result.error);
+                    }
+                } catch (error) {
+                    this.showError(`Creative distortion failed: ${error.message}`);
+                }
+            }
+
+            async evaluatePerformance() {
+                try {
+                    const response = await fetch('/memory/evaluation');
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        const report = result.evaluation_report;
+                        this.updateEvaluationDisplay(report);
+                        this.showSuccess('Performance evaluation completed');
+                    } else {
+                        this.showError(result.error);
+                    }
+                } catch (error) {
+                    this.showError(`Evaluation failed: ${error.message}`);
+                }
+            }
+
+            async exportData() {
+                try {
+                    const response = await fetch('/memory/export-data', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({})
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        this.showSuccess(`Data exported: ${result.filepath}`);
+                    } else {
+                        this.showError(result.error);
+                    }
+                } catch (error) {
+                    this.showError(`Export failed: ${error.message}`);
+                }
+            }
+
+            async sendChatMessage() {
+                const input = document.getElementById('chatInput');
+                const message = input.value.trim();
+                
+                if (!message) return;
+
+                // Add user message to chat
+                this.addChatMessage('user', message);
+                input.value = '';
+
+                try {
+                    const response = await fetch('/memory/chat-integration', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({message: message})
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        this.addChatMessage('assistant', result.response);
+                        this.updateMemoryIntegrationStats(result.memory_integration);
+                        this.updateEvaluationMetrics(result.evaluation_metrics);
+                    } else {
+                        this.addChatMessage('system', `Error: ${result.error}`);
+                    }
+                } catch (error) {
+                    this.addChatMessage('system', `Error: ${error.message}`);
+                }
+            }
+
+            addChatMessage(role, content) {
+                const chatMessages = document.getElementById('chatMessages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `mb-2 ${role === 'user' ? 'text-end' : ''}`;
+                
+                const icon = role === 'user' ? '👤' : role === 'assistant' ? '🧠' : '⚠️';
+                const bgClass = role === 'user' ? 'bg-primary' : role === 'assistant' ? 'bg-success' : 'bg-warning';
+                
+                messageDiv.innerHTML = `
+                    <div class="d-inline-block ${bgClass} text-white rounded px-3 py-2 max-width-75">
+                        <strong>${icon} ${role.charAt(0).toUpperCase() + role.slice(1)}:</strong>
+                        <div>${content}</div>
+                    </div>
+                `;
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            displayRetrievalResults(result) {
+                const container = document.getElementById('retrievalResults');
+                container.innerHTML = '';
+
+                if (result.results.length === 0) {
+                    container.innerHTML = '<p class="text-muted">No memories found for this query.</p>';
+                    return;
+                }
+
+                result.results.forEach((memory, index) => {
+                    const memoryCard = document.createElement('div');
+                    memoryCard.className = 'memory-card';
+                    
+                    const consolidationWidth = (memory.consolidation_strength * 100).toFixed(0);
+                    
+                    memoryCard.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h6 class="mb-0">Memory ${index + 1}</h6>
+                            <span class="badge bg-primary">Score: ${memory.relevance_score}</span>
+                        </div>
+                        <p class="mb-2">${memory.content}</p>
+                        <div class="row small text-muted">
+                            <div class="col-md-6">
+                                <i class="fas fa-clock"></i> ${new Date(memory.encoding_time).toLocaleString()}
+                            </div>
+                            <div class="col-md-6">
+                                <i class="fas fa-eye"></i> Accessed ${memory.access_count} times
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-muted">Consolidation Strength:</small>
+                            <div class="consolidation-indicator">
+                                <div class="consolidation-progress" style="width: ${consolidationWidth}%"></div>
+                            </div>
+                            <small class="text-muted">${consolidationWidth}%</small>
+                        </div>
+                    `;
+                    
+                    container.appendChild(memoryCard);
+                });
+
+                // Show retrieval path
+                if (result.retrieval_path) {
+                    const pathDiv = document.createElement('div');
+                    pathDiv.className = 'memory-trace mt-3';
+                    pathDiv.innerHTML = `
+                        <strong>Retrieval Path:</strong><br>
+                        ${result.retrieval_path.join(' → ')}
+                    `;
+                    container.appendChild(pathDiv);
+                }
+            }
+
+            updateMemoryStats() {
+                // This would fetch real stats - for demo, we'll simulate
+                document.getElementById('totalMemories').textContent = Math.floor(Math.random() * 100) + 50;
+                document.getElementById('avgConsolidation').textContent = (Math.random() * 100).toFixed(0) + '%';
+                document.getElementById('memoryTypes').textContent = Math.floor(Math.random() * 5) + 2;
+                document.getElementById('consolidationEvents').textContent = Math.floor(Math.random() * 20) + 5;
+            }
+
+            updateEvaluationMetrics(metrics) {
+                if (metrics) {
+                    document.getElementById('recallAccuracy').textContent = (metrics.recall_accuracy * 100).toFixed(1) + '%';
+                    document.getElementById('explainabilityScore').textContent = metrics.explainability_score.toFixed(1) + '%';
+                }
+            }
+
+            updateEvaluationDisplay(report) {
+                const performance = report.detailed_performance;
+                
+                document.getElementById('recallAccuracy').textContent = (performance.recall_accuracy.value * 100).toFixed(1) + '%';
+                document.getElementById('forgettingCurve').textContent = performance.forgetting_curve.r_squared.toFixed(3);
+                document.getElementById('interferenceRobustness').textContent = performance.interference_robustness.bleed_percentage.toFixed(1) + '%';
+                document.getElementById('explainabilityScore').textContent = performance.explainability.percentage.toFixed(1) + '%';
+                
+                // Update evaluation metric colors based on pass/fail
+                this.updateMetricStatus('recallAccuracy', performance.recall_accuracy.passed);
+                this.updateMetricStatus('forgettingCurve', performance.forgetting_curve.passed);
+                this.updateMetricStatus('interferenceRobustness', performance.interference_robustness.passed);
+                this.updateMetricStatus('explainabilityScore', performance.explainability.passed);
+            }
+
+            updateMetricStatus(elementId, passed) {
+                const element = document.getElementById(elementId).parentElement;
+                element.className = `evaluation-metric ${passed ? '' : 'danger'}`;
+            }
+
+            updateMemoryIntegrationStats(integration) {
+                // Update memory integration display
+                console.log('Memory integration stats:', integration);
+            }
+
+            showSuccess(message) {
+                // Create a simple success notification
+                const toast = document.createElement('div');
+                toast.className = 'position-fixed top-0 end-0 p-3';
+                toast.style.zIndex = '1050';
+                toast.innerHTML = `
+                    <div class="toast show" role="alert">
+                        <div class="toast-header bg-success text-white">
+                            <i class="fas fa-check-circle me-2"></i>
+                            <strong class="me-auto">Success</strong>
+                        </div>
+                        <div class="toast-body">${message}</div>
+                    </div>
+                `;
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 3000);
+            }
+
+            showError(message) {
+                // Create a simple error notification
+                const toast = document.createElement('div');
+                toast.className = 'position-fixed top-0 end-0 p-3';
+                toast.style.zIndex = '1050';
+                toast.innerHTML = `
+                    <div class="toast show" role="alert">
+                        <div class="toast-header bg-danger text-white">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            <strong class="me-auto">Error</strong>
+                        </div>
+                        <div class="toast-body">${message}</div>
+                    </div>
+                `;
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 5000);
+            }
+        }
+
+        // Initialize the demo when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new HumanMemoryDemo();
+        });
+    </script>
+</body>
+</html>

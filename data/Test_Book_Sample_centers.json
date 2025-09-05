@@ -1,0 +1,143 @@
+{
+  "book_data": {
+    "title": "Test Book Sample",
+    "author": "Detected Author Name",
+    "summary": "Το Δώρο της Παρουσίας: Ένα Βιβλίο για την Πνευματική Ανάπτυξη",
+    "total_chapters": 5,
+    "word_count": 293,
+    "language": "Greek",
+    "genre": "Spiritual Development"
+  },
+  "book_centers": [
+    {
+      "id": 1,
+      "name": "The Power of Now",
+      "title": "Η Δύναμη του Τώρα",
+      "chapter_number": "1",
+      "description": "Η παρούσα στιγμή είναι το μόνο που έχουμε πραγματικά. Όταν μάθουμε να ζούμε στο τώρα, ανακαλύπτουμε μια αμέτρητη πηγή ειρήνης και χαράς.",
+      "core_message": "Live in the present moment to find peace.",
+      "agent_personality": "Calm and grounding",
+      "hrv_guidance": "Encourages lowering stress by focusing on the present.",
+      "biofeedback_goals": [
+        "coherence",
+        "calmness",
+        "focus"
+      ],
+      "interaction_style": "contemplative",
+      "color": "#4facfe",
+      "symbol": "🧘‍♂️",
+      "geometric_pattern": "circle",
+      "responses": {
+        "high_stress": "Take a deep breath and focus on the now.",
+        "low_coherence": "Remember, the present moment is your anchor.",
+        "balanced": "Continue to embrace the now for deeper peace.",
+        "focused": "Great focus! Keep your awareness in the present."
+      },
+      "content_essence": "The present moment is the gateway to true life."
+    },
+    {
+      "id": 2,
+      "name": "Observing Thoughts",
+      "title": "Η Παρατήρηση των Σκέψεων",
+      "chapter_number": "2",
+      "description": "Δεν είμαστε οι σκέψεις μας. Είμαστε η συνείδηση που παρατηρεί τις σκέψεις.",
+      "core_message": "Recognize the difference between thoughts and consciousness.",
+      "agent_personality": "Observant and insightful",
+      "hrv_guidance": "Promotes detachment from stressful thoughts.",
+      "biofeedback_goals": [
+        "coherence",
+        "calmness",
+        "focus"
+      ],
+      "interaction_style": "analytical",
+      "color": "#ff9a9e",
+      "symbol": "🧠",
+      "geometric_pattern": "triangle",
+      "responses": {
+        "high_stress": "Notice your thoughts without judgment.",
+        "low_coherence": "Remember, you are not your thoughts.",
+        "balanced": "Well done! Keep observing your thoughts.",
+        "focused": "Your focus on detachment is commendable."
+      },
+      "content_essence": "We are the observers of our thoughts, not the thoughts themselves."
+    },
+    {
+      "id": 3,
+      "name": "Illusion of the Ego",
+      "title": "Το Πέπλο της Ψευδαίσθησης",
+      "chapter_number": "3",
+      "description": "Το εγώ δημιουργεί ένα πέπλο ψευδαίσθησης που μας κρατά αιχμάλωτους.",
+      "core_message": "See beyond the ego's illusions to find true self.",
+      "agent_personality": "Insightful and liberating",
+      "hrv_guidance": "Helps reduce stress by questioning ego-driven anxiety.",
+      "biofeedback_goals": [
+        "coherence",
+        "calmness",
+        "awareness"
+      ],
+      "interaction_style": "motivational",
+      "color": "#fbc2eb",
+      "symbol": "🔍",
+      "geometric_pattern": "square",
+      "responses": {
+        "high_stress": "Ask yourself: Who feels this stress?",
+        "low_coherence": "Investigate the ego's role in your feelings.",
+        "balanced": "Great awareness! Keep questioning the ego.",
+        "focused": "Your focus on self-discovery is inspiring."
+      },
+      "content_essence": "The ego's veil can be lifted by recognizing its illusions."
+    },
+    {
+      "id": 4,
+      "name": "Acceptance of Reality",
+      "title": "Η Αποδοχή της Πραγματικότητας",
+      "chapter_number": "4",
+      "description": "Η αντίσταση προς ό,τι συμβαίνει δημιουργεί δυστυχία.",
+      "core_message": "Acceptance leads to clarity and wisdom.",
+      "agent_personality": "Accepting and wise",
+      "hrv_guidance": "Encourages acceptance to reduce stress and resistance.",
+      "biofeedback_goals": [
+        "calmness",
+        "acceptance",
+        "clarity"
+      ],
+      "interaction_style": "compassionate",
+      "color": "#a18cd1",
+      "symbol": "🌿",
+      "geometric_pattern": "hexagon",
+      "responses": {
+        "high_stress": "Accept what is, and let go of resistance.",
+        "low_coherence": "Recognize and accept your current state.",
+        "balanced": "Your acceptance nurtures inner peace.",
+        "focused": "Stay focused on accepting reality as it is."
+      },
+      "content_essence": "True clarity arises from accepting reality without resistance."
+    },
+    {
+      "id": 5,
+      "name": "Inner Silence",
+      "title": "Η Εσωτερική Ησυχία",
+      "chapter_number": "5",
+      "description": "Μέσα σε κάθε άνθρωπο υπάρχει ένας χώρος απόλυτης ησυχίας.",
+      "core_message": "Find peace in the inner silence within.",
+      "agent_personality": "Peaceful and serene",
+      "hrv_guidance": "Promotes inner calm by connecting with silence.",
+      "biofeedback_goals": [
+        "inner peace",
+        "serenity",
+        "focus"
+      ],
+      "interaction_style": "contemplative",
+      "color": "#f6d365",
+      "symbol": "🕊️",
+      "geometric_pattern": "oval",
+      "responses": {
+        "high_stress": "Return to the silence within.",
+        "low_coherence": "Seek the quiet space inside you.",
+        "balanced": "Your connection to inner peace is strong.",
+        "focused": "Continue focusing on your inner silence."
+      },
+      "content_essence": "The inner silence is unaffected by external conditions."
+    }
+  ]
+}

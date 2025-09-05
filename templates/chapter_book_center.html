@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Are Not Your Mind - MINDFULNESS Center | Syndesis AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 350px 1fr 350px;
+            grid-template-rows: auto 1fr auto;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .header {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .chapter-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .center-info {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+        }
+
+        .left-panel, .right-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+        }
+
+        .galaxy-area {
+            position: relative;
+            background: radial-gradient(circle at center, rgba(79, 172, 254, 0.1) 0%, transparent 70%);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .mindfulness-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 50px rgba(79, 172, 254, 0.5);
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        .mindfulness-center:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 0 80px rgba(79, 172, 254, 0.8);
+        }
+
+        @keyframes breathe {
+            0%, 100% { 
+                box-shadow: 0 0 50px rgba(79, 172, 254, 0.5);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 80px rgba(79, 172, 254, 0.8);
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+        }
+
+        .center-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #4facfe;
+        }
+
+        .chapter-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .biofeedback-section {
+            margin-bottom: 25px;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .metric-name {
+            font-weight: 600;
+            color: #b0b0b0;
+        }
+
+        .metric-bar {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin: 0 10px;
+            overflow: hidden;
+        }
+
+        .metric-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #4facfe;
+            min-width: 40px;
+        }
+
+        .coaching-prompts {
+            background: rgba(79, 172, 254, 0.1);
+            border: 1px solid rgba(79, 172, 254, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .prompt {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .prompt:hover {
+            background: rgba(79, 172, 254, 0.2);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <a href="/power-of-now" class="back-button">← Back to Chapters</a>
+    
+    <div class="container">
+        <div class="header">
+            <div class="chapter-title">You Are Not Your Mind</div>
+            <div class="center-info">MINDFULNESS Book Center • Chapter 1 • The Power of Now</div>
+        </div>
+
+        <div class="left-panel">
+            <div class="panel-title">📖 Chapter Content</div>
+            <div class="chapter-content" id="chapterContent">
+                Loading chapter content...
+            </div>
+            
+            <div class="panel-title">🎯 Learning Objectives</div>
+            <div class="coaching-prompts">
+                <div class="prompt">🧠 Understand the difference between mind and consciousness</div>
+                <div class="prompt">🎭 Recognize the voice in your head as not being you</div>
+                <div class="prompt">🌅 Practice present moment awareness</div>
+                <div class="prompt">🔓 Break free from compulsive thinking</div>
+            </div>
+        </div>
+
+        <div class="galaxy-area">
+            <div class="mindfulness-center" onclick="activateCenter()">
+                <div class="center-icon">🧘</div>
+                <div>MINDFULNESS</div>
+                <div style="font-size: 14px; margin-top: 5px;">Click to Activate</div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="panel-title">💓 Biofeedback Metrics</div>
+            <div class="biofeedback-section">
+                <div class="metric">
+                    <span class="metric-name">Coherence</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="coherence" style="width: 65%"></div>
+                    </div>
+                    <span class="metric-value" id="coherenceValue">65%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-name">Focus</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="focus" style="width: 70%"></div>
+                    </div>
+                    <span class="metric-value" id="focusValue">70%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-name">Presence</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="presence" style="width: 60%"></div>
+                    </div>
+                    <span class="metric-value" id="presenceValue">60%</span>
+                </div>
+            </div>
+
+            <div class="panel-title">🎧 Coaching Prompts</div>
+            <div class="coaching-prompts">
+                <div class="prompt" onclick="playPrompt(this)">Observe your thoughts without judgment</div>
+                <div class="prompt" onclick="playPrompt(this)">What are you feeling right now?</div>
+                <div class="prompt" onclick="playPrompt(this)">Focus on your breathing</div>
+                <div class="prompt" onclick="playPrompt(this)">Notice the space between thoughts</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="action-button" onclick="startMeditation()">🧘 Start Guided Practice</button>
+            <button class="action-button" onclick="nextChapter()">📖 Next Chapter</button>
+        </div>
+    </div>
+
+    <script>
+        const POWER_OF_NOW_ID = 'a5f0ea40-d2ea-446a-92d9-613d8552ad9c';
+        
+        async function loadChapterContent() {
+            try {
+                const response = await fetch(`/api/books/${POWER_OF_NOW_ID}/chapters`);
+                const data = await response.json();
+                
+                if (data.success && data.chapters.length > 0) {
+                    const firstChapter = data.chapters[0];
+                    document.getElementById('chapterContent').innerHTML = 
+                        `<strong>${firstChapter.title}</strong><br><br>${firstChapter.content}`;
+                }
+            } catch (error) {
+                console.error('Error loading chapter:', error);
+                document.getElementById('chapterContent').innerHTML = 
+                    'Error loading chapter content. Please try again.';
+            }
+        }
+
+        function activateCenter() {
+            console.log('Activating MINDFULNESS center...');
+            // Flash effect
+            const center = document.querySelector('.mindfulness-center');
+            center.style.background = 'linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)';
+            setTimeout(() => {
+                center.style.background = 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)';
+            }, 200);
+            
+            // Update metrics
+            updateMetrics();
+        }
+
+        function updateMetrics() {
+            const metrics = ['coherence', 'focus', 'presence'];
+            metrics.forEach(metric => {
+                const currentWidth = parseInt(document.getElementById(metric).style.width);
+                const newWidth = Math.min(100, currentWidth + Math.random() * 15);
+                document.getElementById(metric).style.width = newWidth + '%';
+                document.getElementById(metric + 'Value').textContent = Math.round(newWidth) + '%';
+            });
+        }
+
+        function playPrompt(element) {
+            console.log('Playing prompt:', element.textContent);
+            element.style.background = 'rgba(79, 172, 254, 0.4)';
+            setTimeout(() => {
+                element.style.background = 'rgba(255, 255, 255, 0.05)';
+            }, 1000);
+        }
+
+        function startMeditation() {
+            console.log('Starting guided meditation for mindfulness...');
+            alert('🧘 Guided Meditation: Sit comfortably, close your eyes, and focus on your breath. Notice when thoughts arise, and gently return your attention to breathing.');
+        }
+
+        function nextChapter() {
+            console.log('Navigate to next chapter...');
+            window.location.href = '/power-of-now';
+        }
+
+        // Simulate real-time biofeedback updates
+        setInterval(updateMetrics, 3000);
+        
+        // Load chapter content when page loads
+        document.addEventListener('DOMContentLoaded', loadChapterContent);
+    </script>
+</body>
+</html>

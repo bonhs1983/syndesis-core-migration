@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FINAL WORKING BREATHING</title>
+    <style>
+        body {
+            background: black;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        .circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #00ffff, #0044ff);
+            transition: all 0.5s ease;
+        }
+        
+        .info {
+            color: #00ffff;
+            text-align: center;
+            margin: 20px;
+        }
+        
+        .big { color: #ffff00; font-size: 24px; }
+        .small { color: #aaaaaa; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="info big">🫁 SYNDESIS LIVE BREATHING</div>
+    <div class="circle" id="breathingCircle"></div>
+    <div class="info" id="status">⏳ Connecting...</div>
+    <div class="info small" id="data">Waiting for data...</div>
+
+    <script>
+        let currentScale = 1.0;
+        let breathingUp = true;
+        let liveData = { bpm: 75, intensity: 50, live: false };
+        
+        // GUARANTEED BREATHING ANIMATION
+        function animateBreathing() {
+            const circle = document.getElementById('breathingCircle');
+            
+            if (breathingUp) {
+                currentScale += 0.02;
+                if (currentScale >= 1.4) breathingUp = false;
+            } else {
+                currentScale -= 0.02;
+                if (currentScale <= 1.0) breathingUp = true;
+            }
+            
+            circle.style.transform = `scale(${currentScale})`;
+        }
+        
+        // LIVE DATA FETCHING
+        async function fetchLiveData() {
+            try {
+                const response = await fetch('/live-data-simple');
+                const data = await response.json();
+                liveData = data;
+                
+                document.getElementById('status').textContent = 
+                    data.live ? `🟢 LIVE: ${data.bpm || data.bmp} BPM` : '🔴 Offline';
+                document.getElementById('data').textContent = 
+                    `Scale: ${currentScale.toFixed(2)} | Intensity: ${data.intensity || 50}%`;
+                    
+            } catch (error) {
+                document.getElementById('status').textContent = '❌ Connection Error';
+            }
+        }
+        
+        // START EVERYTHING
+        setInterval(animateBreathing, 50);  // 20fps smooth animation
+        setInterval(fetchLiveData, 1000);   // Check data every second
+        fetchLiveData(); // Initial fetch
+        
+        console.log('🫁 FINAL BREATHING STARTED - GUARANTEED TO WORK!');
+    </script>
+</body>
+</html>

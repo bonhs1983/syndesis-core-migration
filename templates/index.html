@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Pipeline - Ένας Κύκλος</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            /* 🎯 AUTO-SCALE TO 75% - FORCE SCALING REGARDLESS OF BROWSER ZOOM */
+            transform: scale(0.75);
+            transform-origin: center center;
+            width: 133.333%; /* 100% / 0.75 to compensate for scaling */
+            height: 133.333vh; /* 100vh / 0.75 to compensate for scaling */
+            margin-top: -16.666vh; /* Center vertically: (133.333 - 100) / 2 */
+            margin-left: -16.666vw; /* Center horizontally: (133.333 - 100) / 2 */
+        }
+        
+        #pipeline-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #single-circle {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(255, 255, 255, 0.8), 
+                rgba(0, 255, 255, 0.6), 
+                rgba(0, 100, 255, 0.4));
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.6),
+                0 0 40px rgba(0, 255, 255, 0.4),
+                0 0 60px rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+        
+        /* 🫁 BIOMETRIC BREATHING ANIMATION */
+        .breathing-orb {
+            animation: none !important; /* Disable default pulse */
+        }
+        
+        .metrics-display {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #00ffff;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .status-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #00ff00;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+        
+        #back-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 255, 255, 0.2);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        #back-button:hover {
+            background: rgba(0, 255, 255, 0.4);
+            text-decoration: none;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+<div id="pipeline-container">
+    <div id="single-circle" class="breathing-orb"></div>
+</div>
+
+<div class="metrics-display" id="metrics">
+    <div>❤️ BPM: <span id="bpm">--</span></div>
+    <div>🧠 HRV: <span id="hrv">--</span></div>
+    <div>📍 Pos: (<span id="pos-x">0</span>, <span id="pos-y">0</span>)</div>
+    <div>🎯 Coherence: <span id="coherence">--</span>%</div>
+</div>
+
+<div class="status-display" id="status">
+    🔄 Αναμονή δεδομένων...
+</div>
+
+<a href="/business-demo" id="back-button">← Επιστροφή</a>
+
+<script>
+// 📊 SMOOTHING BUFFERS - Prevent abrupt UI changes
+const smoothingBuffers = {
+    coherence: [],
+    vitality: [],
+    ethics: [],
+    narrative: [],
+    bpm: [],
+    hrv: []
+};
+
+// 🎯 SMOOTHING FUNCTION - Rolling average for stable UI (SAFE)
+function smoothValue(newVal, buffer, size = 5) {
+    // 🛡️ BUFFER SAFETY CHECK
+    if (!buffer || !Array.isArray(buffer)) {
+        console.warn('⚠️ Invalid buffer provided to smoothValue:', buffer);
+        return typeof newVal === 'number' && !isNaN(newVal) ? newVal : 50;
+    }
+    
+    if (typeof newVal !== 'number' || isNaN(newVal)) {
+        return buffer.length > 0 ? buffer[buffer.length - 1] : 50; // Return last known value or default
+    }
+    
+    buffer.push(newVal);
+    if (buffer.length > size) buffer.shift();
+    
+    // 🛡️ SAFE AVERAGE CALCULATION
+    if (buffer.length === 0) return 50;
+    const avg = buffer.reduce((a, b) => a + b, 0) / buffer.length;
+    return Math.round(avg * 10) / 10; // Round to 1 decimal
+}
+
+// 🌀 ORBIT SYSTEM - Global state
+let angle = 0;
+let orbitX = 0, orbitY = 0;
+let currentScale = 1;
+let lastLiveData = null;
+
+// 🚦 LIVE SIGNAL CONTROL - GLOBAL ACCESS FOR CHILD FRAMES
+window.hasLiveSignal = false;
+let hasLiveSignal = false;
+let orbitInterval = null;
+let breathingInterval = null;
+let simplePipelineInterval = null;
+let breathingDataInterval = null;
+
+// 🎯 ORBIT ANIMATION FUNCTION
+function startOrbit() {
+    const youCircle = document.getElementById("single-circle");
+    if (!youCircle) {
+        console.error("❌ Circle element not found in DOM!");
+        return;
+    }
+    
+    console.log("🚦 Orbit system initialized - waiting for live signal...");
+    
+    const radius = 120;  // pixels - μεγαλύτερη τροχιά για καθαρή ορατότητα
+    const speed = 0.05;  // radians per step
+    
+    // 🚦 START ORBIT ONLY WITH LIVE SIGNAL
+    function startOrbitLoop() {
+        if (orbitInterval) clearInterval(orbitInterval);
+        
+        console.log("✅ Starting LIVE orbit animation...");
+        orbitInterval = setInterval(() => {
+            if (!hasLiveSignal) {
+                console.log("🚫 No live signal - stopping orbit");
+                clearInterval(orbitInterval);
+                orbitInterval = null;
+                return;
+            }
+            
+            angle += speed;
+            
+            // Calculate orbit coordinates
+            orbitX = radius * Math.cos(angle);
+            orbitY = radius * Math.sin(angle);
+            
+            // 🎯 COMBINED TRANSFORM: calc() για σωστό centering + orbit + scale
+            const combinedTransform = `translate(calc(-50% + ${orbitX.toFixed(1)}px), calc(-50% + ${orbitY.toFixed(1)}px)) scale(${currentScale.toFixed(3)})`;
+            youCircle.style.transform = combinedTransform;
+            
+            // Debug log every ~3 seconds
+            if (Math.abs(angle % (Math.PI * 2)) < speed) {
+                console.log("✅ Live orbit:", angle.toFixed(3), "coords:", orbitX.toFixed(1), orbitY.toFixed(1));
+            }
+            
+        }, 60); // κάθε 60ms
+    }
+    
+    // 🚦 GLOBAL FUNCTIONS
+    window.startOrbitLoop = startOrbitLoop;
+    
+    // ❄️ FREEZE CIRCLE WHEN NO SIGNAL
+    function freezeCircle() {
+        // Stop all intervals
+        if (orbitInterval) {
+            clearInterval(orbitInterval);
+            orbitInterval = null;
+        }
+        if (breathingDataInterval) {
+            clearInterval(breathingDataInterval);
+            breathingDataInterval = null;
+        }
+        if (breathingInterval) {
+            clearInterval(breathingInterval);
+            breathingInterval = null;
+        }
+        if (simplePipelineInterval) {
+            clearInterval(simplePipelineInterval);
+            simplePipelineInterval = null;
+        }
+        
+        const staticTransform = `translate(-50%, -50%) scale(1.0)`;
+        youCircle.style.transform = staticTransform;
+        console.log("❄️ ALL animations frozen - no live signal");
+    }
+    
+    window.freezeCircle = freezeCircle;
+    freezeCircle(); // Start frozen
+}
+
+// 🚀 START ORBIT ANIMATION
+console.log('🌀 STARTING SIMPLE ORBIT ANIMATION...');
+
+// 🛡️ ENSURE DOM IS READY
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('🌀 DOM READY - Starting orbit...');
+        startOrbit();
+    });
+} else {
+    startOrbit();
+}
+
+// Simple Pipeline Circle Movement System
+class SimplePipeline {
+    constructor() {
+        this.circle = document.getElementById('single-circle');
+        this.metrics = {
+            bpm: document.getElementById('bpm'),
+            hrv: document.getElementById('hrv'),
+            posX: document.getElementById('pos-x'),
+            posY: document.getElementById('pos-y'),
+            coherence: document.getElementById('coherence')
+        };
+        this.status = document.getElementById('status');
+        
+        // Circle properties
+        this.centerX = window.innerWidth / 2;
+        this.centerY = window.innerHeight / 2;
+        this.currentX = this.centerX;
+        this.currentY = this.centerY;
+        
+        this.init();
+    }
+    
+    init() {
+        console.log('🚀 Simple Pipeline initialized');
+        this.centerCircle();
+        this.startDataFetch();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            this.centerX = window.innerWidth / 2;
+            this.centerY = window.innerHeight / 2;
+        });
+    }
+    
+    centerCircle() {
+        this.circle.style.left = this.centerX + 'px';
+        this.circle.style.top = this.centerY + 'px';
+        this.circle.style.transform = 'translate(-50%, -50%)';
+    }
+    
+    startDataFetch() {
+        // 🫁 BIOMETRIC BREATHING DATA FETCH - ENABLED
+        console.log('🫁 Starting biometric breathing data fetch');
+        this.fetchLiveData(); // Initial fetch
+        simplePipelineInterval = setInterval(() => {
+            if (!hasLiveSignal) {
+                console.log("🚫 Stopping pipeline fetch - no live signal");
+                clearInterval(simplePipelineInterval);
+                simplePipelineInterval = null;
+                return;
+            }
+            this.fetchLiveData();
+        }, 3000); // Update every 3 seconds
+        
+        // Start real-time breathing animation
+        this.breathingIntensity = 1.0;
+        this.breathingRate = 2000; // Base period in ms
+        this.startBreathingAnimation();
+    }
+    
+    async fetchLiveData() {
+        try {
+            const response = await fetch('/live-data-rich');
+            if (!response.ok) throw new Error("HTTP error " + response.status);
+            
+            const data = await response.json();
+            console.log("🔍 SIMPLEPIPELINE RICH DATA:", data);
+            
+            // 🛡️ ROBUST DATA VALIDATION
+            if (data && 
+                typeof data.bpm !== "undefined" && 
+                typeof data.intensity !== "undefined" && 
+                data.live === true) {
+                
+                this.updateCircle(data);
+                this.updateMetrics(data);
+                this.status.textContent = '✅ Live Data Active';
+            } else {
+                console.warn("⚠️ INCOMPLETE SIMPLEPIPELINE DATA:", data);
+                this.status.textContent = '⚠️ Partial Data';
+            }
+        } catch (error) {
+            console.error('❌ SIMPLEPIPELINE FETCH ERROR:', error);
+            this.status.textContent = '❌ Αποσύνδεση';
+        }
+    }
+    
+    updateCircle(data) {
+        // 🫁 RICH SOUL METRICS BREATHING ANIMATION
+        if (data.live && (data.soul_metrics || data.evolution)) {
+            const bpm = data.bmp || 70;
+            
+            if (data.soul_metrics && data.evolution) {
+                // Multi-dimensional breathing based on Soul Metrics + Evolution
+                const soul = data.soul_metrics;
+                const evolution = data.evolution;
+                
+                // Base breathing rate from BPM  
+                this.breathingRate = (60000 / bpm) * 3; // 3 breaths per BPM cycle
+                
+                // Complex breathing intensity from multiple metrics
+                const vitalityFactor = (soul.vitality || 50) / 100;        // Core energy
+                const coherenceFactor = (soul.coherence || 50) / 100;      // Stability
+                const empathyFactor = (evolution.empathy || 50) / 100;     // Warmth
+                const creativityFactor = (evolution.creativity || 50) / 100; // Expressiveness
+                
+                // Multi-layered breathing intensity (0.3-2.5 range)
+                this.breathingIntensity = 0.3 + 
+                    vitalityFactor * 1.0 +        // Primary driver
+                    coherenceFactor * 0.8 +       // Stability modifier  
+                    empathyFactor * 0.4 +         // Warmth component
+                    creativityFactor * 0.3;       // Expression boost
+                
+                // Update status with rich metrics
+                this.status.textContent = `🫁 Soul Breathing: V${soul.vitality}% C${soul.coherence}% E${evolution.empathy}% (${bpm} BPM)`;
+                
+            } else {
+                // Fallback to simple intensity
+                const intensity = data.intensity || 50;
+                this.breathingIntensity = 0.5 + (intensity / 100) * 1.5;
+                this.breathingRate = (60000 / bpm) * 4;
+                this.status.textContent = `🫁 Basic Breathing (${intensity}%, ${bpm} BPM)`;
+            }
+            
+            console.log(`🫁 Breathing updated: intensity=${this.breathingIntensity.toFixed(2)}, rate=${this.breathingRate}ms`);
+            
+        } else if (data.evolution && typeof data.evolution === 'object' && Object.keys(data.evolution).length > 0) {
+            // Fallback: use evolution traits
+            const traits = data.evolution;
+            const traitValues = Object.values(traits);
+            const avgTrait = traitValues.length > 0 ? traitValues.reduce((a,b) => a+b, 0) / traitValues.length : 50;
+            this.breathingIntensity = 0.3 + (avgTrait / 100) * 1.2;
+            
+            this.status.textContent = `🧠 Breathing with Evolution (${avgTrait.toFixed(0)}% avg traits)`;
+            console.log(`🧠 Breathing from traits: intensity=${this.breathingIntensity.toFixed(2)}`);
+            
+        } else {
+            // Default gentle breathing
+            this.breathingIntensity = 0.8;
+            this.status.textContent = '🫁 Gentle breathing mode';
+        }
+        
+        // 🌀 ORBIT HANDLES POSITION - No static centering needed
+        // Orbit animation combines: translate(-50%,-50%) + orbit + scale
+        this.circle.style.left = this.centerX + 'px';
+        this.circle.style.top = this.centerY + 'px';
+    }
+    
+    startBreathingAnimation() {
+        // 🚦 CONDITIONAL breathing animation loop
+        breathingInterval = setInterval(() => {
+            if (!hasLiveSignal) {
+                console.log("🚫 Stopping breathing animation - no live signal");
+                clearInterval(breathingInterval);
+                breathingInterval = null;
+                return;
+            }
+            const currentTime = Date.now();
+            const breathPhase = Math.sin(currentTime / this.breathingRate) * 0.15 * this.breathingIntensity;
+            const currentScale = 1 + breathPhase;
+            
+            if (this.circle) {
+                // 🌀 UPDATE GLOBAL SCALE for orbit system
+                currentScale = currentScale;
+                
+                // 🎯 COMBINED TRANSFORM: calc() για σωστό centering + orbit + scale
+                const combinedTransform = `translate(calc(-50% + ${orbitX.toFixed(1)}px), calc(-50% + ${orbitY.toFixed(1)}px)) scale(${currentScale.toFixed(3)})`;
+                this.circle.style.transform = combinedTransform;
+                
+                // Add glow effect based on intensity
+                const glowOpacity = 0.3 + (this.breathingIntensity * 0.4);
+                const glowSize = 20 + this.breathingIntensity * 30;
+                this.circle.style.boxShadow = `
+                    0 0 ${glowSize}px rgba(0, 255, 255, ${glowOpacity}),
+                    0 0 ${glowSize * 2}px rgba(0, 255, 255, ${glowOpacity * 0.6}),
+                    0 0 ${glowSize * 3}px rgba(0, 255, 255, ${glowOpacity * 0.3})
+                `;
+            }
+        }, 50); // 20 FPS for smooth animation
+    }
+    
+    updateMetrics(data) {
+        // 🛡️ ENHANCED FALLBACK HANDLING with better validation
+        if (!data || Object.keys(data).length === 0) {
+            console.warn("⚠️ Empty data received, keeping previous UI state.");
+            return;
+        }
+
+        // 🔍 ENHANCED DATA VALIDATION - Check for required structure
+        if ((!data.soul_metrics || typeof data.soul_metrics !== 'object') && 
+            (typeof data.bpm === 'undefined' || data.bpm === null)) {
+            console.warn("⚠️ Malformed data - missing soul_metrics and BPM:", data);
+            return;
+        }
+
+        // 📊 SMOOTHED METRICS UPDATE - Prevent abrupt changes
+        if (data.bpm) {
+            const smoothedBpm = smoothValue(data.bpm, smoothingBuffers.bpm);
+            this.metrics.bpm.textContent = Math.round(smoothedBpm);
+        }
+        
+        if (data.hrv_value) {
+            const smoothedHrv = smoothValue(data.hrv_value, smoothingBuffers.hrv);
+            this.metrics.hrv.textContent = smoothedHrv.toFixed(1);
+        }
+        
+        this.metrics.posX.textContent = Math.round(this.currentX - this.centerX);
+        this.metrics.posY.textContent = Math.round(this.currentY - this.centerY);
+        
+        if (data.soul_metrics?.coherence) {
+            const smoothedCoherence = smoothValue(data.soul_metrics.coherence, smoothingBuffers.coherence);
+            this.metrics.coherence.textContent = Math.round(smoothedCoherence);
+            console.log(`📊 COHERENCE SMOOTHED: ${data.soul_metrics.coherence.toFixed(1)} → ${smoothedCoherence.toFixed(1)}`);
+        }
+        
+        // 🌀 UPDATE GLOBAL DATA for YOU animation
+        lastLiveData = data;
+    }
+}
+
+// Start the pipeline
+document.addEventListener('DOMContentLoaded', () => {
+    new SimplePipeline();
+});
+</script>
+
+<script>
+// 📊 SMOOTHED BREATHING BUFFERS
+const breathingBuffers = {
+    intensity: [],
+    bpm: []
+};
+
+let breathingPhase = 0; // Animation phase tracking
+
+async function fetchBreathingData() {
+    try {
+        const res = await fetch("/live-data-rich");
+        if (!res.ok) throw new Error("HTTP error " + res.status);
+
+        const data = await res.json();
+        console.log("🔍 RAW RICH BREATHING DATA:", data);
+
+        // 🛡️ ENHANCED ROBUST DATA VALIDATION with smoothing
+        if (data && data.live === true) {
+            // 🚦 ACTIVATE LIVE SIGNAL
+            if (!hasLiveSignal) {
+                hasLiveSignal = true;
+                window.hasLiveSignal = true; // Make available to child frames
+                console.log("🟢 LIVE SIGNAL DETECTED - Starting ALL animations!");
+                window.startOrbitLoop();
+                startBreathingDataLoop();
+                // SimplePipeline will restart its own intervals when hasLiveSignal=true
+            }
+            // Extract values with fallbacks
+            const rawBpm = data.bpm || data.soul_metrics?.bpm || 70;
+            const rawIntensity = data.intensity || 
+                (data.soul_metrics ? (data.soul_metrics.coherence + data.soul_metrics.vitality) / 2 : 50);
+            
+            // 📊 SMOOTH VALUES before animation
+            const smoothedBpm = smoothValue(rawBpm, breathingBuffers.bpm, 3);
+            const smoothedIntensity = smoothValue(rawIntensity, breathingBuffers.intensity, 3);
+            
+            console.log(`📊 BREATHING SMOOTHED: BPM ${rawBpm} → ${smoothedBpm}, Intensity ${rawIntensity.toFixed(1)} → ${smoothedIntensity.toFixed(1)}`);
+            
+            // 🌀 UPDATE GLOBAL DATA for YOU orbit animation 
+            lastLiveData = {...data, bpm: smoothedBpm, intensity: smoothedIntensity};
+            
+            updateBreathingAnimation(smoothedBpm, smoothedIntensity);
+        } else {
+            // 🚫 DISABLE LIVE SIGNAL
+            if (hasLiveSignal) {
+                hasLiveSignal = false;
+                window.hasLiveSignal = false; // Make available to child frames
+                console.log("🔴 LIVE SIGNAL LOST - Freezing ALL animations!");
+                window.freezeCircle();
+            }
+            console.warn("⚠️ NO LIVE DATA - All animations frozen");
+        }
+    } catch (err) {
+        console.error("❌ FETCH BREATHING ERROR:", err);
+    }
+}
+
+function updateBreathingAnimation(bpm, intensity) {
+    // 🎯 SAFE ANIMATION UPDATE
+    const circle = document.getElementById("single-circle");
+    if (!circle) {
+        console.warn("⚠️ CIRCLE ELEMENT NOT FOUND");
+        return;
+    }
+
+    // Ensure numeric values with fallbacks
+    const safeBpm = Number(bpm) || 70;
+    const safeIntensity = Number(intensity) || 50;
+    
+    // Animation timing from BPM
+    const cycleTime = safeBpm > 0 ? (60000 / safeBpm) : 2000;
+    
+    // Scale calculation: base 1.0 + intensity-based expansion
+    const minScale = 1.0;
+    const maxScale = 1.0 + (safeIntensity / 100) * 0.2; // μειωμένο από 0.8 σε 0.2 για καθαρότερη τροχιά
+    
+    // Breathing cycle animation
+    breathingPhase = (breathingPhase + 1) % 60; // 60-step cycle
+    const breathScale = minScale + Math.sin(breathingPhase * Math.PI / 30) * (maxScale - minScale);
+    
+    // Apply transformation safely
+    circle.style.transition = `transform ${cycleTime/60}ms ease-in-out`;
+    circle.style.transform = `scale(${breathScale.toFixed(3)})`;
+    
+    console.log(`🫁 SAFE BREATHING: BPM ${safeBpm}, Intensity ${safeIntensity}% → scale ${breathScale.toFixed(2)}, cycle ${cycleTime}ms`);
+}
+
+// 🚦 CONDITIONAL Update κάθε 100ms για smooth soul breathing  
+function startBreathingDataLoop() {
+    if (breathingDataInterval) clearInterval(breathingDataInterval);
+    
+    breathingDataInterval = setInterval(() => {
+        if (!hasLiveSignal) {
+            console.log("🚫 Stopping breathing data fetch - no live signal");
+            clearInterval(breathingDataInterval);
+            breathingDataInterval = null;
+            return;
+        }
+        fetchBreathingData();
+    }, 100);
+}
+
+// 🚦 INITIAL BOOTSTRAP POLLING - Check for live signal immediately on page load
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("🚀 BOOTSTRAP: Starting initial live signal check...");
+    
+    // Initial check - poll once to see if we have live signal
+    fetchBreathingData();
+    
+    // Also set up a bootstrap interval to keep checking if no live signal yet
+    const bootstrapInterval = setInterval(() => {
+        if (hasLiveSignal) {
+            // Live signal detected, stop bootstrap polling
+            console.log("✅ BOOTSTRAP: Live signal detected, stopping bootstrap polling");
+            clearInterval(bootstrapInterval);
+            return;
+        }
+        
+        console.log("🔍 BOOTSTRAP: Checking for live signal...");
+        fetchBreathingData();
+    }, 1000); // Check every 1 second until live signal found
+    
+    // Safety: Stop bootstrap polling after 30 seconds
+    setTimeout(() => {
+        if (bootstrapInterval) {
+            console.log("⏰ BOOTSTRAP: Timeout reached, stopping bootstrap polling");
+            clearInterval(bootstrapInterval);
+        }
+    }, 30000);
+});
+</script>
+
+</body>
+</html>
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title">Logger</h5>
+                        <p class="card-text">
+                            {% if logger_status %}
+                                <span class="badge bg-{{ 'success' if logger_status.status == 'idle' else 'warning' if logger_status.status == 'running' else 'danger' }}">
+                                    {{ logger_status.status.title() }}
+                                </span>
+                                {% if logger_status.message %}
+                                    <small class="text-muted d-block">{{ logger_status.message }}</small>
+                                {% endif %}
+                            {% else %}
+                                <span class="badge bg-secondary">Unknown</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <i data-feather="edit-3" class="text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title">Exporter</h5>
+                        <p class="card-text">
+                            {% if exporter_status %}
+                                <span class="badge bg-{{ 'success' if exporter_status.status == 'idle' else 'warning' if exporter_status.status == 'running' else 'danger' }}">
+                                    {{ exporter_status.status.title() }}
+                                </span>
+                                {% if exporter_status.message %}
+                                    <small class="text-muted d-block">{{ exporter_status.message }}</small>
+                                {% endif %}
+                            {% else %}
+                                <span class="badge bg-secondary">Unknown</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <i data-feather="download" class="text-info"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title">Trainer</h5>
+                        <p class="card-text">
+                            {% if trainer_status %}
+                                <span class="badge bg-{{ 'success' if trainer_status.status == 'idle' else 'warning' if trainer_status.status == 'running' else 'danger' }}">
+                                    {{ trainer_status.status.title() }}
+                                </span>
+                                {% if trainer_status.message %}
+                                    <small class="text-muted d-block">{{ trainer_status.message }}</small>
+                                {% endif %}
+                            {% else %}
+                                <span class="badge bg-secondary">Unknown</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <i data-feather="cpu" class="text-warning"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h2 class="text-primary">{{ total_interactions }}</h2>
+                <p class="card-text">Total Interactions</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h2 class="text-warning">{{ unprocessed_interactions }}</h2>
+                <p class="card-text">Unprocessed Interactions</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h2 class="text-info">{{ recent_jobs|length }}</h2>
+                <p class="card-text">Recent Training Jobs</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Actions -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i data-feather="settings"></i>
+                    Pipeline Actions
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form method="POST" action="{{ url_for('simulate_interaction') }}" class="mb-3">
+                            <div class="mb-2">
+                                <label for="input" class="form-label">Test Agent Interaction</label>
+                                <input type="text" class="form-control" id="input" name="input" placeholder="Enter test message" value="Hello, how are you?">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i data-feather="message-circle"></i>
+                                Simulate Interaction
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <form method="POST" action="{{ url_for('export_dataset') }}" class="mb-3">
+                            <div class="mb-2">
+                                <label class="form-label">Export to Dataset</label>
+                                <p class="text-muted small">Export logged interactions to HuggingFace Dataset format</p>
+                            </div>
+                            <button type="submit" class="btn btn-info" {% if unprocessed_interactions == 0 %}disabled{% endif %}>
+                                <i data-feather="download"></i>
+                                Export Dataset
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <form method="POST" action="{{ url_for('start_training') }}" class="mb-3">
+                            <div class="mb-2">
+                                <label for="epochs" class="form-label">Training Epochs</label>
+                                <input type="number" class="form-control" id="epochs" name="epochs" value="3" min="1" max="10">
+                            </div>
+                            <button type="submit" class="btn btn-warning" {% if unprocessed_interactions == 0 %}disabled{% endif %}>
+                                <i data-feather="play"></i>
+                                Start Training
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Interaction Chart -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i data-feather="bar-chart-2"></i>
+                    Interactions (Last 24 Hours)
+                </h5>
+            </div>
+            <div class="card-body">
+                <canvas id="interactionChart" width="400" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Training Jobs -->
+{% if recent_jobs %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i data-feather="clock"></i>
+                    Recent Training Jobs
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Status</th>
+                                <th>Created</th>
+                                <th>Samples</th>
+                                <th>Epochs</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for job in recent_jobs %}
+                            <tr>
+                                <td>{{ job.id }}</td>
+                                <td>
+                                    <span class="badge bg-{{ 'success' if job.status == 'completed' else 'warning' if job.status == 'running' else 'danger' if job.status == 'failed' else 'secondary' }}">
+                                        {{ job.status.title() }}
+                                    </span>
+                                </td>
+                                <td>{{ job.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                                <td>{{ job.total_samples }}</td>
+                                <td>{{ job.epochs }}</td>
+                                <td>
+                                    <a href="{{ url_for('training') }}" class="btn btn-sm btn-outline-primary">
+                                        <i data-feather="eye"></i>
+                                        View
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load and display interaction statistics
+    fetch('/api/stats')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('interactionChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.hourly_interactions.labels,
+                    datasets: [{
+                        label: 'Interactions',
+                        data: data.hourly_interactions.data,
+                        borderColor: 'var(--bs-info)',
+                        backgroundColor: 'var(--bs-info)',
+                        fill: false,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error loading stats:', error);
+        });
+});
+</script>
+{% endblock %}

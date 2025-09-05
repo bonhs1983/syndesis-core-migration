@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anomaly Detection & Proactive Insights</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <style>
+        .anomaly-card {
+            border-left: 4px solid var(--bs-warning);
+            background: var(--bs-dark);
+        }
+        .anomaly-high { border-left-color: var(--bs-danger) !important; }
+        .anomaly-medium { border-left-color: var(--bs-warning) !important; }
+        .anomaly-low { border-left-color: var(--bs-info) !important; }
+        .insight-card {
+            border-left: 4px solid var(--bs-success);
+            background: var(--bs-dark);
+        }
+        .pattern-badge {
+            font-size: 0.75em;
+            padding: 0.25rem 0.5rem;
+        }
+        .loading-spinner {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid var(--bs-secondary);
+            border-radius: 50%;
+            border-top-color: var(--bs-primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="display-6">🔮 Anomaly Detection & Proactive Insights</h1>
+                <p class="text-muted">Αναλύει patterns στις συζητήσεις και προβλέπει/προτείνει ενέργειες</p>
+            </div>
+        </div>
+
+        <!-- Session Input -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="sessionIdInput" 
+                           placeholder="Εισάγετε Session ID (π.χ. demo_user_1754160002000_cy0q6m)" 
+                           value="demo_user_1754160002000_cy0q6m">
+                    <button class="btn btn-primary" type="button" id="analyzeBtn">
+                        <span id="analyzeSpinner" class="loading-spinner d-none"></span>
+                        Ανάλυση
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Pattern Summary -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">📊 User Pattern Summary</h5>
+                    </div>
+                    <div class="card-body" id="patternSummary">
+                        <div class="text-muted">Κάντε κλικ στο "Ανάλυση" για να δείτε τα patterns...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proactive Insights -->
+        <div class="row mb-4" id="proactiveInsightsSection" style="display: none;">
+            <div class="col">
+                <div class="card insight-card">
+                    <div class="card-header">
+                        <h5 class="mb-0">🧠 Proactive Insights</h5>
+                    </div>
+                    <div class="card-body" id="proactiveInsights">
+                        <!-- Insights will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detected Anomalies -->
+        <div class="row mb-4" id="anomaliesSection" style="display: none;">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">⚠️ Detected Anomalies</h5>
+                    </div>
+                    <div class="card-body" id="anomaliesList">
+                        <!-- Anomalies will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generated Insights -->
+        <div class="row mb-4" id="insightsSection" style="display: none;">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">💡 Generated Insights</h5>
+                    </div>
+                    <div class="card-body" id="generatedInsights">
+                        <!-- Generated insights will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proactive Suggestions -->
+        <div class="row mb-4" id="suggestionsSection" style="display: none;">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">🎯 Proactive Suggestions</h5>
+                    </div>
+                    <div class="card-body" id="proactiveSuggestions">
+                        <!-- Suggestions will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Details -->
+        <div class="row mb-4" id="analysisDetails" style="display: none;">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">🔍 Analysis Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" id="analysisMetrics">
+                            <!-- Analysis metrics will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const sessionIdInput = document.getElementById('sessionIdInput');
+            const analyzeSpinner = document.getElementById('analyzeSpinner');
+
+            analyzeBtn.addEventListener('click', function() {
+                const sessionId = sessionIdInput.value.trim();
+                if (!sessionId) {
+                    alert('Παρακαλώ εισάγετε ένα Session ID');
+                    return;
+                }
+
+                analyzeBtn.disabled = true;
+                analyzeSpinner.classList.remove('d-none');
+                
+                // Start all analyses simultaneously
+                Promise.all([
+                    fetchPatternSummary(sessionId),
+                    fetchAnomalyAnalysis(sessionId),
+                    fetchProactiveInsights(sessionId)
+                ]).then(() => {
+                    analyzeBtn.disabled = false;
+                    analyzeSpinner.classList.add('d-none');
+                }).catch(error => {
+                    console.error('Analysis failed:', error);
+                    analyzeBtn.disabled = false;
+                    analyzeSpinner.classList.add('d-none');
+                    alert('Analysis failed: ' + error.message);
+                });
+            });
+
+            // Auto-analyze with demo session on load
+            if (sessionIdInput.value) {
+                analyzeBtn.click();
+            }
+        });
+
+        function fetchPatternSummary(sessionId) {
+            return fetch(`/api/user-pattern-summary/${sessionId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayPatternSummary(data.summary);
+                    } else {
+                        throw new Error(data.error);
+                    }
+                });
+        }
+
+        function fetchAnomalyAnalysis(sessionId) {
+            return fetch(`/api/anomaly-analysis/${sessionId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayAnomalyAnalysis(data.analysis, data.session_count, data.interaction_count);
+                    } else {
+                        throw new Error(data.error);
+                    }
+                });
+        }
+
+        function fetchProactiveInsights(sessionId) {
+            return fetch(`/api/proactive-insights/${sessionId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.has_insights) {
+                        displayProactiveInsights(data.proactive_message);
+                    }
+                });
+        }
+
+        function displayPatternSummary(summary) {
+            const patternSummary = document.getElementById('patternSummary');
+            patternSummary.innerHTML = `
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <h4 class="text-primary">${summary.total_interactions}</h4>
+                            <small class="text-muted">Total Interactions</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <h4 class="text-info">${summary.unique_sessions}</h4>
+                            <small class="text-muted">Unique Sessions</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <h4 class="text-warning">${summary.avg_message_length}</h4>
+                            <small class="text-muted">Avg Message Length</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <span class="badge bg-secondary">${summary.interaction_frequency}</span>
+                            <br><small class="text-muted">User Type</small>
+                        </div>
+                    </div>
+                </div>
+                ${summary.common_keywords.length > 0 ? `
+                <hr>
+                <h6>🔑 Common Keywords:</h6>
+                <div>
+                    ${summary.common_keywords.map(([keyword, count]) => 
+                        `<span class="badge bg-dark pattern-badge me-1">${keyword} (${count})</span>`
+                    ).join('')}
+                </div>
+                ` : ''}
+            `;
+        }
+
+        function displayProactiveInsights(message) {
+            const section = document.getElementById('proactiveInsightsSection');
+            const insights = document.getElementById('proactiveInsights');
+            
+            insights.innerHTML = `
+                <div class="alert alert-success">
+                    <strong>🧠 AI Insight:</strong> ${message}
+                </div>
+            `;
+            
+            section.style.display = 'block';
+        }
+
+        function displayAnomalyAnalysis(analysis, sessionCount, interactionCount) {
+            // Display analysis details
+            const analysisDetails = document.getElementById('analysisDetails');
+            const analysisMetrics = document.getElementById('analysisMetrics');
+            
+            analysisMetrics.innerHTML = `
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <h5 class="text-primary">${sessionCount}</h5>
+                        <small class="text-muted">Sessions Analyzed</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <h5 class="text-info">${interactionCount}</h5>
+                        <small class="text-muted">Interactions Analyzed</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <h5 class="text-warning">${analysis.anomalies.length}</h5>
+                        <small class="text-muted">Anomalies Detected</small>
+                    </div>
+                </div>
+            `;
+            analysisDetails.style.display = 'block';
+
+            // Display anomalies
+            if (analysis.anomalies.length > 0) {
+                displayAnomalies(analysis.anomalies);
+            }
+
+            // Display insights
+            if (analysis.insights.length > 0) {
+                displayInsights(analysis.insights);
+            }
+
+            // Display suggestions
+            if (analysis.proactive_suggestions.length > 0) {
+                displaySuggestions(analysis.proactive_suggestions);
+            }
+        }
+
+        function displayAnomalies(anomalies) {
+            const section = document.getElementById('anomaliesSection');
+            const anomaliesList = document.getElementById('anomaliesList');
+            
+            let html = '';
+            anomalies.forEach(anomaly => {
+                const severityClass = `anomaly-${anomaly.severity}`;
+                const severityBadge = anomaly.severity === 'high' ? 'danger' : 
+                                     anomaly.severity === 'medium' ? 'warning' : 'info';
+                
+                html += `
+                    <div class="card anomaly-card ${severityClass} mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h6 class="card-title">${anomaly.type.replace('_', ' ').toUpperCase()}</h6>
+                                    <p class="card-text">${anomaly.description}</p>
+                                </div>
+                                <span class="badge bg-${severityBadge}">${anomaly.severity.toUpperCase()}</span>
+                            </div>
+                            ${anomaly.data ? `
+                                <small class="text-muted">
+                                    <strong>Data:</strong> ${JSON.stringify(anomaly.data, null, 2)}
+                                </small>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            anomaliesList.innerHTML = html;
+            section.style.display = 'block';
+        }
+
+        function displayInsights(insights) {
+            const section = document.getElementById('insightsSection');
+            const generatedInsights = document.getElementById('generatedInsights');
+            
+            let html = '';
+            insights.forEach(insight => {
+                html += `<div class="alert alert-info mb-2">${insight}</div>`;
+            });
+            
+            generatedInsights.innerHTML = html;
+            section.style.display = 'block';
+        }
+
+        function displaySuggestions(suggestions) {
+            const section = document.getElementById('suggestionsSection');
+            const proactiveSuggestions = document.getElementById('proactiveSuggestions');
+            
+            let html = '';
+            suggestions.forEach(suggestion => {
+                html += `<div class="alert alert-success mb-2">🎯 ${suggestion}</div>`;
+            });
+            
+            proactiveSuggestions.innerHTML = html;
+            section.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

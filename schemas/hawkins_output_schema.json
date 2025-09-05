@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Hawkins State Output Schema",
+  "description": "Complete consciousness state output from Hawkins analysis",
+  "type": "object",
+  "required": [
+    "distance", "level", "P_up", "P_down", "alerts", 
+    "soulSnapshot", "physSnapshot", "next_step", 
+    "flow_state", "coherence_band", "consciousness_trend", "timestamp"
+  ],
+  "properties": {
+    "distance": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 5.0,
+      "unit": "euclidean",
+      "description": "Distance from optimal presence center (0.0-5.0 units)"
+    },
+    "level": {
+      "type": "integer",
+      "minimum": 175,
+      "maximum": 700,
+      "unit": "hawkins_scale",
+      "enum": [175, 200, 310, 350, 400, 500, 600, 700],
+      "description": "Hawkins consciousness level (175-700 scale)"
+    },
+    "P_up": {
+      "type": "number", 
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "unit": "probability",
+      "description": "Probability of consciousness ascent (0.0-1.0)"
+    },
+    "P_down": {
+      "type": "number",
+      "minimum": 0.0, 
+      "maximum": 1.0,
+      "unit": "probability",
+      "description": "Probability of consciousness descent (0.0-1.0)"
+    },
+    "alerts": {
+      "type": "array",
+      "description": "Active consciousness alerts and notifications",
+      "items": {
+        "type": "object",
+        "required": ["type", "message", "priority"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["level_transition", "consciousness_surge", "consciousness_dip", "trigger_alert"],
+            "description": "Alert type classification"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable alert message"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"],
+            "description": "Alert priority level"
+          },
+          "action": {
+            "type": "string",
+            "description": "Recommended action for this alert"
+          }
+        }
+      }
+    },
+    "soulSnapshot": {
+      "type": "object",
+      "description": "Snapshot of soul metrics at analysis time",
+      "required": ["coherence", "vitality", "ethics", "narrative"],
+      "properties": {
+        "coherence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%"
+        },
+        "vitality": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%"
+        },
+        "ethics": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%"
+        },
+        "narrative": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "physSnapshot": {
+      "type": "object",
+      "description": "Snapshot of physical metrics at analysis time",
+      "required": ["hrv", "coherence", "heart_rate", "focus"],
+      "properties": {
+        "hrv": {
+          "type": "number",
+          "minimum": 5.0,
+          "maximum": 95.0,
+          "unit": "ms"
+        },
+        "coherence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%"
+        },
+        "heart_rate": {
+          "type": "number", 
+          "minimum": 45,
+          "maximum": 200,
+          "unit": "bpm"
+        },
+        "focus": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "next_step": {
+      "type": "string",
+      "description": "Personalized next step recommendation for growth"
+    },
+    "flow_state": {
+      "type": "string",
+      "enum": ["🌊 Deep Flow", "🏄 Active Flow", "🌀 Entering Flow", "🧘 Centered"],
+      "description": "Current flow state classification"
+    },
+    "coherence_band": {
+      "type": "string",
+      "enum": ["High Coherence", "Moderate Coherence", "Low Coherence", "Very Low Coherence"],
+      "description": "HRV coherence band classification"
+    },
+    "consciousness_trend": {
+      "type": "string",
+      "enum": ["Ascending", "Descending", "Stable"],
+      "description": "Overall consciousness movement trend"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of state capture"
+    }
+  },
+  "additionalProperties": false
+}

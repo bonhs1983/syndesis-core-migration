@@ -1,0 +1,2602 @@
+[
+  {
+    "id": "a5f0ea40-d2ea-446a-92d9-613d8552ad9c",
+    "title": "The Power of Now",
+    "author": "Eckhart Tolle",
+    "language": "en",
+    "filename": "a5f0ea40-d2ea-446a-92d9-613d8552ad9c.pdf",
+    "file_path": "uploads/books/a5f0ea40-d2ea-446a-92d9-613d8552ad9c.pdf",
+    "upload_date": "2025-08-04T07:47:14.916210",
+    "total_chapters": 10,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed",
+    "chapters": [
+      {
+        "title": "You Are Not Your Mind",
+        "content": "The Greatest Obstacle to Enlightenment. Freeing Yourself From Your Mind. Enlightenment: Rising Above Thought. Emotion: The Body's Reaction to Your Mind.",
+        "word_count": 2000
+      },
+      {
+        "title": "Consciousness - The Way Out of Pain",
+        "content": "Create No More Pain in the Present. Past Pain: Dissolving the Pain-Body. Ego-Identification with the Pain-Body. The Origin of Fear. The Ego's Search for Wholeness.",
+        "word_count": 2000
+      },
+      {
+        "title": "Moving Deeply into the Now",
+        "content": "Don't Seek Your Self in the Mind. End the Delusion of Time. Nothing Exists outside the Now. The Key to the Spiritual Dimension. Accessing the Power of the Now.",
+        "word_count": 2000
+      },
+      {
+        "title": "Mind Strategies for Avoiding the Now",
+        "content": "Loss of Now: The Core Delusion. Ordinary Unconsciousness and Deep Unconsciousness. What Are They Seeking? Dissolving Ordinary Unconsciousness.",
+        "word_count": 2000
+      },
+      {
+        "title": "The State of Presence",
+        "content": "It Is Not What You Think It Is. The Esoteric Meaning of Waiting. Beauty Arises in the Stillness of Your Presence. Realizing Pure Consciousness.",
+        "word_count": 2000
+      },
+      {
+        "title": "The Inner Body",
+        "content": "Being Is Your Deepest Self. Look Beyond the Words. Finding Your Invisible and Indestructible Essence. Connecting with the Inner Body.",
+        "word_count": 2000
+      },
+      {
+        "title": "Portals into the Unmanifested",
+        "content": "Going Deeply into the Body. The Source of Chi. Dreamless Sleep. Other Portals. Silence. Space. The True Nature of Space and Time.",
+        "word_count": 2000
+      },
+      {
+        "title": "Enlightened Relationships",
+        "content": "Enter the Now from Wherever You Are. Love/Hate Relationships. Addiction and the Search for Wholeness. From Addictive to Enlightened Relationships.",
+        "word_count": 2000
+      },
+      {
+        "title": "Beyond Happiness and Unhappiness There Is Peace",
+        "content": "The Higher Good Beyond Good and Bad. The End of Your Life Drama. Impermanence and the Cycles of Life. Using and Relinquishing Negativity.",
+        "word_count": 2000
+      },
+      {
+        "title": "The Meaning of Surrender",
+        "content": "Acceptance of the Now. From Mind Energy to Spiritual Energy. Surrender in Personal Relationships. Transforming Illness into Enlightenment.",
+        "word_count": 2000
+      }
+    ]
+  },
+  {
+    "id": "c02f3951-7540-4cfc-92d2-4ac93e8492df",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "c02f3951-7540-4cfc-92d2-4ac93e8492df.pdf",
+    "file_path": "uploads/books/c02f3951-7540-4cfc-92d2-4ac93e8492df.pdf",
+    "upload_date": "2025-08-04T07:47:25.139148",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "94ba6352-db6b-4e71-a287-7314d8b60852",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "94ba6352-db6b-4e71-a287-7314d8b60852.pdf",
+    "file_path": "uploads/books/94ba6352-db6b-4e71-a287-7314d8b60852.pdf",
+    "upload_date": "2025-08-04T07:47:35.329180",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "3917abfa-f2d7-4641-9e60-6d5a8a6c2e9f",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "3917abfa-f2d7-4641-9e60-6d5a8a6c2e9f.pdf",
+    "file_path": "uploads/books/3917abfa-f2d7-4641-9e60-6d5a8a6c2e9f.pdf",
+    "upload_date": "2025-08-04T07:47:45.892571",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "6b215eae-4c93-4742-b7fb-6e8dd1703e69",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "6b215eae-4c93-4742-b7fb-6e8dd1703e69.pdf",
+    "file_path": "uploads/books/6b215eae-4c93-4742-b7fb-6e8dd1703e69.pdf",
+    "upload_date": "2025-08-04T07:47:56.326547",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "839acda6-957d-44ad-94c1-de89ac4d7c1f",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "839acda6-957d-44ad-94c1-de89ac4d7c1f.pdf",
+    "file_path": "uploads/books/839acda6-957d-44ad-94c1-de89ac4d7c1f.pdf",
+    "upload_date": "2025-08-04T07:48:06.272816",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "e9c6466d-999b-42f0-b468-11a00784fc00",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "e9c6466d-999b-42f0-b468-11a00784fc00.txt",
+    "file_path": "uploads/books/e9c6466d-999b-42f0-b468-11a00784fc00.txt",
+    "upload_date": "2025-08-04T07:48:06.735731",
+    "total_chapters": 7,
+    "total_words": 814,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Chapter 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "CHAPTER 1: MINDFULNESS AND PRESENT MOMENT AWARENESS\n\nThe moment you realize you are not present, you are present. Mindfulness is the practice of paying attention to the current moment without judgment. It involves observing your thoughts, emotions, and sensations as they arise, without getting caugh...",
+        "word_count": 103,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "BALANCE",
+        "title": "Chapter 2",
+        "description": "Explore balance through Chapter 2",
+        "content_preview": "CHAPTER 2: FINDING BALANCE IN WORK AND LIFE  \n\nAchieving work-life balance requires careful attention to your priorities and boundaries. It's about creating harmony between your professional responsibilities and personal well-being. Start by setting clear boundaries around your work hours and learni...",
+        "word_count": 118,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "AWARENESS",
+        "title": "Chapter 3",
+        "description": "Explore awareness through Chapter 3",
+        "content_preview": "CHAPTER 3: DEVELOPING SELF-AWARENESS AND INSIGHT\n\nSelf-awareness is the foundation of personal growth and emotional intelligence. It involves understanding your thoughts, emotions, motivations, and behavioral patterns. Practice regular self-reflection through journaling, meditation, or quiet contemp...",
+        "word_count": 123,
+        "color": "#fee140",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "FORGIVENESS",
+        "title": "Chapter 4",
+        "description": "Explore forgiveness through Chapter 4",
+        "content_preview": "CHAPTER 4: CULTIVATING COMPASSION AND LOVING-KINDNESS\n\nCompassion is the ability to feel empathy for others' suffering and the desire to help alleviate it. It begins with self-compassion - treating yourself with the same kindness you would offer a good friend. Practice loving-kindness meditation by ...",
+        "word_count": 125,
+        "color": "#fa709a",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Chapter 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "CHAPTER 5: EMBRACING AUTHENTIC PRESENCE\n\nAuthentic presence means showing up as your true self in every moment and interaction. It requires courage to be vulnerable and honest about who you are, even when it's uncomfortable. Stop trying to be who you think others want you to be and start expressing ...",
+        "word_count": 122,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "QUALITY",
+        "title": "Chapter 6",
+        "description": "Explore quality through Chapter 6",
+        "content_preview": "CHAPTER 6: PURSUING EXCELLENCE AND QUALITY\n\nExcellence is not about perfection - it's about consistently doing your best work and continuously improving. Focus on quality over quantity in everything you do. Set high standards for yourself while being realistic about what's achievable. Pay attention ...",
+        "word_count": 108,
+        "color": "#43e97b",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Chapter 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "CHAPTER 7: ENERGIZING YOUR LIFE FORCE\n\nVitality and energy come from aligning your actions with your deepest values and passions. Identify what truly energizes you and make time for those activities regularly. This might include creative pursuits, physical exercise, time in nature, or meaningful con...",
+        "word_count": 115,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "b5dd7d5a-e276-496a-8e82-ce9c19c04135",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "b5dd7d5a-e276-496a-8e82-ce9c19c04135.txt",
+    "file_path": "uploads/books/b5dd7d5a-e276-496a-8e82-ce9c19c04135.txt",
+    "upload_date": "2025-08-04T07:52:20.603477",
+    "total_chapters": 7,
+    "total_words": 814,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Chapter 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "CHAPTER 1: MINDFULNESS AND PRESENT MOMENT AWARENESS\n\nThe moment you realize you are not present, you are present. Mindfulness is the practice of paying attention to the current moment without judgment. It involves observing your thoughts, emotions, and sensations as they arise, without getting caugh...",
+        "word_count": 103,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "BALANCE",
+        "title": "Chapter 2",
+        "description": "Explore balance through Chapter 2",
+        "content_preview": "CHAPTER 2: FINDING BALANCE IN WORK AND LIFE  \n\nAchieving work-life balance requires careful attention to your priorities and boundaries. It's about creating harmony between your professional responsibilities and personal well-being. Start by setting clear boundaries around your work hours and learni...",
+        "word_count": 118,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "AWARENESS",
+        "title": "Chapter 3",
+        "description": "Explore awareness through Chapter 3",
+        "content_preview": "CHAPTER 3: DEVELOPING SELF-AWARENESS AND INSIGHT\n\nSelf-awareness is the foundation of personal growth and emotional intelligence. It involves understanding your thoughts, emotions, motivations, and behavioral patterns. Practice regular self-reflection through journaling, meditation, or quiet contemp...",
+        "word_count": 123,
+        "color": "#fee140",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "FORGIVENESS",
+        "title": "Chapter 4",
+        "description": "Explore forgiveness through Chapter 4",
+        "content_preview": "CHAPTER 4: CULTIVATING COMPASSION AND LOVING-KINDNESS\n\nCompassion is the ability to feel empathy for others' suffering and the desire to help alleviate it. It begins with self-compassion - treating yourself with the same kindness you would offer a good friend. Practice loving-kindness meditation by ...",
+        "word_count": 125,
+        "color": "#fa709a",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Chapter 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "CHAPTER 5: EMBRACING AUTHENTIC PRESENCE\n\nAuthentic presence means showing up as your true self in every moment and interaction. It requires courage to be vulnerable and honest about who you are, even when it's uncomfortable. Stop trying to be who you think others want you to be and start expressing ...",
+        "word_count": 122,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "QUALITY",
+        "title": "Chapter 6",
+        "description": "Explore quality through Chapter 6",
+        "content_preview": "CHAPTER 6: PURSUING EXCELLENCE AND QUALITY\n\nExcellence is not about perfection - it's about consistently doing your best work and continuously improving. Focus on quality over quantity in everything you do. Set high standards for yourself while being realistic about what's achievable. Pay attention ...",
+        "word_count": 108,
+        "color": "#43e97b",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Chapter 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "CHAPTER 7: ENERGIZING YOUR LIFE FORCE\n\nVitality and energy come from aligning your actions with your deepest values and passions. Identify what truly energizes you and make time for those activities regularly. This might include creative pursuits, physical exercise, time in nature, or meaningful con...",
+        "word_count": 115,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "052d3ad4-0cfd-40ad-90de-2c8f227e5c5c",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "052d3ad4-0cfd-40ad-90de-2c8f227e5c5c.pdf",
+    "file_path": "uploads/books/052d3ad4-0cfd-40ad-90de-2c8f227e5c5c.pdf",
+    "upload_date": "2025-08-04T07:54:54.275271",
+    "total_chapters": 2,
+    "total_words": 32717,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Chapter 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "1967.\tUnable\tto\treturn\tto\tVietnam\tafter\this\toverseas\ttour,\the\treceived\tasylum\tin\tFrance,\twhere\the\tserved\tas\nchairman\tof\tthe\tVietnamese\tBuddhist\tPeace\tDelegation\tto\tthe\tParis\tPeace\tTalks.\tHe\tpresently\tlives\tin\tPlum\nVillage,\ta\tsmall\tcommunity\tin\tFrance,\twhere\the\tcontinues\tteaching,\twriting,\tgardening,...",
+        "word_count": 31458,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 15,
+        "name": "PRESENCE",
+        "title": "Chapter 15",
+        "description": "Explore presence through Chapter 15",
+        "content_preview": "14.\tDo\tnot\tmistreat\tyour\tbody.\tLearn\tto\thandle\tit\twith\trespect.\tDo\tnot\tlook\ton\nyour\tbody\tas\tonly\tan\tinstrument.\tPreserve\tvital\tenergies\tfor\tthe\trealization\tof\tthe\nWay.\tSexual\texpression\tshould\tnot\thappen\twithout\tlove\tand\tcommitment.\tIn\nsexual\trelationships,\tbe\taware\tof\tfuture\tsuffering\tthat\tmay\tbe\tc...",
+        "word_count": 1259,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.999999999999986,
+          "y": 15.0
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "2bdfc0d0-553b-4fab-ad90-32304f880089",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "2bdfc0d0-553b-4fab-ad90-32304f880089.pdf",
+    "file_path": "uploads/books/2bdfc0d0-553b-4fab-ad90-32304f880089.pdf",
+    "upload_date": "2025-08-04T07:55:00.938966",
+    "total_chapters": 2,
+    "total_words": 32717,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Chapter 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "1967.\tUnable\tto\treturn\tto\tVietnam\tafter\this\toverseas\ttour,\the\treceived\tasylum\tin\tFrance,\twhere\the\tserved\tas\nchairman\tof\tthe\tVietnamese\tBuddhist\tPeace\tDelegation\tto\tthe\tParis\tPeace\tTalks.\tHe\tpresently\tlives\tin\tPlum\nVillage,\ta\tsmall\tcommunity\tin\tFrance,\twhere\the\tcontinues\tteaching,\twriting,\tgardening,...",
+        "word_count": 31458,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 15,
+        "name": "PRESENCE",
+        "title": "Chapter 15",
+        "description": "Explore presence through Chapter 15",
+        "content_preview": "14.\tDo\tnot\tmistreat\tyour\tbody.\tLearn\tto\thandle\tit\twith\trespect.\tDo\tnot\tlook\ton\nyour\tbody\tas\tonly\tan\tinstrument.\tPreserve\tvital\tenergies\tfor\tthe\trealization\tof\tthe\nWay.\tSexual\texpression\tshould\tnot\thappen\twithout\tlove\tand\tcommitment.\tIn\nsexual\trelationships,\tbe\taware\tof\tfuture\tsuffering\tthat\tmay\tbe\tc...",
+        "word_count": 1259,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.999999999999986,
+          "y": 15.0
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "8bd16853-07b2-40c8-9153-d8e0064db8b2",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "8bd16853-07b2-40c8-9153-d8e0064db8b2.pdf",
+    "file_path": "uploads/books/8bd16853-07b2-40c8-9153-d8e0064db8b2.pdf",
+    "upload_date": "2025-08-04T07:55:06.969099",
+    "total_chapters": 2,
+    "total_words": 32717,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Chapter 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "1967.\tUnable\tto\treturn\tto\tVietnam\tafter\this\toverseas\ttour,\the\treceived\tasylum\tin\tFrance,\twhere\the\tserved\tas\nchairman\tof\tthe\tVietnamese\tBuddhist\tPeace\tDelegation\tto\tthe\tParis\tPeace\tTalks.\tHe\tpresently\tlives\tin\tPlum\nVillage,\ta\tsmall\tcommunity\tin\tFrance,\twhere\the\tcontinues\tteaching,\twriting,\tgardening,...",
+        "word_count": 31458,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 15,
+        "name": "PRESENCE",
+        "title": "Chapter 15",
+        "description": "Explore presence through Chapter 15",
+        "content_preview": "14.\tDo\tnot\tmistreat\tyour\tbody.\tLearn\tto\thandle\tit\twith\trespect.\tDo\tnot\tlook\ton\nyour\tbody\tas\tonly\tan\tinstrument.\tPreserve\tvital\tenergies\tfor\tthe\trealization\tof\tthe\nWay.\tSexual\texpression\tshould\tnot\thappen\twithout\tlove\tand\tcommitment.\tIn\nsexual\trelationships,\tbe\taware\tof\tfuture\tsuffering\tthat\tmay\tbe\tc...",
+        "word_count": 1259,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.999999999999986,
+          "y": 15.0
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "8ada3559-75f7-4d1a-8a12-656df880304e",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "8ada3559-75f7-4d1a-8a12-656df880304e.pdf",
+    "file_path": "uploads/books/8ada3559-75f7-4d1a-8a12-656df880304e.pdf",
+    "upload_date": "2025-08-04T07:55:11.928742",
+    "total_chapters": 2,
+    "total_words": 32717,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Chapter 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "1967.\tUnable\tto\treturn\tto\tVietnam\tafter\this\toverseas\ttour,\the\treceived\tasylum\tin\tFrance,\twhere\the\tserved\tas\nchairman\tof\tthe\tVietnamese\tBuddhist\tPeace\tDelegation\tto\tthe\tParis\tPeace\tTalks.\tHe\tpresently\tlives\tin\tPlum\nVillage,\ta\tsmall\tcommunity\tin\tFrance,\twhere\the\tcontinues\tteaching,\twriting,\tgardening,...",
+        "word_count": 31458,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 15,
+        "name": "PRESENCE",
+        "title": "Chapter 15",
+        "description": "Explore presence through Chapter 15",
+        "content_preview": "14.\tDo\tnot\tmistreat\tyour\tbody.\tLearn\tto\thandle\tit\twith\trespect.\tDo\tnot\tlook\ton\nyour\tbody\tas\tonly\tan\tinstrument.\tPreserve\tvital\tenergies\tfor\tthe\trealization\tof\tthe\nWay.\tSexual\texpression\tshould\tnot\thappen\twithout\tlove\tand\tcommitment.\tIn\nsexual\trelationships,\tbe\taware\tof\tfuture\tsuffering\tthat\tmay\tbe\tc...",
+        "word_count": 1259,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.999999999999986,
+          "y": 15.0
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "57ddf284-7427-44dc-8e4b-5d9f26e2397b",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "57ddf284-7427-44dc-8e4b-5d9f26e2397b.pdf",
+    "file_path": "uploads/books/57ddf284-7427-44dc-8e4b-5d9f26e2397b.pdf",
+    "upload_date": "2025-08-04T07:55:16.911609",
+    "total_chapters": 2,
+    "total_words": 32717,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Chapter 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "1967.\tUnable\tto\treturn\tto\tVietnam\tafter\this\toverseas\ttour,\the\treceived\tasylum\tin\tFrance,\twhere\the\tserved\tas\nchairman\tof\tthe\tVietnamese\tBuddhist\tPeace\tDelegation\tto\tthe\tParis\tPeace\tTalks.\tHe\tpresently\tlives\tin\tPlum\nVillage,\ta\tsmall\tcommunity\tin\tFrance,\twhere\the\tcontinues\tteaching,\twriting,\tgardening,...",
+        "word_count": 31458,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 15,
+        "name": "PRESENCE",
+        "title": "Chapter 15",
+        "description": "Explore presence through Chapter 15",
+        "content_preview": "14.\tDo\tnot\tmistreat\tyour\tbody.\tLearn\tto\thandle\tit\twith\trespect.\tDo\tnot\tlook\ton\nyour\tbody\tas\tonly\tan\tinstrument.\tPreserve\tvital\tenergies\tfor\tthe\trealization\tof\tthe\nWay.\tSexual\texpression\tshould\tnot\thappen\twithout\tlove\tand\tcommitment.\tIn\nsexual\trelationships,\tbe\taware\tof\tfuture\tsuffering\tthat\tmay\tbe\tc...",
+        "word_count": 1259,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.999999999999986,
+          "y": 15.0
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "c8c35e78-0fb7-48fb-bb5b-339cb3e68a2b",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "c8c35e78-0fb7-48fb-bb5b-339cb3e68a2b.pdf",
+    "file_path": "uploads/books/c8c35e78-0fb7-48fb-bb5b-339cb3e68a2b.pdf",
+    "upload_date": "2025-08-04T07:55:22.082988",
+    "total_chapters": 2,
+    "total_words": 32717,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Chapter 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "1967.\tUnable\tto\treturn\tto\tVietnam\tafter\this\toverseas\ttour,\the\treceived\tasylum\tin\tFrance,\twhere\the\tserved\tas\nchairman\tof\tthe\tVietnamese\tBuddhist\tPeace\tDelegation\tto\tthe\tParis\tPeace\tTalks.\tHe\tpresently\tlives\tin\tPlum\nVillage,\ta\tsmall\tcommunity\tin\tFrance,\twhere\the\tcontinues\tteaching,\twriting,\tgardening,...",
+        "word_count": 31458,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 15,
+        "name": "PRESENCE",
+        "title": "Chapter 15",
+        "description": "Explore presence through Chapter 15",
+        "content_preview": "14.\tDo\tnot\tmistreat\tyour\tbody.\tLearn\tto\thandle\tit\twith\trespect.\tDo\tnot\tlook\ton\nyour\tbody\tas\tonly\tan\tinstrument.\tPreserve\tvital\tenergies\tfor\tthe\trealization\tof\tthe\nWay.\tSexual\texpression\tshould\tnot\thappen\twithout\tlove\tand\tcommitment.\tIn\nsexual\trelationships,\tbe\taware\tof\tfuture\tsuffering\tthat\tmay\tbe\tc...",
+        "word_count": 1259,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.999999999999986,
+          "y": 15.0
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "ca6289e4-8238-4c68-b8af-80e48bc11057",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "ca6289e4-8238-4c68-b8af-80e48bc11057.pdf",
+    "file_path": "uploads/books/ca6289e4-8238-4c68-b8af-80e48bc11057.pdf",
+    "upload_date": "2025-08-04T08:02:55.944258",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "4d947930-7012-4d89-aaa1-12aced1dfbdc",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "4d947930-7012-4d89-aaa1-12aced1dfbdc.pdf",
+    "file_path": "uploads/books/4d947930-7012-4d89-aaa1-12aced1dfbdc.pdf",
+    "upload_date": "2025-08-04T08:03:06.211088",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "b9726596-eb90-40f0-b76f-9b8178c0be29",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "b9726596-eb90-40f0-b76f-9b8178c0be29.pdf",
+    "file_path": "uploads/books/b9726596-eb90-40f0-b76f-9b8178c0be29.pdf",
+    "upload_date": "2025-08-04T08:03:16.538307",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "dd855927-7a1f-4c66-be46-563391eb189a",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "dd855927-7a1f-4c66-be46-563391eb189a.pdf",
+    "file_path": "uploads/books/dd855927-7a1f-4c66-be46-563391eb189a.pdf",
+    "upload_date": "2025-08-04T08:03:27.573390",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "1d22cc16-4c30-44d2-943a-a5827bee41b9",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "1d22cc16-4c30-44d2-943a-a5827bee41b9.pdf",
+    "file_path": "uploads/books/1d22cc16-4c30-44d2-943a-a5827bee41b9.pdf",
+    "upload_date": "2025-08-04T08:10:22.622602",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "cdd80606-ae3a-40fd-b7f6-c9520993e54e",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "cdd80606-ae3a-40fd-b7f6-c9520993e54e.pdf",
+    "file_path": "uploads/books/cdd80606-ae3a-40fd-b7f6-c9520993e54e.pdf",
+    "upload_date": "2025-08-04T08:10:32.823875",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "f536adab-4c39-4476-8950-ce88f105c132",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "f536adab-4c39-4476-8950-ce88f105c132.pdf",
+    "file_path": "uploads/books/f536adab-4c39-4476-8950-ce88f105c132.pdf",
+    "upload_date": "2025-08-04T08:10:42.750432",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "b9f770b8-e056-4207-996f-877de1c55857",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "b9f770b8-e056-4207-996f-877de1c55857.pdf",
+    "file_path": "uploads/books/b9f770b8-e056-4207-996f-877de1c55857.pdf",
+    "upload_date": "2025-08-04T08:10:52.472811",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "538b7cf5-582b-4fb8-b245-1c49dc7d50ba",
+    "title": "Untitled",
+    "author": "Unknown Author",
+    "language": "en",
+    "filename": "538b7cf5-582b-4fb8-b245-1c49dc7d50ba.pdf",
+    "file_path": "uploads/books/538b7cf5-582b-4fb8-b245-1c49dc7d50ba.pdf",
+    "upload_date": "2025-08-04T08:11:03.887327",
+    "total_chapters": 32,
+    "total_words": 62202,
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Section 1",
+        "description": "Explore presence through Chapter 1",
+        "content_preview": "Eckhart Tolle THE POWER OF NOW A Guide to SPIRITUAL ENLIGHTENMENT Contents Introduction The Origin of This Book The Truth That Is Within You CHAPTER ONE : You Are Not Your Mind The Greatest Obstacle to Enlightenment Freeing Yourself From Your Mind Enlightenment: Rising Above Thought Emotion: The Bod...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "Section 2",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "you are. You are shown how to free yourself from enslavement to the mind, enter into this enlightened state of consciousness and sustain it in everyday life. On this level of the book, the words are not always concerned with information, but often designed to draw you into this new consciousness as ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Section 3",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "is you and a totally separate \"other.\" You then forget the essential fact that, underneath the level of physical appearances and separate forms, you are one with all that is. By \"forget,\" I mean that you can no longer feel this oneness as self-evident reality. You may believe it to be true, but you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": 4,
+        "name": "PRESENCE",
+        "title": "Section 4",
+        "description": "Explore presence through Chapter 4",
+        "content_preview": "Even when the ego seems to be concerned with the present, it is not the present that it sees: It misperceives it completely because it looks at it through the eyes of the past. Or it reduces the present to a means to an end, an end that always lies in the mind-projected future. Observe your mind and...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.25126265847084,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 5,
+        "name": "PRESENCE",
+        "title": "Section 5",
+        "description": "Explore presence through Chapter 5",
+        "content_preview": "So in the unenlightened, mind-identified condition, what is sometimes wrongly called joy is the usually short-lived pleasure side of the continuously alternating pain/pleasure cycle. Pleasure is always derived from something outside you, whereas joy arises from within. The very thing that gives you ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 15.0,
+          "y": 50.00000000000001
+        }
+      },
+      {
+        "id": 6,
+        "name": "PRESENCE",
+        "title": "Section 6",
+        "description": "Explore presence through Chapter 6",
+        "content_preview": "you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 25.251262658470832,
+          "y": 25.25126265847084
+        }
+      },
+      {
+        "id": 7,
+        "name": "PRESENCE",
+        "title": "Section 7",
+        "description": "Explore presence through Chapter 7",
+        "content_preview": "around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and \"normal\" thing as the compulsive need to be right in an argument and make the other person wrong -- defending the mental position with which you have iden...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 49.99999999999999,
+          "y": 15.0
+        }
+      },
+      {
+        "id": 8,
+        "name": "PRESENCE",
+        "title": "Section 8",
+        "description": "Explore presence through Chapter 8",
+        "content_preview": "in churches and temples. If you go to a church, you may hear readings from the Gospels such as \"Take no thought for the morrow; for the morrow shall take thought for the things of itself,\" or \"Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God.\" Or you might hear the ...",
+        "word_count": 2000,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 25.251262658470832
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "b8b331c9-46a0-4469-a05f-712365d1842f",
+    "title": "Test Book: Chapter Extraction",
+    "author": "Test Author",
+    "language": "en",
+    "filename": "b8b331c9-46a0-4469-a05f-712365d1842f.txt",
+    "file_path": "uploads/books/b8b331c9-46a0-4469-a05f-712365d1842f.txt",
+    "upload_date": "2025-08-04T08:19:05.999952",
+    "total_chapters": 3,
+    "total_words": 25,
+    "chapters": [
+      {
+        "id": 1,
+        "title": "The Beginning of Wisdom",
+        "content": "This is the first chapter content about wisdom and understanding...",
+        "word_count": 10
+      },
+      {
+        "id": 2,
+        "title": "The Path of Awareness",
+        "content": "This is the second chapter about developing awareness...",
+        "word_count": 8
+      },
+      {
+        "id": 3,
+        "title": "Living in the Present",
+        "content": "This is the third chapter about mindfulness...",
+        "word_count": 7
+      }
+    ],
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "WISDOM",
+        "title": "The Beginning of Wisdom",
+        "description": "Explore wisdom through Chapter 1",
+        "content_preview": "This is the first chapter content about wisdom and understanding......",
+        "word_count": 10,
+        "color": "#a8edea",
+        "position": {
+          "x": 85.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": 2,
+        "name": "PRESENCE",
+        "title": "The Path of Awareness",
+        "description": "Explore presence through Chapter 2",
+        "content_preview": "This is the second chapter about developing awareness......",
+        "word_count": 8,
+        "color": "#4facfe",
+        "position": {
+          "x": 74.74873734152916,
+          "y": 74.74873734152916
+        }
+      },
+      {
+        "id": 3,
+        "name": "PRESENCE",
+        "title": "Living in the Present",
+        "description": "Explore presence through Chapter 3",
+        "content_preview": "This is the third chapter about mindfulness......",
+        "word_count": 7,
+        "color": "#4facfe",
+        "position": {
+          "x": 50.0,
+          "y": 85.0
+        }
+      }
+    ],
+    "status": "processed"
+  },
+  {
+    "id": "83ea6c95-d404-4340-a460-8e7f2e0ed21f",
+    "filename": "test_book_sample.txt",
+    "upload_date": "2025-08-04T10:37:42.489140",
+    "file_path": "uploads/books/83ea6c95-d404-4340-a460-8e7f2e0ed21f.txt",
+    "text_length": 1845,
+    "chapters": [
+      {
+        "id": 1,
+        "number": "1",
+        "title": "\u0397 \u0394\u03cd\u03bd\u03b1\u03bc\u03b7 \u03c4\u03bf\u03c5 \u03a4\u03ce\u03c1\u03b1",
+        "content": "\u0397 \u03c0\u03b1\u03c1\u03bf\u03cd\u03c3\u03b1 \u03c3\u03c4\u03b9\u03b3\u03bc\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03c4\u03bf \u03bc\u03cc\u03bd\u03bf \u03c0\u03bf\u03c5 \u03ad\u03c7\u03bf\u03c5\u03bc\u03b5 \u03c0\u03c1\u03b1\u03b3\u03bc\u03b1\u03c4\u03b9\u03ba\u03ac. \u038c\u03c4\u03b1\u03bd \u03bc\u03ac\u03b8\u03bf\u03c5\u03bc\u03b5 \u03bd\u03b1 \u03b6\u03bf\u03cd\u03bc\u03b5 \u03c3\u03c4\u03bf \u03c4\u03ce\u03c1\u03b1, \u03b1\u03bd\u03b1\u03ba\u03b1\u03bb\u03cd\u03c0\u03c4\u03bf\u03c5\u03bc\u03b5 \u03bc\u03b9\u03b1 \u03b1\u03bc\u03ad\u03c4\u03c1\u03b7\u03c4\u03b7 \u03c0\u03b7\u03b3\u03ae \u03b5\u03b9\u03c1\u03ae\u03bd\u03b7\u03c2 \u03ba\u03b1\u03b9 \u03c7\u03b1\u03c1\u03ac\u03c2. \u03a4\u03bf \u03bc\u03c5\u03b1\u03bb\u03cc \u03c3\u03c5\u03bd\u03b5\u03c7\u03ce\u03c2 \u03bc\u03b1\u03c2 \u03c0\u03b1\u03c1\u03b1\u03c3\u03cd\u03c1\u03b5\u03b9 \u03c3\u03c4\u03bf \u03c0\u03b1\u03c1\u03b5\u03bb\u03b8\u03cc\u03bd \u03ae \u03c4\u03bf \u03bc\u03ad\u03bb\u03bb\u03bf\u03bd, \u03b1\u03bb\u03bb\u03ac \u03b7 \u03b1\u03bb\u03b7\u03b8\u03b9\u03bd\u03ae \u03b6\u03c9\u03ae \u03c5\u03c0\u03ac\u03c1\u03c7\u03b5\u03b9 \u03bc\u03cc\u03bd\u03bf \u03c3\u03c4\u03b7\u03bd \u03c0\u03b1\u03c1\u03bf\u03cd\u03c3\u03b1 \u03c3\u03c4\u03b9\u03b3\u03bc\u03ae.\n\n\u03a0\u03c1\u03b1\u03ba\u03c4\u03b9\u03ba\u03ae \u0386\u03c3\u03ba\u03b7\u03c3\u03b7: \u03a3\u03c4\u03b1\u03bc\u03b1\u03c4\u03ae\u03c3\u03c4\u03b5 \u03b3\u03b9\u03b1 \u03ad\u03bd\u03b1 \u03bb\u03b5\u03c0\u03c4\u03cc \u03ba\u03b1\u03b9 \u03c0\u03b1\u03c1\u03b1\u03c4\u03b7\u03c1\u03ae\u03c3\u03c4\u03b5 \u03c4\u03b7\u03bd \u03b1\u03bd\u03b1\u03c0\u03bd\u03bf\u03ae \u03c3\u03b1\u03c2. \u039c\u03b7\u03bd \u03c4\u03b7\u03bd \u03b1\u03bb\u03bb\u03ac\u03be\u03b5\u03c4\u03b5, \u03b1\u03c0\u03bb\u03ce\u03c2 \u03c4\u03b7\u03bd \u03c0\u03b1\u03c1\u03b1\u03c4\u03b7\u03c1\u03b5\u03af\u03c4\u03b5. \u0391\u03c5\u03c4\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03b7 \u03c0\u03cd\u03bb\u03b7 \u03c0\u03c1\u03bf\u03c2 \u03c4\u03b7\u03bd \u03c0\u03b1\u03c1\u03bf\u03c5\u03c3\u03af\u03b1.",
+        "word_count": 65
+      },
+      {
+        "id": 2,
+        "number": "2",
+        "title": "\u0397 \u03a0\u03b1\u03c1\u03b1\u03c4\u03ae\u03c1\u03b7\u03c3\u03b7 \u03c4\u03c9\u03bd \u03a3\u03ba\u03ad\u03c8\u03b5\u03c9\u03bd",
+        "content": "\u0394\u03b5\u03bd \u03b5\u03af\u03bc\u03b1\u03c3\u03c4\u03b5 \u03bf\u03b9 \u03c3\u03ba\u03ad\u03c8\u03b5\u03b9\u03c2 \u03bc\u03b1\u03c2. \u0395\u03af\u03bc\u03b1\u03c3\u03c4\u03b5 \u03b7 \u03c3\u03c5\u03bd\u03b5\u03af\u03b4\u03b7\u03c3\u03b7 \u03c0\u03bf\u03c5 \u03c0\u03b1\u03c1\u03b1\u03c4\u03b7\u03c1\u03b5\u03af \u03c4\u03b9\u03c2 \u03c3\u03ba\u03ad\u03c8\u03b5\u03b9\u03c2. \u038c\u03c4\u03b1\u03bd \u03ba\u03b1\u03c4\u03b1\u03bd\u03bf\u03ae\u03c3\u03bf\u03c5\u03bc\u03b5 \u03b1\u03c5\u03c4\u03ae \u03c4\u03b7 \u03b4\u03b9\u03b1\u03c6\u03bf\u03c1\u03ac, \u03b1\u03c1\u03c7\u03af\u03b6\u03bf\u03c5\u03bc\u03b5 \u03bd\u03b1 \u03b1\u03c0\u03b5\u03bb\u03b5\u03c5\u03b8\u03b5\u03c1\u03ce\u03bd\u03bf\u03c5\u03bc\u03b5 \u03b1\u03c0\u03cc \u03c4\u03b7 \u03c3\u03c5\u03bd\u03b5\u03c7\u03ae \u03b5\u03c3\u03c9\u03c4\u03b5\u03c1\u03b9\u03ba\u03ae \u03bf\u03bc\u03b9\u03bb\u03af\u03b1 \u03c0\u03bf\u03c5 \u03bc\u03b1\u03c2 \u03b5\u03be\u03b1\u03bd\u03c4\u03bb\u03b5\u03af.\n\n\u0397 \u03c3\u03ba\u03ad\u03c8\u03b7 \u03b5\u03af\u03bd\u03b1\u03b9 \u03b5\u03c1\u03b3\u03b1\u03bb\u03b5\u03af\u03bf, \u03cc\u03c7\u03b9 \u03b1\u03c6\u03b5\u03bd\u03c4\u03b9\u03ba\u03cc. \u039c\u03ac\u03b8\u03b5\u03c4\u03b5 \u03bd\u03b1 \u03c4\u03b7\u03bd \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 \u03cc\u03c4\u03b1\u03bd \u03c4\u03b7 \u03c7\u03c1\u03b5\u03b9\u03ac\u03b6\u03b5\u03c3\u03c4\u03b5 \u03ba\u03b1\u03b9 \u03bd\u03b1 \u03c4\u03b7\u03bd \u03b1\u03c6\u03ae\u03bd\u03b5\u03c4\u03b5 \u03cc\u03c4\u03b1\u03bd \u03b4\u03b5\u03bd \u03c4\u03b7\u03bd \u03c7\u03c1\u03b5\u03b9\u03ac\u03b6\u03b5\u03c3\u03c4\u03b5.",
+        "word_count": 49
+      },
+      {
+        "id": 3,
+        "number": "3",
+        "title": "\u03a4\u03bf \u03a0\u03ad\u03c0\u03bb\u03bf \u03c4\u03b7\u03c2 \u03a8\u03b5\u03c5\u03b4\u03b1\u03af\u03c3\u03b8\u03b7\u03c3\u03b7\u03c2",
+        "content": "\u03a4\u03bf \u03b5\u03b3\u03ce \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03b5\u03af \u03ad\u03bd\u03b1 \u03c0\u03ad\u03c0\u03bb\u03bf \u03c8\u03b5\u03c5\u03b4\u03b1\u03af\u03c3\u03b8\u03b7\u03c3\u03b7\u03c2 \u03c0\u03bf\u03c5 \u03bc\u03b1\u03c2 \u03ba\u03c1\u03b1\u03c4\u03ac \u03b1\u03b9\u03c7\u03bc\u03ac\u03bb\u03c9\u03c4\u03bf\u03c5\u03c2 \u03c3\u03b5 \u03c0\u03b1\u03bb\u03b9\u03ac \u03bc\u03bf\u03c4\u03af\u03b2\u03b1 \u03c3\u03ba\u03ad\u03c8\u03b7\u03c2 \u03ba\u03b1\u03b9 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03c6\u03bf\u03c1\u03ac\u03c2. \u0393\u03b9\u03b1 \u03bd\u03b1 \u03b2\u03c1\u03bf\u03cd\u03bc\u03b5 \u03c4\u03b7\u03bd \u03b1\u03bb\u03b7\u03b8\u03b9\u03bd\u03ae \u03bc\u03b1\u03c2 \u03c6\u03cd\u03c3\u03b7, \u03c0\u03c1\u03ad\u03c0\u03b5\u03b9 \u03bd\u03b1 \u03b4\u03bf\u03cd\u03bc\u03b5 \u03c0\u03ad\u03c1\u03b1 \u03b1\u03c0\u03cc \u03b1\u03c5\u03c4\u03cc \u03c4\u03bf \u03c0\u03ad\u03c0\u03bb\u03bf.\n\n\u039a\u03ac\u03b8\u03b5 \u03c6\u03bf\u03c1\u03ac \u03c0\u03bf\u03c5 \u03bd\u03b9\u03ce\u03b8\u03b5\u03c4\u03b5 \u03ac\u03b3\u03c7\u03bf\u03c2 \u03ae \u03c3\u03c4\u03c1\u03b5\u03c2, \u03c1\u03c9\u03c4\u03ae\u03c3\u03c4\u03b5 \u03c4\u03bf\u03bd \u03b5\u03b1\u03c5\u03c4\u03cc \u03c3\u03b1\u03c2: \"\u03a0\u03bf\u03b9\u03bf\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c5\u03c4\u03cc\u03c2 \u03c0\u03bf\u03c5 \u03b1\u03b9\u03c3\u03b8\u03ac\u03bd\u03b5\u03c4\u03b1\u03b9 \u03ac\u03b3\u03c7\u03bf\u03c2;\" \u0391\u03c5\u03c4\u03ae \u03b7 \u03b5\u03c1\u03ce\u03c4\u03b7\u03c3\u03b7 \u03bc\u03b1\u03c2 \u03bf\u03b4\u03b7\u03b3\u03b5\u03af \u03c0\u03af\u03c3\u03c9 \u03c3\u03c4\u03b7\u03bd \u03c0\u03b7\u03b3\u03ae \u03c4\u03b7\u03c2 \u03c3\u03c5\u03bd\u03b5\u03af\u03b4\u03b7\u03c3\u03b7\u03c2.",
+        "word_count": 58
+      },
+      {
+        "id": 4,
+        "number": "4",
+        "title": "\u0397 \u0391\u03c0\u03bf\u03b4\u03bf\u03c7\u03ae \u03c4\u03b7\u03c2 \u03a0\u03c1\u03b1\u03b3\u03bc\u03b1\u03c4\u03b9\u03ba\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2",
+        "content": "\u0397 \u03b1\u03bd\u03c4\u03af\u03c3\u03c4\u03b1\u03c3\u03b7 \u03c0\u03c1\u03bf\u03c2 \u03cc,\u03c4\u03b9 \u03c3\u03c5\u03bc\u03b2\u03b1\u03af\u03bd\u03b5\u03b9 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03b5\u03af \u03b4\u03c5\u03c3\u03c4\u03c5\u03c7\u03af\u03b1. \u0397 \u03b1\u03c0\u03bf\u03b4\u03bf\u03c7\u03ae \u03b4\u03b5\u03bd \u03c3\u03b7\u03bc\u03b1\u03af\u03bd\u03b5\u03b9 \u03c0\u03b1\u03c1\u03ac\u03b4\u03bf\u03c3\u03b7, \u03b1\u03bb\u03bb\u03ac \u03b1\u03bd\u03b1\u03b3\u03bd\u03ce\u03c1\u03b9\u03c3\u03b7 \u03c4\u03b7\u03c2 \u03c0\u03c1\u03b1\u03b3\u03bc\u03b1\u03c4\u03b9\u03ba\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03cc\u03c0\u03c9\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c5\u03c4\u03ae \u03c4\u03b7 \u03c3\u03c4\u03b9\u03b3\u03bc\u03ae.\n\n\u0391\u03c0\u03cc \u03b1\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03b7\u03bc\u03b5\u03af\u03bf \u03b1\u03c0\u03bf\u03b4\u03bf\u03c7\u03ae\u03c2, \u03bc\u03c0\u03bf\u03c1\u03bf\u03cd\u03bc\u03b5 \u03bd\u03b1 \u03b4\u03c1\u03ac\u03c3\u03bf\u03c5\u03bc\u03b5 \u03bc\u03b5 \u03c3\u03b1\u03c6\u03ae\u03bd\u03b5\u03b9\u03b1 \u03ba\u03b1\u03b9 \u03c3\u03bf\u03c6\u03af\u03b1, \u03b1\u03bd\u03c4\u03af \u03bc\u03b5 \u03b1\u03bd\u03c4\u03af\u03b4\u03c1\u03b1\u03c3\u03b7 \u03ba\u03b1\u03b9 \u03b8\u03c5\u03bc\u03cc.",
+        "word_count": 38
+      },
+      {
+        "id": 5,
+        "number": "5",
+        "title": "\u0397 \u0395\u03c3\u03c9\u03c4\u03b5\u03c1\u03b9\u03ba\u03ae \u0397\u03c3\u03c5\u03c7\u03af\u03b1",
+        "content": "\u039c\u03ad\u03c3\u03b1 \u03c3\u03b5 \u03ba\u03ac\u03b8\u03b5 \u03ac\u03bd\u03b8\u03c1\u03c9\u03c0\u03bf \u03c5\u03c0\u03ac\u03c1\u03c7\u03b5\u03b9 \u03ad\u03bd\u03b1\u03c2 \u03c7\u03ce\u03c1\u03bf\u03c2 \u03b1\u03c0\u03cc\u03bb\u03c5\u03c4\u03b7\u03c2 \u03b7\u03c3\u03c5\u03c7\u03af\u03b1\u03c2. \u0391\u03c5\u03c4\u03cc\u03c2 \u03bf \u03c7\u03ce\u03c1\u03bf\u03c2 \u03b4\u03b5\u03bd \u03b5\u03c0\u03b7\u03c1\u03b5\u03ac\u03b6\u03b5\u03c4\u03b1\u03b9 \u03b1\u03c0\u03cc \u03c4\u03b9\u03c2 \u03b5\u03be\u03c9\u03c4\u03b5\u03c1\u03b9\u03ba\u03ad\u03c2 \u03c3\u03c5\u03bd\u03b8\u03ae\u03ba\u03b5\u03c2. \u0395\u03af\u03bd\u03b1\u03b9 \u03b7 \u03c0\u03b7\u03b3\u03ae \u03c4\u03b7\u03c2 \u03c0\u03c1\u03b1\u03b3\u03bc\u03b1\u03c4\u03b9\u03ba\u03ae\u03c2 \u03b5\u03b9\u03c1\u03ae\u03bd\u03b7\u03c2 \u03ba\u03b1\u03b9 \u03c3\u03bf\u03c6\u03af\u03b1\u03c2.\n\n\u039c\u03ac\u03b8\u03b5\u03c4\u03b5 \u03bd\u03b1 \u03b5\u03c0\u03b9\u03c3\u03c4\u03c1\u03ad\u03c6\u03b5\u03c4\u03b5 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03cc\u03bd \u03c4\u03bf\u03bd \u03c7\u03ce\u03c1\u03bf \u03ba\u03b1\u03b8\u03b7\u03bc\u03b5\u03c1\u03b9\u03bd\u03ac \u03bc\u03ad\u03c3\u03c9 \u03c4\u03bf\u03c5 \u03b4\u03b9\u03b1\u03bb\u03bf\u03b3\u03b9\u03c3\u03bc\u03bf\u03cd, \u03c4\u03b7\u03c2 \u03c0\u03c1\u03bf\u03c3\u03bf\u03c7\u03ae\u03c2, \u03ae \u03b1\u03c0\u03bb\u03ce\u03c2 \u03c4\u03b7\u03c2 \u03c3\u03c5\u03bd\u03b5\u03b9\u03b4\u03b7\u03c4\u03ae\u03c2 \u03b1\u03bd\u03b1\u03c0\u03bd\u03bf\u03ae\u03c2.",
+        "word_count": 44
+      }
+    ],
+    "book_data": {
+      "title": "Test Book Sample",
+      "author": "Detected Author Name",
+      "summary": "\u03a4\u03bf \u0394\u03ce\u03c1\u03bf \u03c4\u03b7\u03c2 \u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03af\u03b1\u03c2: \u0388\u03bd\u03b1 \u0392\u03b9\u03b2\u03bb\u03af\u03bf \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03a0\u03bd\u03b5\u03c5\u03bc\u03b1\u03c4\u03b9\u03ba\u03ae \u0391\u03bd\u03ac\u03c0\u03c4\u03c5\u03be\u03b7",
+      "total_chapters": 5,
+      "word_count": 293,
+      "language": "Greek",
+      "genre": "Spiritual Development"
+    },
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "The Power of Now",
+        "title": "\u0397 \u0394\u03cd\u03bd\u03b1\u03bc\u03b7 \u03c4\u03bf\u03c5 \u03a4\u03ce\u03c1\u03b1",
+        "chapter_number": "1",
+        "description": "\u0397 \u03c0\u03b1\u03c1\u03bf\u03cd\u03c3\u03b1 \u03c3\u03c4\u03b9\u03b3\u03bc\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03c4\u03bf \u03bc\u03cc\u03bd\u03bf \u03c0\u03bf\u03c5 \u03ad\u03c7\u03bf\u03c5\u03bc\u03b5 \u03c0\u03c1\u03b1\u03b3\u03bc\u03b1\u03c4\u03b9\u03ba\u03ac. \u038c\u03c4\u03b1\u03bd \u03bc\u03ac\u03b8\u03bf\u03c5\u03bc\u03b5 \u03bd\u03b1 \u03b6\u03bf\u03cd\u03bc\u03b5 \u03c3\u03c4\u03bf \u03c4\u03ce\u03c1\u03b1, \u03b1\u03bd\u03b1\u03ba\u03b1\u03bb\u03cd\u03c0\u03c4\u03bf\u03c5\u03bc\u03b5 \u03bc\u03b9\u03b1 \u03b1\u03bc\u03ad\u03c4\u03c1\u03b7\u03c4\u03b7 \u03c0\u03b7\u03b3\u03ae \u03b5\u03b9\u03c1\u03ae\u03bd\u03b7\u03c2 \u03ba\u03b1\u03b9 \u03c7\u03b1\u03c1\u03ac\u03c2.",
+        "core_message": "Live in the present moment to find peace.",
+        "agent_personality": "Calm and grounding",
+        "hrv_guidance": "Encourages lowering stress by focusing on the present.",
+        "biofeedback_goals": [
+          "coherence",
+          "calmness",
+          "focus"
+        ],
+        "interaction_style": "contemplative",
+        "color": "#4facfe",
+        "symbol": "\ud83e\uddd8\u200d\u2642\ufe0f",
+        "geometric_pattern": "circle",
+        "responses": {
+          "high_stress": "Take a deep breath and focus on the now.",
+          "low_coherence": "Remember, the present moment is your anchor.",
+          "balanced": "Continue to embrace the now for deeper peace.",
+          "focused": "Great focus! Keep your awareness in the present."
+        },
+        "content_essence": "The present moment is the gateway to true life."
+      },
+      {
+        "id": 2,
+        "name": "Observing Thoughts",
+        "title": "\u0397 \u03a0\u03b1\u03c1\u03b1\u03c4\u03ae\u03c1\u03b7\u03c3\u03b7 \u03c4\u03c9\u03bd \u03a3\u03ba\u03ad\u03c8\u03b5\u03c9\u03bd",
+        "chapter_number": "2",
+        "description": "\u0394\u03b5\u03bd \u03b5\u03af\u03bc\u03b1\u03c3\u03c4\u03b5 \u03bf\u03b9 \u03c3\u03ba\u03ad\u03c8\u03b5\u03b9\u03c2 \u03bc\u03b1\u03c2. \u0395\u03af\u03bc\u03b1\u03c3\u03c4\u03b5 \u03b7 \u03c3\u03c5\u03bd\u03b5\u03af\u03b4\u03b7\u03c3\u03b7 \u03c0\u03bf\u03c5 \u03c0\u03b1\u03c1\u03b1\u03c4\u03b7\u03c1\u03b5\u03af \u03c4\u03b9\u03c2 \u03c3\u03ba\u03ad\u03c8\u03b5\u03b9\u03c2.",
+        "core_message": "Recognize the difference between thoughts and consciousness.",
+        "agent_personality": "Observant and insightful",
+        "hrv_guidance": "Promotes detachment from stressful thoughts.",
+        "biofeedback_goals": [
+          "coherence",
+          "calmness",
+          "focus"
+        ],
+        "interaction_style": "analytical",
+        "color": "#ff9a9e",
+        "symbol": "\ud83e\udde0",
+        "geometric_pattern": "triangle",
+        "responses": {
+          "high_stress": "Notice your thoughts without judgment.",
+          "low_coherence": "Remember, you are not your thoughts.",
+          "balanced": "Well done! Keep observing your thoughts.",
+          "focused": "Your focus on detachment is commendable."
+        },
+        "content_essence": "We are the observers of our thoughts, not the thoughts themselves."
+      },
+      {
+        "id": 3,
+        "name": "Illusion of the Ego",
+        "title": "\u03a4\u03bf \u03a0\u03ad\u03c0\u03bb\u03bf \u03c4\u03b7\u03c2 \u03a8\u03b5\u03c5\u03b4\u03b1\u03af\u03c3\u03b8\u03b7\u03c3\u03b7\u03c2",
+        "chapter_number": "3",
+        "description": "\u03a4\u03bf \u03b5\u03b3\u03ce \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03b5\u03af \u03ad\u03bd\u03b1 \u03c0\u03ad\u03c0\u03bb\u03bf \u03c8\u03b5\u03c5\u03b4\u03b1\u03af\u03c3\u03b8\u03b7\u03c3\u03b7\u03c2 \u03c0\u03bf\u03c5 \u03bc\u03b1\u03c2 \u03ba\u03c1\u03b1\u03c4\u03ac \u03b1\u03b9\u03c7\u03bc\u03ac\u03bb\u03c9\u03c4\u03bf\u03c5\u03c2.",
+        "core_message": "See beyond the ego's illusions to find true self.",
+        "agent_personality": "Insightful and liberating",
+        "hrv_guidance": "Helps reduce stress by questioning ego-driven anxiety.",
+        "biofeedback_goals": [
+          "coherence",
+          "calmness",
+          "awareness"
+        ],
+        "interaction_style": "motivational",
+        "color": "#fbc2eb",
+        "symbol": "\ud83d\udd0d",
+        "geometric_pattern": "square",
+        "responses": {
+          "high_stress": "Ask yourself: Who feels this stress?",
+          "low_coherence": "Investigate the ego's role in your feelings.",
+          "balanced": "Great awareness! Keep questioning the ego.",
+          "focused": "Your focus on self-discovery is inspiring."
+        },
+        "content_essence": "The ego's veil can be lifted by recognizing its illusions."
+      },
+      {
+        "id": 4,
+        "name": "Acceptance of Reality",
+        "title": "\u0397 \u0391\u03c0\u03bf\u03b4\u03bf\u03c7\u03ae \u03c4\u03b7\u03c2 \u03a0\u03c1\u03b1\u03b3\u03bc\u03b1\u03c4\u03b9\u03ba\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2",
+        "chapter_number": "4",
+        "description": "\u0397 \u03b1\u03bd\u03c4\u03af\u03c3\u03c4\u03b1\u03c3\u03b7 \u03c0\u03c1\u03bf\u03c2 \u03cc,\u03c4\u03b9 \u03c3\u03c5\u03bc\u03b2\u03b1\u03af\u03bd\u03b5\u03b9 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03b5\u03af \u03b4\u03c5\u03c3\u03c4\u03c5\u03c7\u03af\u03b1.",
+        "core_message": "Acceptance leads to clarity and wisdom.",
+        "agent_personality": "Accepting and wise",
+        "hrv_guidance": "Encourages acceptance to reduce stress and resistance.",
+        "biofeedback_goals": [
+          "calmness",
+          "acceptance",
+          "clarity"
+        ],
+        "interaction_style": "compassionate",
+        "color": "#a18cd1",
+        "symbol": "\ud83c\udf3f",
+        "geometric_pattern": "hexagon",
+        "responses": {
+          "high_stress": "Accept what is, and let go of resistance.",
+          "low_coherence": "Recognize and accept your current state.",
+          "balanced": "Your acceptance nurtures inner peace.",
+          "focused": "Stay focused on accepting reality as it is."
+        },
+        "content_essence": "True clarity arises from accepting reality without resistance."
+      },
+      {
+        "id": 5,
+        "name": "Inner Silence",
+        "title": "\u0397 \u0395\u03c3\u03c9\u03c4\u03b5\u03c1\u03b9\u03ba\u03ae \u0397\u03c3\u03c5\u03c7\u03af\u03b1",
+        "chapter_number": "5",
+        "description": "\u039c\u03ad\u03c3\u03b1 \u03c3\u03b5 \u03ba\u03ac\u03b8\u03b5 \u03ac\u03bd\u03b8\u03c1\u03c9\u03c0\u03bf \u03c5\u03c0\u03ac\u03c1\u03c7\u03b5\u03b9 \u03ad\u03bd\u03b1\u03c2 \u03c7\u03ce\u03c1\u03bf\u03c2 \u03b1\u03c0\u03cc\u03bb\u03c5\u03c4\u03b7\u03c2 \u03b7\u03c3\u03c5\u03c7\u03af\u03b1\u03c2.",
+        "core_message": "Find peace in the inner silence within.",
+        "agent_personality": "Peaceful and serene",
+        "hrv_guidance": "Promotes inner calm by connecting with silence.",
+        "biofeedback_goals": [
+          "inner peace",
+          "serenity",
+          "focus"
+        ],
+        "interaction_style": "contemplative",
+        "color": "#f6d365",
+        "symbol": "\ud83d\udd4a\ufe0f",
+        "geometric_pattern": "oval",
+        "responses": {
+          "high_stress": "Return to the silence within.",
+          "low_coherence": "Seek the quiet space inside you.",
+          "balanced": "Your connection to inner peace is strong.",
+          "focused": "Continue focusing on your inner silence."
+        },
+        "content_essence": "The inner silence is unaffected by external conditions."
+      }
+    ]
+  },
+  {
+    "id": "b9ccb22d-e07b-41e9-9bff-1020ad108735",
+    "title": "Test",
+    "filename": "TEST.txt",
+    "upload_date": "2025-08-08T16:56:58.920414",
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Book Center",
+        "color": "#4facfe"
+      }
+    ]
+  },
+  {
+    "id": "8f53118f-98ef-471e-a182-a3f1da0f2c0b",
+    "title": "Test",
+    "filename": "TEST.txt",
+    "upload_date": "2025-08-08T17:12:18.549905",
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Book Center",
+        "color": "#4facfe"
+      }
+    ]
+  },
+  {
+    "id": "e255947a-4d5e-46e0-8910-39e5dba74d41",
+    "title": "Test",
+    "filename": "TEST.txt",
+    "upload_date": "2025-08-08T17:32:54.571022",
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Book Center",
+        "color": "#4facfe"
+      }
+    ]
+  },
+  {
+    "id": "14319856-eda3-4ffb-b9c7-0d13122b897a",
+    "title": "Test",
+    "filename": "TEST.txt",
+    "upload_date": "2025-08-08T17:47:37.675117",
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Book Center",
+        "color": "#4facfe"
+      }
+    ]
+  },
+  {
+    "id": "abfa5c4b-732d-470a-9d6a-faed83f9e8d4",
+    "title": "Test",
+    "filename": "TEST.txt",
+    "upload_date": "2025-08-10T16:13:43.591112",
+    "book_centers": [
+      {
+        "id": 1,
+        "name": "PRESENCE",
+        "title": "Book Center",
+        "color": "#4facfe"
+      }
+    ]
+  }
+]

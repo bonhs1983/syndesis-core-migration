@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syndesis API Test Interface</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Chat με τον Agent</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="messageInput" class="form-label">Μήνυμα:</label>
+                            <input type="text" class="form-control" id="messageInput" 
+                                   placeholder="π.χ. Νιώθω άγχος" value="Νιώθω άγχος">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sessionInput" class="form-label">Session ID (προαιρετικό):</label>
+                            <input type="text" class="form-control" id="sessionInput" 
+                                   placeholder="test_session">
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="sendMessage()">
+                            Στείλε Μήνυμα
+                        </button>
+                    </div>
+                </div>
+                
+                <h3 class="mt-4">Bulk Import</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="bulkData" class="form-label">JSON Data:</label>
+                            <textarea class="form-control" id="bulkData" rows="6">
+[
+  {
+    "prompt": "Τεστ μήνυμα 1",
+    "response": "Τεστ απάντηση 1"
+  },
+  {
+    "prompt": "Τεστ μήνυμα 2", 
+    "response": "Τεστ απάντηση 2"
+  }
+]</textarea>
+                        </div>
+                        <button type="button" class="btn btn-success" onclick="bulkImport()">
+                            Bulk Import
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <h3>Αποτελέσματα</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <pre id="results" class="bg-dark text-light p-3 rounded" style="max-height: 400px; overflow-y: auto;"></pre>
+                    </div>
+                </div>
+                
+                <h3 class="mt-4">Ενέργειες Pipeline</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <button type="button" class="btn btn-info me-2" onclick="getInteractions()">
+                            Δες Αλληλεπιδράσεις
+                        </button>
+                        <button type="button" class="btn btn-warning me-2" onclick="exportDataset()">
+                            Export Dataset
+                        </button>
+                        <button type="button" class="btn btn-danger" onclick="startTraining()">
+                            Ξεκίνα Training
+                        </button>
+                    </div>
+                </div>
+                
+                <h3 class="mt-4">Status</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <button type="button" class="btn btn-secondary" onclick="healthCheck()">
+                            Health Check
+                        </button>
+                        <div id="status" class="mt-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+        
+        function logResult(title, data) {
+            const results = document.getElementById('results');
+            const timestamp = new Date().toLocaleString('el-GR');
+            results.textContent += `[${timestamp}] ${title}:\n${JSON.stringify(data, null, 2)}\n\n`;
+            results.scrollTop = results.scrollHeight;
+        }
+        
+        function updateStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            const alertClass = type === 'success' ? 'alert-success' : 
+                              type === 'error' ? 'alert-danger' : 'alert-info';
+            status.innerHTML = `<div class="alert ${alertClass}">${message}</div>`;
+        }
+        
+        async function sendMessage() {
+            const message = document.getElementById('messageInput').value;
+            const sessionId = document.getElementById('sessionInput').value;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/agent/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        session_id: sessionId || undefined
+                    })
+                });
+                
+                const data = await response.json();
+                logResult('Agent Chat Response', data);
+                updateStatus('Μήνυμα στάλθηκε επιτυχώς!', 'success');
+            } catch (error) {
+                logResult('Error', { error: error.message });
+                updateStatus('Σφάλμα κατά την αποστολή μηνύματος', 'error');
+            }
+        }
+        
+        async function bulkImport() {
+            const bulkData = document.getElementById('bulkData').value;
+            
+            try {
+                const interactions = JSON.parse(bulkData);
+                
+                const response = await fetch(`${API_BASE}/api/bulk_import`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        interactions: interactions
+                    })
+                });
+                
+                const data = await response.json();
+                logResult('Bulk Import Response', data);
+                updateStatus(`Εισήχθησαν ${data.imported_count} αλληλεπιδράσεις`, 'success');
+            } catch (error) {
+                logResult('Error', { error: error.message });
+                updateStatus('Σφάλμα κατά το bulk import', 'error');
+            }
+        }
+        
+        async function getInteractions() {
+            try {
+                const response = await fetch(`${API_BASE}/api/interactions?limit=5`);
+                const data = await response.json();
+                logResult('Recent Interactions', data);
+                updateStatus(`Συνολικά: ${data.total_count} αλληλεπιδράσεις`, 'info');
+            } catch (error) {
+                logResult('Error', { error: error.message });
+                updateStatus('Σφάλμα κατά τη λήψη αλληλεπιδράσεων', 'error');
+            }
+        }
+        
+        async function exportDataset() {
+            try {
+                const response = await fetch(`${API_BASE}/api/pipeline/export`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        min_interactions: 5
+                    })
+                });
+                
+                const data = await response.json();
+                logResult('Export Dataset Response', data);
+                updateStatus(data.message, data.status === 'success' ? 'success' : 'error');
+            } catch (error) {
+                logResult('Error', { error: error.message });
+                updateStatus('Σφάλμα κατά το export', 'error');
+            }
+        }
+        
+        async function startTraining() {
+            try {
+                const response = await fetch(`${API_BASE}/api/pipeline/train`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        epochs: 1,
+                        model_name: 'syndesis-test-model'
+                    })
+                });
+                
+                const data = await response.json();
+                logResult('Start Training Response', data);
+                updateStatus(data.message, data.status === 'success' ? 'success' : 'error');
+            } catch (error) {
+                logResult('Error', { error: error.message });
+                updateStatus('Σφάλμα κατά την εκκίνηση training', 'error');
+            }
+        }
+        
+        async function healthCheck() {
+            try {
+                const response = await fetch(`${API_BASE}/api/health`);
+                const data = await response.json();
+                logResult('Health Check Response', data);
+                updateStatus(`Status: ${data.status} - ${data.total_interactions} αλληλεπιδράσεις`, 
+                           data.status === 'healthy' ? 'success' : 'error');
+            } catch (error) {
+                logResult('Error', { error: error.message });
+                updateStatus('Σφάλμα κατά τον έλεγχο υγείας', 'error');
+            }
+        }
+        
+        // Auto health check on load
+        window.addEventListener('load', healthCheck);
+    </script>
+</body>
+</html>

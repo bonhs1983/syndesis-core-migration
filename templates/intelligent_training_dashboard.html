@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Training System - AI Model Optimization</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f1419, #1a1a2e, #16213e);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, rgba(15, 20, 25, 0.9), rgba(26, 26, 46, 0.9));
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 2px solid rgba(0, 123, 255, 0.3);
+        }
+        .training-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .training-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 123, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
+        }
+        .insight-metric {
+            background: linear-gradient(45deg, rgba(0, 123, 255, 0.2), rgba(40, 167, 69, 0.2));
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #007bff, #28a745);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .recommendation-item {
+            background: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid #28a745;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+        }
+        .priority-high {
+            border-left-color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+        }
+        .priority-medium {
+            border-left-color: #ffc107;
+            background: rgba(255, 193, 7, 0.1);
+        }
+        .trait-bar {
+            height: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+            position: relative;
+        }
+        .trait-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #007bff, #28a745, #ffc107);
+            border-radius: 12px;
+            transition: width 0.8s ease;
+            position: relative;
+        }
+        .trait-label {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        .action-button {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
+            background: linear-gradient(45deg, #0056b3, #004085);
+        }
+        .analysis-loading {
+            text-align: center;
+            padding: 3rem;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 123, 255, 0.3);
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .success-alert {
+            background: rgba(40, 167, 69, 0.2);
+            border: 1px solid #28a745;
+            color: #28a745;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">
+                <i class="fas fa-brain text-primary"></i>
+                Intelligent Training System
+            </h1>
+            <p class="lead mb-4">
+                Revolutionary AI training optimization based on real conversation statistics and user engagement patterns
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <button class="action-button" onclick="analyzePatterns()">
+                    <i class="fas fa-chart-line"></i> Analyze Patterns
+                </button>
+                <button class="action-button" onclick="createDataset()">
+                    <i class="fas fa-database"></i> Create Dataset
+                </button>
+                <button class="action-button" onclick="getInsights()">
+                    <i class="fas fa-lightbulb"></i> Get Insights
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container py-5">
+        <!-- Analysis Results -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="training-card">
+                    <h3 class="mb-4">
+                        <i class="fas fa-analytics text-primary"></i> 
+                        Conversation Pattern Analysis
+                    </h3>
+                    <div id="analysisContent">
+                        <div class="analysis-loading">
+                            <p class="text-muted">Click "Analyze Patterns" to start intelligent analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Training Insights -->
+        <div class="row mb-5">
+            <div class="col-lg-6">
+                <div class="training-card">
+                    <h4 class="mb-3">
+                        <i class="fas fa-target text-success"></i> 
+                        Training Recommendations
+                    </h4>
+                    <div id="recommendationsContent">
+                        <p class="text-muted">Analysis required to generate recommendations</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="training-card">
+                    <h4 class="mb-3">
+                        <i class="fas fa-chart-bar text-warning"></i> 
+                        Performance Metrics
+                    </h4>
+                    <div id="metricsContent">
+                        <p class="text-muted">Click "Get Insights" to load performance data</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personality Insights -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="training-card">
+                    <h4 class="mb-4">
+                        <i class="fas fa-users text-info"></i> 
+                        Personality Profile Analysis
+                    </h4>
+                    <div id="personalityContent">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Average Trait Levels</h6>
+                                <div class="trait-bar">
+                                    <div class="trait-fill" id="empathy-bar" style="width: 50%">
+                                        <span class="trait-label">Empathy: 0.5</span>
+                                    </div>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-fill" id="creativity-bar" style="width: 50%">
+                                        <span class="trait-label">Creativity: 0.5</span>
+                                    </div>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-fill" id="humor-bar" style="width: 40%">
+                                        <span class="trait-label">Humor: 0.4</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="trait-bar">
+                                    <div class="trait-fill" id="curiosity-bar" style="width: 50%">
+                                        <span class="trait-label">Curiosity: 0.5</span>
+                                    </div>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-fill" id="support-bar" style="width: 50%">
+                                        <span class="trait-label">Supportiveness: 0.5</span>
+                                    </div>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-fill" id="analytical-bar" style="width: 50%">
+                                        <span class="trait-label">Analytical: 0.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dataset Creation -->
+        <div class="row">
+            <div class="col-12">
+                <div class="training-card">
+                    <h4 class="mb-3">
+                        <i class="fas fa-cogs text-primary"></i> 
+                        Dataset Creation Status
+                    </h4>
+                    <div id="datasetContent">
+                        <p class="text-muted">No dataset created yet. Click "Create Dataset" to generate optimized training data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let analysisData = null;
+
+        async function analyzePatterns() {
+            const content = document.getElementById('analysisContent');
+            content.innerHTML = `
+                <div class="analysis-loading">
+                    <div class="spinner mx-auto"></div>
+                    <p class="mt-3">Analyzing conversation patterns...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch('/api/training/analyze');
+                const data = await response.json();
+                analysisData = data;
+
+                if (data.error) {
+                    content.innerHTML = `<div class="alert alert-danger">Error: ${data.error}</div>`;
+                    return;
+                }
+
+                const insights = data.personality_insights;
+                const recommendations = data.training_recommendations;
+
+                // Update personality bars
+                updatePersonalityBars(insights);
+                
+                // Display analysis results
+                content.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="insight-metric">
+                                <div class="metric-number">${insights.total_sessions}</div>
+                                <small>Total Sessions Analyzed</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="insight-metric">
+                                <div class="metric-number">${insights.avg_interactions_per_session.toFixed(1)}</div>
+                                <small>Avg Interactions/Session</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="insight-metric">
+                                <div class="metric-number">${(insights.avg_relationship_depth * 100).toFixed(1)}%</div>
+                                <small>Relationship Engagement</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h6>Successful Personality Combinations:</h6>
+                        <div class="pattern-grid">
+                            ${data.successful_personality_combinations.slice(0, 6).map(combo => `
+                                <div class="insight-metric">
+                                    <small>E:${combo.empathy} C:${combo.creativity} H:${combo.humor}</small>
+                                    <div class="metric-number" style="font-size: 1.5rem;">${(combo.relationship_success * 100).toFixed(0)}%</div>
+                                    <small>Success Rate (${combo.frequency} uses)</small>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                // Update recommendations
+                updateRecommendations(recommendations);
+
+            } catch (error) {
+                content.innerHTML = `<div class="alert alert-danger">Error analyzing patterns: ${error.message}</div>`;
+            }
+        }
+
+        async function createDataset() {
+            const content = document.getElementById('datasetContent');
+            content.innerHTML = `
+                <div class="analysis-loading">
+                    <div class="spinner mx-auto"></div>
+                    <p class="mt-3">Creating optimized training dataset...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch('/api/training/create_dataset', { method: 'POST' });
+                const data = await response.json();
+
+                if (data.error) {
+                    content.innerHTML = `<div class="alert alert-danger">Error: ${data.error}</div>`;
+                    return;
+                }
+
+                content.innerHTML = `
+                    <div class="success-alert">
+                        <h6><i class="fas fa-check-circle"></i> Dataset Created Successfully!</h6>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <strong>${data.total_entries}</strong><br>
+                                <small>Training Entries</small>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>${data.avg_quality_score.toFixed(2)}</strong><br>
+                                <small>Avg Quality Score</small>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>${data.quality_threshold}</strong><br>
+                                <small>Quality Threshold</small>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>High</strong><br>
+                                <small>Dataset Quality</small>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0">
+                            <i class="fas fa-file-alt"></i> 
+                            Dataset saved to: <code>${data.dataset_path}</code>
+                        </p>
+                    </div>
+                `;
+
+            } catch (error) {
+                content.innerHTML = `<div class="alert alert-danger">Error creating dataset: ${error.message}</div>`;
+            }
+        }
+
+        async function getInsights() {
+            const content = document.getElementById('metricsContent');
+            content.innerHTML = `
+                <div class="analysis-loading">
+                    <div class="spinner mx-auto" style="width: 20px; height: 20px;"></div>
+                    <p class="mt-2">Loading insights...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch('/api/training/insights');
+                const data = await response.json();
+
+                if (data.error) {
+                    content.innerHTML = `<div class="alert alert-danger">Error: ${data.error}</div>`;
+                    return;
+                }
+
+                const recent = data.recent_performance;
+                content.innerHTML = `
+                    <div class="insight-metric">
+                        <div class="metric-number">${recent.interactions_24h}</div>
+                        <small>Interactions (24h)</small>
+                    </div>
+                    <div class="insight-metric">
+                        <div class="metric-number">${recent.active_users}</div>
+                        <small>Active Users</small>
+                    </div>
+                    <div class="insight-metric">
+                        <div class="metric-number">${recent.avg_response_quality.toFixed(0)}</div>
+                        <small>Avg Response Length</small>
+                    </div>
+                    <div class="insight-metric">
+                        <div class="metric-number">${(recent.avg_engagement * 100).toFixed(1)}%</div>
+                        <small>Engagement Score</small>
+                    </div>
+                    <div class="mt-3">
+                        <strong>Training Priority:</strong><br>
+                        <span class="text-warning">${data.training_priority}</span>
+                    </div>
+                `;
+
+            } catch (error) {
+                content.innerHTML = `<div class="alert alert-danger">Error loading insights: ${error.message}</div>`;
+            }
+        }
+
+        function updatePersonalityBars(insights) {
+            const traits = ['empathy', 'creativity', 'humor', 'curiosity', 'support', 'analytical'];
+            const values = [
+                insights.avg_empathy,
+                insights.avg_creativity, 
+                insights.avg_humor,
+                insights.avg_curiosity,
+                insights.avg_supportiveness,
+                insights.avg_analytical
+            ];
+
+            traits.forEach((trait, index) => {
+                const bar = document.getElementById(`${trait}-bar`);
+                const label = bar.querySelector('.trait-label');
+                const percentage = (values[index] * 100);
+                
+                bar.style.width = percentage + '%';
+                label.textContent = `${trait.charAt(0).toUpperCase() + trait.slice(1)}: ${values[index].toFixed(2)}`;
+            });
+        }
+
+        function updateRecommendations(recommendations) {
+            const content = document.getElementById('recommendationsContent');
+            content.innerHTML = recommendations.map((rec, index) => `
+                <div class="recommendation-item ${index === 0 ? 'priority-high' : index === 1 ? 'priority-medium' : ''}">
+                    <i class="fas fa-arrow-right text-primary"></i> ${rec}
+                </div>
+            `).join('');
+        }
+
+        // Auto-load insights on page load
+        setTimeout(() => {
+            getInsights();
+        }, 1000);
+    </script>
+</body>
+</html>

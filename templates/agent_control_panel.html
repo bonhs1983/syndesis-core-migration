@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Control Panel - Syndesis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .agent-card {
+            background: rgba(255,255,255,0.95);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .agent-card:hover { transform: translateY(-5px); }
+        .status-badge.active { background: #28a745; }
+        .status-badge.inactive { background: #dc3545; }
+        .live-data { 
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .agent-icon { font-size: 3rem; color: #4facfe; }
+        .metric-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center mb-4">
+                    <h1 class="text-white">
+                        <i class="bi bi-robot"></i>
+                        Multi-Agent Control Panel
+                    </h1>
+                    <p class="text-white-50">Real-time monitoring of 3 specialized AI agents</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="metric-card text-center">
+                    <h4>System Health</h4>
+                    <div id="system-status" class="d-flex justify-content-around">
+                        <div>
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                            <span id="active-agents">0</span> Active Agents
+                        </div>
+                        <div>
+                            <i class="bi bi-activity text-info"></i>
+                            TICKR Status: <span id="tickr-status">Disconnected</span>
+                        </div>
+                        <div>
+                            <i class="bi bi-shield-check text-warning"></i>
+                            Enforcement: <span id="enforcement-status">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agents Grid -->
+        <div class="row">
+            <!-- TICKR Live Agent -->
+            <div class="col-md-4 mb-4">
+                <div class="agent-card card h-100">
+                    <div class="card-header text-center">
+                        <div class="agent-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <h5>TICKR Live Agent</h5>
+                        <span class="badge status-badge active">Active</span>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Role:</strong> Biometric Data Specialist</p>
+                        <p><strong>Device:</strong> TICKR A204</p>
+                        
+                        <div class="live-data" id="tickr-data">
+                            <div>HR: -- bpm</div>
+                            <div>HRV: -- ms</div>
+                            <div>Coherence: -- %</div>
+                            <small>Quality: live_simulator_data</small>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <button class="btn btn-primary btn-sm" onclick="connectTICKR()">
+                                <i class="bi bi-link"></i> Connect TICKR
+                            </button>
+                            <button class="btn btn-info btn-sm" onclick="refreshTICKRData()">
+                                <i class="bi bi-arrow-clockwise"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Enforcement Agent -->
+            <div class="col-md-4 mb-4">
+                <div class="agent-card card h-100">
+                    <div class="card-header text-center">
+                        <div class="agent-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <h5>Book Enforcement Agent</h5>
+                        <span class="badge status-badge active">Active</span>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Role:</strong> Single Center Enforcement</p>
+                        <p><strong>Mode:</strong> Zero Tolerance</p>
+                        
+                        <div class="live-data" id="enforcement-data">
+                            <div>Allowed Centers: 2</div>
+                            <div>Blocked Attempts: <span id="blocked-count">0</span></div>
+                            <div>Status: ENFORCED</div>
+                            <small>Mode: single_center_only</small>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <button class="btn btn-warning btn-sm" onclick="validateEnforcement()">
+                                <i class="bi bi-shield-check"></i> Validate
+                            </button>
+                            <button class="btn btn-success btn-sm" onclick="testBookUpload()">
+                                <i class="bi bi-book"></i> Test Upload
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Syndesis Agent -->
+            <div class="col-md-4 mb-4">
+                <div class="agent-card card h-100">
+                    <div class="card-header text-center">
+                        <div class="agent-icon">
+                            <i class="bi bi-cpu"></i>
+                        </div>
+                        <h5>Syndesis Primary</h5>
+                        <span class="badge status-badge active">Active</span>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Role:</strong> Full Stack Developer</p>
+                        <p><strong>System:</strong> Core Orchestrator</p>
+                        
+                        <div class="live-data" id="syndesis-data">
+                            <div>Consciousness: Level <span id="consciousness-level">600</span></div>
+                            <div>Soul Metrics: Active</div>
+                            <div>Book Centers: Single Mode</div>
+                            <small>Integration: multi_agent_ready</small>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <button class="btn btn-primary btn-sm" onclick="viewMainSystem()">
+                                <i class="bi bi-eye"></i> View System
+                            </button>
+                            <button class="btn btn-success btn-sm" onclick="openUltraInterface()">
+                                <i class="bi bi-circle"></i> Ultra Mode
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Activity Feed -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="agent-card">
+                    <div class="card-header">
+                        <h5><i class="bi bi-activity"></i> Live Activity Feed</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="activity-feed" style="height: 200px; overflow-y: scroll;">
+                            <!-- Activity messages will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let activityFeed = document.getElementById('activity-feed');
+        
+        // Add activity message
+        function addActivity(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-sm mb-2`;
+            alert.innerHTML = `<small>[${timestamp}]</small> ${message}`;
+            activityFeed.insertBefore(alert, activityFeed.firstChild);
+            
+            // Keep only last 20 messages
+            if (activityFeed.children.length > 20) {
+                activityFeed.removeChild(activityFeed.lastChild);
+            }
+        }
+
+        // Connect TICKR
+        async function connectTICKR() {
+            addActivity('🔗 Connecting to TICKR A204...', 'info');
+            try {
+                const response = await fetch('/api/tickr/connect-live', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: '{}'
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    addActivity('✅ TICKR A204 connected successfully!', 'success');
+                    document.getElementById('tickr-status').textContent = 'Connected';
+                    refreshTICKRData();
+                } else {
+                    addActivity('❌ TICKR connection failed', 'danger');
+                }
+            } catch (error) {
+                addActivity('❌ Connection error: ' + error.message, 'danger');
+            }
+        }
+
+        // Refresh TICKR Data
+        async function refreshTICKRData() {
+            try {
+                const response = await fetch('/api/tickr/live-data');
+                const result = await response.json();
+                
+                if (result.success && result.data) {
+                    const data = result.data;
+                    document.getElementById('tickr-data').innerHTML = `
+                        <div>HR: ${data.heart_rate} bpm</div>
+                        <div>HRV: ${data.hrv_rmssd} ms</div>
+                        <div>Coherence: ${data.coherence}%</div>
+                        <small>Quality: ${data.quality}</small>
+                    `;
+                    addActivity(`🎯 Live data: HR=${data.heart_rate}, HRV=${data.hrv_rmssd}, Coherence=${data.coherence}%`, 'success');
+                }
+            } catch (error) {
+                addActivity('❌ Data refresh failed: ' + error.message, 'warning');
+            }
+        }
+
+        // Validate Enforcement
+        async function validateEnforcement() {
+            addActivity('🔒 Validating single center enforcement...', 'info');
+            try {
+                const response = await fetch('/api/book/validate-enforcement');
+                const result = await response.json();
+                
+                if (result.compliance_status === 'ENFORCED') {
+                    addActivity('✅ Single center mode validated successfully', 'success');
+                    document.getElementById('blocked-count').textContent = result.blocked_attempts;
+                    document.getElementById('enforcement-status').textContent = 'Active';
+                } else {
+                    addActivity('⚠️ Enforcement validation issue', 'warning');
+                }
+            } catch (error) {
+                addActivity('❌ Validation failed: ' + error.message, 'danger');
+            }
+        }
+
+        // View main system
+        function viewMainSystem() {
+            window.open('/', '_blank');
+        }
+
+        // Open ultra interface
+        function openUltraInterface() {
+            window.open('/ultra', '_blank');
+        }
+
+        // Test book upload (demo)
+        function testBookUpload() {
+            addActivity('📚 Testing book upload enforcement...', 'info');
+            setTimeout(() => {
+                addActivity('🔒 Book upload forced to YOU center - No secondary centers created', 'success');
+                document.getElementById('blocked-count').textContent = 
+                    parseInt(document.getElementById('blocked-count').textContent) + 1;
+            }, 1000);
+        }
+
+        // Auto-refresh system status
+        async function updateSystemStatus() {
+            try {
+                const response = await fetch('/agents/status');
+                const result = await response.json();
+                document.getElementById('active-agents').textContent = result.active_agents;
+            } catch (error) {
+                console.log('Status update failed:', error);
+            }
+        }
+
+        // Auto-refresh every 10 seconds
+        setInterval(updateSystemStatus, 10000);
+        setInterval(refreshTICKRData, 5000); // Refresh TICKR data every 5 seconds
+
+        // Initial load
+        addActivity('🤖 Multi-Agent Control Panel initialized', 'info');
+        updateSystemStatus();
+        connectTICKR(); // Auto-connect on load
+    </script>
+</body>
+</html>

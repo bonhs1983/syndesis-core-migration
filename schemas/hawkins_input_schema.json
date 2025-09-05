@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Hawkins Presence Module Input Schema",
+  "description": "Complete user metrics input for Hawkins consciousness analysis",
+  "type": "object",
+  "required": ["source"],
+  "properties": {
+    "source": {
+      "type": "string",
+      "enum": ["real", "synthetic"],
+      "description": "Data source type - real biometric data or synthetic test data"
+    },
+    "soul_metrics": {
+      "type": "object",
+      "description": "Consciousness soul metrics (0-100%)",
+      "properties": {
+        "coherence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "description": "Soul coherence level (0-100%)"
+        },
+        "vitality": {
+          "type": "number", 
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "description": "Energy and life force (0-100%)"
+        },
+        "ethics": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%", 
+          "description": "Ethical alignment (0-100%)"
+        },
+        "narrative": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "description": "Life narrative coherence (0-100%)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "hrv_data": {
+      "type": "object",
+      "description": "Heart Rate Variability biometric data",
+      "properties": {
+        "hrv": {
+          "type": "number",
+          "minimum": 5.0,
+          "maximum": 95.0,
+          "unit": "ms",
+          "description": "Heart Rate Variability in milliseconds (5-95ms)"
+        },
+        "coherence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "description": "HRV coherence percentage (0-100%)"
+        },
+        "heart_rate": {
+          "type": "number",
+          "minimum": 45,
+          "maximum": 200,
+          "unit": "bpm",
+          "description": "Heart rate in beats per minute (45-200 bpm)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "focus_level": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "unit": "ratio",
+      "description": "Focus concentration level (0.0-1.0)"
+    },
+    "personality_traits": {
+      "type": "object",
+      "description": "Current personality trait values",
+      "properties": {
+        "empathy": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "unit": "ratio",
+          "description": "Empathy level (0.0-1.0)"
+        },
+        "analytical": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "unit": "ratio",
+          "description": "Analytical thinking (0.0-1.0)"
+        },
+        "curiosity": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "unit": "ratio",
+          "description": "Curiosity and exploration (0.0-1.0)"
+        },
+        "creativity": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "unit": "ratio",
+          "description": "Creative thinking (0.0-1.0)"
+        },
+        "resilience": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "unit": "ratio", 
+          "description": "Emotional resilience (0.0-1.0)"
+        },
+        "focus": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "unit": "ratio",
+          "description": "Focus and concentration (0.0-1.0)"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
